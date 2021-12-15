@@ -1,5 +1,6 @@
 {
-  "name": "storybook",
+  "name": "@pingcap-inc/tidb-community-ui-storybook",
+  "private": true,
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
@@ -38,6 +39,6 @@
   },
   "scripts": {
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build": "build-storybook"
   }
 }

@@ -5,6 +5,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build:ui": "pnpm run build --filter @pingcap-inc/tidb-community-ui",
+    "build:storybook": "pnpm run build --filter @pingcap-inc/tidb-community-ui-storybook",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
