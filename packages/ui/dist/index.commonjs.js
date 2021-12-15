@@ -1,0 +1,7 @@
+'use strict';
+
+Object.defineProperty(exports, '__esModule', { value: true });
+
+var colorsExport_module = {"B0":"#26000A","B1":"#4D0012","B2":"#73061C","B3":"#990F26","B4":"#BE1D32","B5":"#CC3F4D","B6":"#D9666E","B7":"#E69193","B8":"#F2BFBF","B9":"#FFF0F0","F0":"#000000","F1":"#2C2C2C","F2":"#565656","F3":"#707070","F4":"#B9B9B9","F5":"#D8D8D8","F6":"#E3E3E3","F7":"#F0F0F0","M3":"#E9EAEE","M2":"#f7f8f9","M1":"#ffffff","T1":"#69c384","T2":"#ee6d85","T3":"#7d3f98","T4":"#f8c200","T5":"#f15a24","D1":"#e30c34","D2":"#3D3FEA","D3":"#00AEEF","D4":"#172D72","D5":"#000431"};
+
+exports.colors = colorsExport_module;
