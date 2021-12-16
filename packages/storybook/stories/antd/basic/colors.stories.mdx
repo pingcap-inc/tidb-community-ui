@@ -1,0 +1,54 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+import { colors } from '@pingcap-inc/tidb-community-ui'
+import { Typography, Row, Col, Space } from 'antd'
+import ColorBox from './ColorBox'
+
+# Color Palette
+
+<Meta title="antd/basic" component={ColorBox} />
+
+<Canvas>
+  <Story name="Color Palette">
+    <Row>
+      <Col offset={4} span={8}>
+        <Space direction='vertical' size='large'>
+          <Typography.Title level={3}>主题色 + 衍生色</Typography.Title>
+          {Array(10).fill(0).map((_, i) => (
+            <ColorBox key={`B${i}`} name={`B${i}`} color={colors[`B${i}`]} />
+          ))}
+        </Space>
+      </Col>
+      <Col span={8}>
+        <Space direction='vertical' size='large'>
+          <Typography.Title level={3}>中性色</Typography.Title>
+          {Array(8).fill(0).map((_, i) => (
+            <ColorBox key={`F${i}`} name={`F${i}`} color={colors[`F${i}`]} />
+          ))}
+          {Array(3).fill(0).reverse().map((_, i) => (
+            <ColorBox key={`M${i + 1}`} name={`M${i + 1}`} color={colors[`M${i + 1}`]} />
+          ))}
+        </Space>
+      </Col>
+    </Row>
+    <br />
+    <br />
+    <Row>
+      <Col offset={4} span={8}>
+        <Space direction='vertical' size='large'>
+          <Typography.Title level={3}>功能色</Typography.Title>
+          {Array(5).fill(0).map((_, i) => (
+            <ColorBox key={`T${i + 1}`} name={`T${i + 1}`} color={colors[`T${i + 1}`]} />
+          ))}
+        </Space>
+      </Col>
+      <Col span={8}>
+        <Space direction='vertical' size='large'>
+          <Typography.Title level={3}>定制色</Typography.Title>
+          {Array(5).fill(0).map((_, i) => (
+            <ColorBox key={`D${i + 1}`} name={`D${i + 1}`} color={colors[`D${i + 1}`]} />
+          ))}
+        </Space>
+      </Col>
+    </Row>
+  </Story>
+</Canvas>

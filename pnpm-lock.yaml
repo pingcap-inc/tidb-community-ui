@@ -28,6 +28,7 @@ importers:
       '@babel/preset-typescript': ^7.16.5
       '@pingcap-inc/tidb-community-ui': '*'
       '@storybook/addon-actions': ^6.4.9
+      '@storybook/addon-docs': ^6.4.9
       '@storybook/addon-essentials': ^6.4.9
       '@storybook/addon-links': ^6.4.9
       '@storybook/builder-webpack5': ^6.4.9
@@ -64,6 +65,7 @@ importers:
       '@babel/preset-typescript': 7.16.5_@babel+core@7.16.5
       '@pingcap-inc/tidb-community-ui': link:../ui
       '@storybook/addon-actions': 6.4.9_react-dom@17.0.2+react@17.0.2
+      '@storybook/addon-docs': 6.4.9_93ae14596fbff6c9c299ae22ebf3d4da
       '@storybook/addon-essentials': 6.4.9_5328204501c44012220553778559a114
       '@storybook/addon-links': 6.4.9_react-dom@17.0.2+react@17.0.2
       '@storybook/builder-webpack5': 6.4.9_react-dom@17.0.2+react@17.0.2
@@ -83,6 +85,7 @@ importers:
     specifiers:
       antd: 4.15.6
       less: ^4.1.2
+      less-plugin-npm-import: ^2.1.0
       postcss: ^8.4.5
       rollup: ^2.61.1
       rollup-plugin-copy: ^3.4.0
@@ -95,6 +98,7 @@ importers:
       antd: 4.15.6
     devDependencies:
       less: 4.1.2
+      less-plugin-npm-import: 2.1.0
       postcss: 8.4.5
       rollup: 2.61.1
       rollup-plugin-copy: 3.4.0
@@ -672,7 +676,7 @@ packages:
       '@babel/core': ^7.0.0-0
     dependencies:
       '@babel/core': 7.12.9
-      '@babel/helper-plugin-utils': 7.10.4
+      '@babel/helper-plugin-utils': 7.16.5
       '@babel/plugin-syntax-object-rest-spread': 7.8.3_@babel+core@7.12.9
       '@babel/plugin-transform-parameters': 7.16.5_@babel+core@7.12.9
     dev: true
@@ -4470,6 +4474,10 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
+  /asap/2.0.6:
+    resolution: {integrity: sha1-5QNHYR1+aQlDIIu9r+vLwvuGbUY=}
+    dev: true
+
   /asn1.js/5.4.1:
     resolution: {integrity: sha512-+I//4cYPccV8LdmBLiX8CYvf9Sp3vQsrqu2QNXRcrbiWvcx/UdlFiqUJJzxRQxgsZmvhXhn4cSKeSmoFjVdupA==}
     dependencies:
@@ -8196,6 +8204,14 @@ packages:
       less: 4.1.2
     dev: true
 
+  /less-plugin-npm-import/2.1.0:
+    resolution: {integrity: sha1-gj5phskzGKmBccqFiEi2vq1Vvz4=}
+    engines: {node: '>=0.4.2'}
+    dependencies:
+      promise: 7.0.4
+      resolve: 1.1.7
+    dev: true
+
   /less/4.1.2:
     resolution: {integrity: sha512-EoQp/Et7OSOVu0aJknJOtlXZsnr8XE8KwuzTHOLeVSEx8pVWUICc8Q0VYRHgzyjX78nMEyC/oztWFbgyhtNfDA==}
     engines: {node: '>=6'}
@@ -9899,6 +9915,12 @@ packages:
     engines: {node: '>=0.12'}
     dev: true
 
+  /promise/7.0.4:
+    resolution: {integrity: sha1-Nj6EpMNsg1a4kP7WLJHOhdAu1Tk=}
+    dependencies:
+      asap: 2.0.6
+    dev: true
+
   /prompts/2.4.0:
     resolution: {integrity: sha512-awZAKrk3vN6CroQukBL+R9051a4R3zCZBlJm/HBfrSZ8iTpYix3VX1vU4mveiLpiwmOJT4wokTF9m6HUk4KqWQ==}
     engines: {node: '>= 6'}
@@ -11499,6 +11521,10 @@ packages:
   /resolve-url/0.2.1:
     resolution: {integrity: sha1-LGN/53yJOv0qZj/iGqkIAGjiBSo=}
     deprecated: https://github.com/lydell/resolve-url#deprecated
+    dev: true
+
+  /resolve/1.1.7:
+    resolution: {integrity: sha1-IDEU2CrSxe2ejgQRs5ModeiJ6Xs=}
     dev: true
 
   /resolve/1.20.0:

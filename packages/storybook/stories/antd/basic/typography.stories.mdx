@@ -1,0 +1,25 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs'
+import { Space, Typography as AntTypography } from 'antd'
+import Typography from './Typography'
+
+# Typography
+
+<Meta title="antd/basic" component={Typography} />
+
+<Canvas>
+  <Story name="Typography">
+    <Space className='tidb-community-ui' direction='vertical' size={8}>
+      <Typography cn='h0'>H0 Heading</Typography>
+      <Typography cn='h1'>H1 Heading</Typography>
+      <Typography cn='h2'>H2 Heading</Typography>
+      <Typography cn='h3'>H3 Heading</Typography>
+      <Typography cn='p1'>P1 Paragraph</Typography>
+      <Typography cn='p2'>P2 Paragraph</Typography>
+      <Typography cn='p3'>P3 Paragraph</Typography>
+      <AntTypography.Text type='secondary'>Secondary Text</AntTypography.Text>
+      <AntTypography.Text type='warning'>Warning Text</AntTypography.Text>
+      <AntTypography.Text type='success'>Success Text</AntTypography.Text>
+      <AntTypography.Text type='danger'>Danger Text</AntTypography.Text>
+    </Space>
+  </Story>
+</Canvas>

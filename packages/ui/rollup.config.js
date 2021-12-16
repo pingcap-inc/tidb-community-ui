@@ -3,6 +3,7 @@ import { defineConfig } from 'rollup'
 import copy from 'rollup-plugin-copy'
 import postcss from 'rollup-plugin-postcss'
 import del from 'rollup-plugin-delete'
+import LessPluginNpmImport from 'less-plugin-npm-import';
 
 export default defineConfig([{
   input: './theme/index.less',
@@ -20,31 +21,35 @@ export default defineConfig([{
     postcss({
       extract: 'antd.css',
       use: {
-        less: { javascriptEnabled: true }
+        less: {
+          javascriptEnabled: true,
+          plugins: [
+            new LessPluginNpmImport({ prefix: '~' })
+          ]
+        }
       }
     })
   ]
 }, {
   input: './index.ts',
   external: 'antd',
-  output: [{
-    file: 'dist/index.esm.js',
+  output: {
+    file: 'dist/index.js',
     format: 'esm'
-  }, {
-    file: 'dist/index.commonjs.js',
-    format: 'commonjs'
-  }],
+  },
   plugins: [
     postcss({
-      extract: false,
+      to: 'index.css',
+      extract: true,
       autoModules: true,
       inject: false,
     }),
     ts(),
     copy({
       targets: [
-        { src: 'theme/colors-export.module.less.d.ts', dest: 'dist/theme/' }
-      ]
+        { src: 'theme/colors-export.module.less.d.ts', dest: 'dist/theme/' },
+      ],
+      hook: 'buildEnd',
     })
   ]
 }])

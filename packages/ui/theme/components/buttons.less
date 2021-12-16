@@ -21,18 +21,42 @@
 @btn-border-radius-lg: 6px;
 
 .ant-btn {
-  //
-  //&-primary {
-  //  &:not(.ant-btn-dangerous):not(.ant-btn-background-ghost):not([disabled]) {
-  //    &:hover, &:focus {
-  //      .button-color(@btn-primary-color, @B3, @B3);
-  //    }
-  //
-  //    &:active {
-  //      .button-color(@btn-primary-color, @B5, @B5);
-  //    }
-  //  }
-  //}
+
+  &-primary {
+    &:not(.ant-btn-dangerous):not(.ant-btn-background-ghost):not([disabled]) {
+      &:hover, &:focus {
+        .button-color(@btn-primary-color, @B3, @B3);
+      }
+
+      &:active {
+        .button-color(@btn-primary-color, @B5, @B5);
+      }
+    }
+  }
+
+  &-link {
+    &:not(.ant-btn-dangerous):not(.ant-btn-background-ghost):not([disabled]) {
+      &:hover, &:focus {
+        .button-color(@B3, @btn-primary-color, @btn-primary-color);
+      }
+
+      &:active {
+        .button-color(@B5, @btn-primary-color, @btn-primary-color);
+      }
+    }
+  }
+
+  &-background-ghost {
+    &:not(.ant-btn-dangerous):not([disabled]) {
+      &:hover, &:focus {
+        .button-color(@B3, @btn-primary-color, @B3);
+      }
+
+      &:active {
+        .button-color(@B5, @btn-primary-color, @B5);
+      }
+    }
+  }
 
   &-xs {
     .button-size(@btn-height-xs; @btn-padding-horizontal-xs; @btn-font-size-xs; @btn-border-radius-xs);
