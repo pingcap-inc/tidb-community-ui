@@ -24,5 +24,12 @@
     "tslib": "^2.3.1",
     "typescript": "^4.5.4"
   },
-  "types": "./dist/index.d.ts"
+  "types": "./dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pingcap-inc/tidb-community-ui"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  }
 }
