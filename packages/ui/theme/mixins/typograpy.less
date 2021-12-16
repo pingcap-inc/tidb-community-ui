@@ -1,0 +1,42 @@
+.typography(@font-size, @color, @font-weight, @line-height: @font-size + 8) {
+  font-size: @font-size;
+  font-weight: @font-weight;
+  line-height: @line-height;
+  color: @color;
+}
+
+.h1() {
+  .typography(30px, @F1, @bold);
+}
+
+.h2() {
+  .typography(24px, @F1, @medium);
+}
+
+.h3() {
+  .typography(20px, @F1, @medium);
+}
+
+.h4() {
+  .typography(18px, @F1, @medium);
+}
+
+.h5() {
+  .typography(16px, @F1, @medium);
+}
+
+.h6() {
+  .typography(14px, @F1, @medium);
+}
+
+.p1() {
+  .typography(16px, @F2, @regular);
+}
+
+.p2() {
+  .typography(14px, @F2, @regular);
+}
+
+.p3() {
+  .typography(12px, @F2, @regular);
+}

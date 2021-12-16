@@ -1,3 +1,5 @@
+@import "../../theme/mixins/typograpy";
+
 .tidb-community-ui {
   .typography {
     &.regular {
@@ -12,53 +14,70 @@
       font-weight: bold;
     }
 
-    &.h0 {
-      color: @F1;
-      font-size: @font-size-h0;
-      line-height: @line-height-h0;
-      font-weight: 700;
-    }
-
     &.h1 {
-      color: @F1;
-      font-size: @font-size-h1;
-      line-height: @line-height-h1;
-      font-weight: 600;
+      .h1();
     }
 
     &.h2 {
-      color: @F1;
-      font-size: @font-size-h2;
-      line-height: @line-height-h2;
-      font-weight: 600;
+      .h2();
     }
 
     &.h3 {
-      color: @F1;
-      font-size: @font-size-h3;
-      line-height: @line-height-h3;
-      font-weight: 600;
+      .h3();
     }
 
-    &.p1, p& {
-      color: @F2;
-      font-size: @font-size-p1;
-      line-height: @line-height-p1;
-      font-weight: 400;
+    &.h4 {
+      .h4();
+    }
+
+    &.h5 {
+      .h5();
+    }
+
+    &.h6 {
+      .h6();
+    }
+
+    &.p1 {
+      .p1();
     }
 
     &.p2 {
-      color: @F2;
-      font-size: @font-size-p2;
-      line-height: @line-height-p2;
-      font-weight: 400;
+      .p2();
     }
 
     &.p3 {
-      color: @F2;
-      font-size: @font-size-p3;
-      line-height: @line-height-p3;
-      font-weight: 400;
+      .p3();
+    }
+  }
+
+  &:not(.ant-typography), :not(.ant-typography) {
+    h1:not([class^='ant-']) {
+      .h1();
+    }
+
+    h2:not([class^='ant-']) {
+      .h2();
+    }
+
+    h3:not([class^='ant-']) {
+      .h3();
+    }
+
+    h4:not([class^='ant-']) {
+      .h4();
+    }
+
+    h5:not([class^='ant-']) {
+      .h5();
+    }
+
+    h6:not([class^='ant-']) {
+      .h6();
+    }
+
+    p:not([class^='ant-']) {
+      .p1();
     }
   }
 }

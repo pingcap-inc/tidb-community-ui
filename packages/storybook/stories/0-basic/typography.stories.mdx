@@ -1,0 +1,65 @@
+import { Space, Typography } from 'antd'
+import { Canvas, Meta, Story } from '@storybook/addon-docs'
+
+# Typography
+
+<Meta title="basic/basic/Typography" />
+
+## Use antd `Typography` component
+
+> Will not clear default margin
+
+<Canvas>
+  <Story name="Typography (AntD)">
+    <Space direction='vertical' size={8}>
+      <Typography.Title level={1}>H1 Heading</Typography.Title>
+      <Typography.Title level={2}>H2 Heading</Typography.Title>
+      <Typography.Title level={3}>H3 Heading</Typography.Title>
+      <Typography.Title level={4}>H4 Heading</Typography.Title>
+      <Typography.Title level={5}>H5 Heading</Typography.Title>
+      <Typography.Paragraph>P1 Paragraph</Typography.Paragraph>
+      <Typography.Link>Link</Typography.Link>
+      <Typography.Text>Text</Typography.Text>
+      <Typography.Text type='secondary'>Secondary Text</Typography.Text>
+      <Typography.Text type='warning'>Warning Text</Typography.Text>
+      <Typography.Text type='success'>Success Text</Typography.Text>
+      <Typography.Text type='danger'>Danger Text</Typography.Text>
+    </Space>
+  </Story>
+</Canvas>
+
+## Use css class under `.tidb-community-ui`
+
+<Canvas>
+  <Story name="CSS">
+    <Space className='tidb-community-ui' direction='vertical' size={8}>
+      <span className='typography h1'>H1 Heading</span>
+      <span className='typography h2'>H2 Heading</span>
+      <span className='typography h3'>H3 Heading</span>
+      <span className='typography h4'>H4 Heading</span>
+      <span className='typography h5'>H5 Heading</span>
+      <span className='typography h6'>H6 Heading</span>
+      <span className='typography p1'>P1 Paragraph</span>
+      <span className='typography p2'>P2 Paragraph</span>
+      <span className='typography p3'>P3 Paragraph</span>
+    </Space>
+  </Story>
+</Canvas>
+
+## Use HTML tag under `.tidb-community-ui`
+
+> Will not clear default margin
+
+<Canvas>
+  <Story name='HTML'>
+    <Space className='tidb-community-ui' direction='vertical' size={8}>
+      <h1>H1 Heading</h1>
+      <h2>H2 Heading</h2>
+      <h3>H3 Heading</h3>
+      <h4>H4 Heading</h4>
+      <h5>H5 Heading</h5>
+      <h6>H6 Heading</h6>
+      <p>P1 Paragraph</p>
+    </Space>
+  </Story>
+</Canvas>

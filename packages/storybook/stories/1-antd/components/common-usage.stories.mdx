@@ -1,0 +1,99 @@
+import { Meta, Story } from '@storybook/addon-docs'
+import { Alert, Button, Col, Divider, Menu as AntMenu, message as antMessage, Modal, Row, Space, Typography } from 'antd'
+import Chance from 'chance'
+import './demo.less'
+const modalProps = { visible: true, centered: false, getContainer: false, mask: false }
+const chance = new Chance()
+
+# Antd components common usage
+
+<Meta title="antd/components" />
+
+## Alert
+
+<Story name="Alert">
+  <Row>
+    <Col span={12}>
+      <Space size='large' direction='vertical'>
+        <Alert type='info' showIcon message={chance.sentence({ words: 7 })} />
+        <Alert type='success' showIcon message={chance.sentence({ words: 7 })} />
+        <Alert type='warning' showIcon message={chance.sentence({ words: 7 })} />
+        <Alert type='error' showIcon message={chance.sentence({ words: 7 })} />
+      </Space>
+    </Col>
+    <Col span={12}>
+      <Space size='large' direction='vertical'>
+        <Alert type='info' showIcon message={chance.sentence({ words: 3 })} description={chance.sentence({ words: 16 })} />
+        <Alert type='success' showIcon message={chance.sentence({ words: 3 })} description={chance.sentence({ words: 16 })} />
+        <Alert type='warning' showIcon message={chance.sentence({ words: 3 })} description={chance.sentence({ words: 16 })} />
+        <Alert type='error' showIcon message={chance.sentence({ words: 3 })} description={chance.sentence({ words: 16 })} />
+      </Space>
+    </Col>
+  </Row>
+</Story>
+
+<Divider />
+
+
+## Message
+
+<Story name='Message'>
+  <Space size='large'>
+    <Button onClick={() => antMessage.info({ content: chance.sentence({ words: 5 }) })}><Typography.Text>info</Typography.Text></Button>
+    <Button onClick={() => antMessage.success({ content: chance.sentence({ words: 5 }) })}><Typography.Text type='success'>success</Typography.Text></Button>
+    <Button onClick={() => antMessage.error({ content: chance.sentence({ words: 5 }) })}><Typography.Text type='danger'>danger</Typography.Text></Button>
+    <Button onClick={() => antMessage.warn({ content: chance.sentence({ words: 5 }) })}><Typography.Text type='warning'>warning</Typography.Text></Button>
+  </Space>
+</Story>
+
+<Divider />
+
+
+## Modal
+
+<Story name="Modal">
+  <Modal {...modalProps} title={chance.sentence({ words: 5 })}>
+    <Typography.Paragraph>{chance.paragraph()}</Typography.Paragraph>
+  </Modal>
+</Story>
+
+<Divider />
+
+
+## Menu
+
+<Story name="Menu">
+  <Space direction='vertical' size='large'>
+    <AntMenu mode='horizontal'>
+      <AntMenu.Item>{chance.word()}</AntMenu.Item>
+      <AntMenu.Item>{chance.word()}</AntMenu.Item>
+      <AntMenu.SubMenu title={chance.word()}>
+        <AntMenu.Item>{chance.word()}</AntMenu.Item>
+        <AntMenu.Item>{chance.word()}</AntMenu.Item>
+        <AntMenu.Item>{chance.word()}</AntMenu.Item>
+        <AntMenu.Item>{chance.word()}</AntMenu.Item>
+        <AntMenu.SubMenu title={chance.word()}>
+          <AntMenu.Item>{chance.word()}</AntMenu.Item>
+          <AntMenu.Item>{chance.word()}</AntMenu.Item>
+        </AntMenu.SubMenu>
+      </AntMenu.SubMenu>
+      <AntMenu.Item>{chance.word()}</AntMenu.Item>
+    </AntMenu>
+    <AntMenu mode='inline'>
+      <AntMenu.Item>{chance.word()}</AntMenu.Item>
+      <AntMenu.Item>{chance.word()}</AntMenu.Item>
+      <AntMenu.SubMenu title={chance.word()}>
+        <AntMenu.Item>{chance.word()}</AntMenu.Item>
+        <AntMenu.Item>{chance.word()}</AntMenu.Item>
+        <AntMenu.Item>{chance.word()}</AntMenu.Item>
+        <AntMenu.Item>{chance.word()}</AntMenu.Item>
+        <AntMenu.SubMenu title={chance.word()}>
+          <AntMenu.Item>{chance.word()}</AntMenu.Item>
+          <AntMenu.Item>{chance.word()}</AntMenu.Item>
+        </AntMenu.SubMenu>
+      </AntMenu.SubMenu>
+      <AntMenu.Item>{chance.word()}</AntMenu.Item>
+    </AntMenu>
+  </Space>
+</Story>
+
