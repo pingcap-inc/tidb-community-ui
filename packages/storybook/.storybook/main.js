@@ -12,28 +12,26 @@ module.exports = {
     builder: 'webpack5'
   },
   webpackFinal: async (config, { configType }) => {
-    if (configType === 'DEVELOPMENT') {
-      config.module.rules.push({
-        test: /\.less$/,
-        use: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              sourceMap: true
+    config.module.rules.push({
+      test: /\.less$/,
+      use: [
+        'style-loader',
+        {
+          loader: 'css-loader',
+          options: {
+            sourceMap: configType === 'DEVELOPMENT'
+          }
+        },
+        {
+          loader: 'less-loader',
+          options: {
+            sourceMap: configType === 'DEVELOPMENT',
+            lessOptions: {
+              javascriptEnabled: true
             }
-          },
-          {
-            loader: 'less-loader',
-            options: {
-              sourceMap: true,
-              lessOptions: {
-                javascriptEnabled: true
-              }
-            }
-          }]
+          }
+        }]
       })
-    }
     return config
   }
 }
