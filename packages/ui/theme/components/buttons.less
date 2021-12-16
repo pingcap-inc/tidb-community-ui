@@ -1,0 +1,44 @@
+@import "node_modules/antd/lib/button/style/mixin";
+
+@btn-height-xs: 24px;
+@btn-font-size-xs: 14px;
+@btn-padding-horizontal-xs: 8px;
+@btn-border-radius-xs: 2px;
+
+@btn-height-sm: 32px;
+@btn-font-size-sm: 16px;
+@btn-padding-horizontal-sm: 16px;
+@btn-border-radius-sm: 2px;
+
+@btn-height-base: 40px;
+@btn-font-size-base: 16px;
+@btn-padding-horizontal-base: 16px;
+@btn-border-radius-base: 4px;
+
+@btn-height-lg: 48px;
+@btn-font-size-lg: 16px;
+@btn-padding-horizontal-lg: 16px;
+@btn-border-radius-lg: 6px;
+
+.ant-btn {
+  //
+  //&-primary {
+  //  &:not(.ant-btn-dangerous):not(.ant-btn-background-ghost):not([disabled]) {
+  //    &:hover, &:focus {
+  //      .button-color(@btn-primary-color, @B3, @B3);
+  //    }
+  //
+  //    &:active {
+  //      .button-color(@btn-primary-color, @B5, @B5);
+  //    }
+  //  }
+  //}
+
+  &-xs {
+    .button-size(@btn-height-xs; @btn-padding-horizontal-xs; @btn-font-size-xs; @btn-border-radius-xs);
+  }
+
+  &-lg {
+    .button-size(@btn-height-lg; @btn-padding-horizontal-lg; @btn-font-size-lg; @btn-border-radius-lg);
+  }
+}

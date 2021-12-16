@@ -3,15 +3,15 @@ import './index.css'
 
 import { Button, Row, Col } from 'antd';
 
-const Buttons = () => {
-  const sizes = [undefined, 'small', 'middle', 'large']
-  const types = ['default', 'primary', 'link', 'text', 'dashed', 'ghost']
-  const attrs = ['ghost', 'disabled', 'danger']
+const Buttons = ({ ghost, disabled, danger }) => {
+  const sizes = ['small', 'middle', 'large']
+  const types = ['default', 'primary', 'link', 'text', 'dashed']
+  const attrs = { ghost, disabled, danger }
 
   return (
     <>
       <Row gutter={[8, 8]}>
-        <Col offset={4} span={5}>default</Col>
+        <Col offset={4} span={5}>xs<sup>*</sup></Col>
         <Col span={5}>small</Col>
         <Col span={5}>middle</Col>
         <Col span={5}>large</Col>
@@ -19,19 +19,12 @@ const Buttons = () => {
       {types.map(type => (
         <Row gutter={[8, 8]} key={type}>
           <Col span={4}>{type}</Col>
-          {sizes.map(size => (
-            <Col span={5} key={size || 'base'}>
-              <Button type={type} size={size}>Button</Button>
+          <Col span={5}>
+              <Button className='ant-btn-xs' {...attrs} type={type}>Button</Button>
             </Col>
-          ))}
-        </Row>
-      ))}
-      {attrs.map(attr => (
-        <Row gutter={[8, 8]} key={attr}>
-          <Col span={4}>{attr}</Col>
           {sizes.map(size => (
             <Col span={5} key={size || 'base'}>
-              <Button {...{[attr]: true}} size={size}>Button</Button>
+              <Button {...attrs} type={type} size={size}>Button</Button>
             </Col>
           ))}
         </Row>
@@ -52,4 +45,7 @@ const Template = (args) => <Buttons {...args} />;
 export const Preview = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Preview.args = {
+  ghost: false,
+  disabled: false,
+  danger: false
 };
