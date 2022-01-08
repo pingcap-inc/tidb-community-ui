@@ -1,0 +1,14 @@
+import { Story, Meta } from '@storybook/addon-docs'
+import { constants } from '@pingcap-inc/tidb-community-ui'
+
+# Constants
+
+<Meta title="basic/basic" />
+
+<Story name='sizes'>
+  <h2>Responsive Widths</h2>
+  <pre>export responsiveWidths = {JSON.stringify(constants.responsiveWidths, undefined, 2)}</pre>
+  <br />
+  <h2>Breakpoints</h2>
+  <pre>export breakPoints = {JSON.stringify(constants.breakPoints, undefined, 2)}</pre>
+</Story>

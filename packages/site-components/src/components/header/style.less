@@ -1,0 +1,135 @@
+@import "../../theme";
+
+@menu-prefix-cls: ~'@{ant-prefix}-menu';
+
+.ti-site-header {
+  .fade-enter {
+    opacity: 0;
+    transform: scale(0.92) translateY(2px);
+  }
+
+  .fade-exit {
+    opacity: 1;
+    transform: initial;
+  }
+
+  .fade-enter-active {
+    opacity: 1;
+    transform: initial;
+  }
+
+  .fade-exit-active {
+    opacity: 0;
+    transform: scale(0.92) translateY(2px);
+  }
+
+  .fade-enter-active,
+  .fade-exit-active {
+    transition: opacity ease 250ms, transform ease 250ms;
+  }
+}
+
+.ti-site-header {
+  background: @M1;
+  border-bottom: 1px solid @border-color-base;
+  box-shadow: @box-shadow-base;
+
+  .ti-site-header-button {
+    & + .ti-site-header-button {
+      margin-left: 30px;
+    }
+
+    a {
+      color: @D5;
+      cursor: pointer;
+
+      &:hover {
+        color: @B1;
+      }
+    }
+  }
+
+  & > &__container {
+    margin: auto;
+    display: flex;
+    align-items: center;
+
+    width: calc(~"100% - 32px");
+  }
+
+  &.ti-responsive-xl > &__container {
+    max-width: 1200px;
+  }
+
+  &.ti-responsive-lg > &__container {
+    width: calc(~"100% - 48px");
+  }
+
+  &.ti-responsive-md > &__container {
+    width: calc(~"100% - 48px");
+  }
+
+  &.ti-responsive-sm > &__container {
+    max-width: 960px;
+  }
+
+  &.ti-responsive-xss {
+    .ti-site-header-menu {
+      width: 62px;
+    }
+
+    .ti-site-header-button + .ti-site-header-menu {
+      margin-left: 16px;
+    }
+  }
+}
+
+.ti-site-header .@{menu-prefix-cls} {
+  &-horizontal {
+    flex: 1;
+    border-bottom: none;
+    padding-top: 13px;
+    height: 56px;
+    line-height: 30px;
+
+    &:not(.@{menu-prefix-cls}-dark) {
+      > .@{menu-prefix-cls}-item,
+      > .@{menu-prefix-cls}-submenu {
+        margin: @menu-item-padding;
+        margin-top: -1px;
+        margin-bottom: 0;
+        padding: @menu-item-padding;
+        padding-right: 0;
+        padding-left: 0;
+
+        &:hover,
+        &-active,
+        &-open,
+        &-selected {
+          color: @menu-highlight-color;
+          border-bottom: 3px solid @menu-highlight-color;
+        }
+      }
+    }
+
+    > .@{menu-prefix-cls}-item,
+    > .@{menu-prefix-cls}-submenu {
+      position: relative;
+      top: 1px;
+      display: inline-block;
+      vertical-align: bottom;
+      border-bottom: 3px solid transparent;
+    }
+
+    > .@{menu-prefix-cls}-submenu-horizontal.@{menu-prefix-cls}-overflowed-submenu {
+      &:first-child {
+        margin-right: 0;
+      }
+
+      .anticon.anticon-menu {
+        margin-right: 4px;
+        margin-left: 4px;
+      }
+    }
+  }
+}
