@@ -6,7 +6,7 @@ import { LoadingOutlined, MenuOutlined } from '@ant-design/icons'
 import { AntWrapper, Responsive, SwrData } from '@pingcap-inc/tidb-community-ui'
 import { useMeData } from '../../datasource/accounts'
 import { HeaderBreakpoint } from './constants'
-import UserProfileSubMenu from '../user-profile/UserProfileSubMenu'
+import { UserProfileSubMenu } from '../user-profile'
 
 
 const HeaderMenu = ({ style }: { style?: React.CSSProperties }): JSX.Element => {
@@ -30,6 +30,7 @@ const HeaderMenu = ({ style }: { style?: React.CSSProperties }): JSX.Element => 
             >
               {(data) => <UserProfileSubMenu me={data.data} {...props} />}
             </SwrData>
+            <Menu.Divider {...props} />
           </Responsive.Breakpoint>
         )}
       </AntWrapper>

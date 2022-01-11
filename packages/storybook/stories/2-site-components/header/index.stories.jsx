@@ -1,11 +1,6 @@
-import { defineSiteComponentsConfig, Env, Header, Site, SiteComponentsContext } from '@pingcap-inc/tidb-community-site-components'
+import { Header, SiteComponentsContext } from '@pingcap-inc/tidb-community-site-components'
 import React, { useCallback, useEffect } from 'react'
 import { mutate } from 'swr'
-
-defineSiteComponentsConfig({
-  site: Site.others,
-  env: Env.local
-})
 
 const HeaderPreview = ({ notifications, privateMessages, loggedIn }) => {
 

@@ -14,6 +14,10 @@ module.exports = {
     builder: 'webpack5'
   },
   webpackFinal: async (config, { configType }) => {
+    const root = path.resolve(__dirname, '../..')
+    const svgRule = config.module.rules.find((rule) => 'test.svg'.match(rule.test));
+    svgRule.exclude = [root];
+
     config.resolve.alias['@pingcap-inc/tidb-community-site-components$'] = path.resolve(__dirname, '../node_modules/@pingcap-inc/tidb-community-site-components/src/index.ts')
     config.resolve.alias['@pingcap-inc/tidb-community-ui$'] = path.resolve(__dirname, '../node_modules/@pingcap-inc/tidb-community-ui/index.ts')
     config.module.rules.push({
@@ -35,7 +39,11 @@ module.exports = {
             }
           }
         }]
-      })
+      }, {
+      test: /\.svg$/,
+      use: ['@svgr/webpack'],
+      include: [root]
+    })
     return config
   }
 }

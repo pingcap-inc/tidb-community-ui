@@ -1,0 +1,22 @@
+.responsive-block(@child-cls-name) {
+  & > .@{child-cls-name} {
+    margin: auto;
+    width: calc(~"100% - 32px");
+  }
+
+  &.ti-responsive-xl > .@{child-cls-name} {
+    max-width: 1200px;
+  }
+
+  &.ti-responsive-lg > .@{child-cls-name} {
+    width: calc(~"100% - 48px");
+  }
+
+  &.ti-responsive-md > .@{child-cls-name} {
+    width: calc(~"100% - 48px");
+  }
+
+  &.ti-responsive-sm > .@{child-cls-name} {
+    max-width: 960px;
+  }
+}

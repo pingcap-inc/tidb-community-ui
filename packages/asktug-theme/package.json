@@ -1,0 +1,27 @@
+{
+  "name": "asktug-theme",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@ant-design/icons": "^4.7.0",
+    "@pingcap-inc/tidb-community-site-components": "workspace:*",
+    "@pingcap-inc/tidb-community-ui": "workspace:*",
+    "@types/react": "^17.0.38",
+    "@types/react-dom": "^17.0.11",
+    "axios": "^0.24.0",
+    "react": "^17.0.2",
+    "react-com": "^1.0.6",
+    "react-cool-dimensions": "^2.0.7",
+    "react-transition-group": "^4.4.2",
+    "rollup": "^2.61.1",
+    "rollup-plugin-terser": "^7.0.2",
+    "rollup-plugin-ts": "^2.0.4",
+    "swr": "^1.1.2"
+  }
+}

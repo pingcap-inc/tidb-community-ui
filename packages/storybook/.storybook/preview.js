@@ -1,5 +1,12 @@
 import '@pingcap-inc/tidb-community-ui/theme/index.less'
 import '@pingcap-inc/tidb-community-ui/src/index.less'
+import { defineSiteComponentsConfig, Env, Site } from '@pingcap-inc/tidb-community-site-components'
+
+
+defineSiteComponentsConfig({
+  site: Site.others,
+  env: Env.local
+})
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },

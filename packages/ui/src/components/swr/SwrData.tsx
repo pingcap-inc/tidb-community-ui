@@ -1,9 +1,7 @@
 import { KeyedMutator, SWRResponse } from 'swr'
-import { cloneElement, ForwardedRef, forwardRef } from 'react'
 
 
 export interface SwrDataProps<Data, Error> {
-  __preventPassThroughProps?: boolean,
   data: SWRResponse<Data>
   initializing?: JSX.Element | (() => JSX.Element)
   fallback?: JSX.Element | ((error: Error | undefined, mutate: KeyedMutator<Data>) => JSX.Element)

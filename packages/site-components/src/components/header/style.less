@@ -1,4 +1,5 @@
 @import "../../theme";
+@import "../../mixins";
 
 @menu-prefix-cls: ~'@{ant-prefix}-menu';
 
@@ -49,36 +50,19 @@
     }
   }
 
-  & > &__container {
-    margin: auto;
+  &__container {
     display: flex;
     align-items: center;
-
-    width: calc(~"100% - 32px");
   }
 
-  &.ti-responsive-xl > &__container {
-    max-width: 1200px;
-  }
+  .responsive-block(ti-site-header__container);
 
-  &.ti-responsive-lg > &__container {
-    width: calc(~"100% - 48px");
-  }
-
-  &.ti-responsive-md > &__container {
-    width: calc(~"100% - 48px");
-  }
-
-  &.ti-responsive-sm > &__container {
-    max-width: 960px;
-  }
-
-  &.ti-responsive-xss {
+  &.ti-responsive-xxs {
     .ti-site-header-menu {
       width: 62px;
     }
 
-    .ti-site-header-button + .ti-site-header-menu {
+    .ti-site-header-button + .ti-site-header-button {
       margin-left: 16px;
     }
   }
@@ -91,6 +75,7 @@
     padding-top: 13px;
     height: 56px;
     line-height: 30px;
+    text-align: right;
 
     &:not(.@{menu-prefix-cls}-dark) {
       > .@{menu-prefix-cls}-item,
@@ -124,6 +109,7 @@
     > .@{menu-prefix-cls}-submenu-horizontal.@{menu-prefix-cls}-overflowed-submenu {
       &:first-child {
         margin-right: 0;
+        margin-left: 12px;
       }
 
       .anticon.anticon-menu {

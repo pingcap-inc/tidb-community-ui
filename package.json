@@ -6,6 +6,7 @@
   "main": "index.js",
   "scripts": {
     "build:ui": "pnpm run build --filter @pingcap-inc/tidb-community-ui",
+    "build:site-components": "pnpm run build --filter @pingcap-inc/tidb-community-site-components",
     "build:storybook": "pnpm run build --filter @pingcap-inc/tidb-community-ui-storybook",
     "storybook": "pnpm run storybook --filter @pingcap-inc/tidb-community-ui-storybook",
     "dev": "pnpm run dev --filter @pingcap-inc/tidb-community-ui",
