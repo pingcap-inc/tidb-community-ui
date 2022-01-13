@@ -106,11 +106,11 @@ export const usePrivateMessages = (params: GetNotificationParams = {}): PrivateM
   const { data } = useAsktugPrivateMessages()
   const mappedUsers = useRef<Map<number, AsktugUser>>()
 
-  useEffect(() => {
-    mappedUsers.current = new Map()
-  }, [])
-
   return useMemo(() => {
+    if (!mappedUsers.current) {
+      mappedUsers.current = new Map()
+    }
+
     for (const user of data?.users ?? []) {
       mappedUsers.current!.set(user.id, user)
     }
