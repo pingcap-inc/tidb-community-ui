@@ -1,14 +1,17 @@
-import useSWR from 'swr'
-import { useContext } from 'react'
-import SiteComponentsContext from '../context/site-components-context'
-import { SWRResponse } from 'swr/dist/types'
+import { useAsktugNotifications } from './asktug'
 
 export type CommonHeaderData = {
   notifications: number | boolean
   privateMessages: number | boolean
 }
 
-export const useCommonHeaderData = (): SWRResponse<CommonHeaderData, void> => {
-  const { fetchers: { home } } = useContext(SiteComponentsContext)
-  return useSWR<CommonHeaderData>(['common.headerData'], { fetcher: home })
+/**
+ * @deprecated
+ */
+export const useCommonHeaderData = (): CommonHeaderData => {
+  const { data: asktugNotifications } = useAsktugNotifications({ unread: 1 })
+  return {
+    notifications: !!(asktugNotifications?.total_rows_notifications ?? 0),
+    privateMessages: false,
+  }
 }

@@ -1,6 +1,7 @@
 import { Header, SiteComponentsContext } from '@pingcap-inc/tidb-community-site-components'
 import React, { useCallback, useEffect } from 'react'
 import { mutate } from 'swr'
+import notificationsJson from './notification.json'
 
 const HeaderPreview = ({ notifications, privateMessages, loggedIn }) => {
 
@@ -32,17 +33,14 @@ const HeaderPreview = ({ notifications, privateMessages, loggedIn }) => {
     }
   }, [loggedIn])
 
-  const home = useCallback((key) => {
-    if (key === 'common.headerData') {
-      return Promise.resolve({
-        notifications,
-        privateMessages
-      })
+  const asktug = useCallback((key) => {
+    if (key === 'asktug.getNotifications') {
+      return Promise.resolve(notificationsJson)
     }
-  }, [notifications, privateMessages])
+  }, [])
 
   return (
-    <SiteComponentsContext.Provider value={{ fetchers: { accounts, home } }}>
+    <SiteComponentsContext.Provider value={{ fetchers: { accounts, asktug } }}>
       <Header />
     </SiteComponentsContext.Provider>
   )

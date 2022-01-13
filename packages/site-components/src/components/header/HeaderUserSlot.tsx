@@ -10,6 +10,7 @@ import { useMeData } from '../../datasource/accounts'
 import { SwrData } from '@pingcap-inc/tidb-community-ui'
 import { swrState } from '../../utils/swr'
 import { useCommonHeaderData } from '../../datasource/home'
+import HeaderNotifications from './HeaderNotifications'
 
 const HeaderUserSlot = () => {
   const me = useMeData()
@@ -34,6 +35,7 @@ const HeaderUserSlot = () => {
             >
               {(me) => (
                 <>
+                  <HeaderNotifications />
                   <HeaderButtons buttons={buttons} />
                   <Space size={30} />
                   <UserProfileDropdown me={me.data} />

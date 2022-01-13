@@ -2,6 +2,7 @@ import React, { useMemo } from 'react'
 import { Badge, Tooltip } from 'antd'
 import { getUrl, RouteToConfig } from '../../utils/site'
 import { getSiteComponentsConfig } from '../../app-config'
+import { getContainer } from '../../utils/popup-container'
 
 export interface HeaderButtonProps {
   key: string
@@ -33,7 +34,7 @@ const renderHeaderButton = ({ key, tooltip, icon, badge, to }: HeaderButtonProps
   }
 
   if (tooltip) {
-    el = <Tooltip title={tooltip}>{el}</Tooltip>
+    el = <Tooltip getPopupContainer={getContainer} title={tooltip}>{el}</Tooltip>
   }
   if (key) {
     el = React.cloneElement(el, { key, className: 'ti-site-header-button' })

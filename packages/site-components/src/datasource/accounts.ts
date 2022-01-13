@@ -41,6 +41,6 @@ export type MeData = {
 }
 
 export const useMeData = (): SWRResponse<ApiResponse<MeData, void>> => {
-  const { fetchers: { accounts } } = useContext(SiteComponentsContext)
-  return useSWR<ApiResponse<MeData, void>>(['me'], { fetcher: accounts })
+  const { fetchers: { accounts: fetcher } } = useContext(SiteComponentsContext)
+  return useSWR<ApiResponse<MeData, void>>(['me'], { fetcher })
 }

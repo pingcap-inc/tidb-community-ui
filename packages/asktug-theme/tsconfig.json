@@ -2,9 +2,9 @@
   "compilerOptions": {
     "outDir": "./dist",
     "target": "esnext",
-    "module": "esnext",
+    "module": "node12",
     "sourceRoot": ".",
-    "declaration": true,
+    "declaration": false,
     "strict": true,
     "moduleResolution": "node",
     "forceConsistentCasingInFileNames": true,

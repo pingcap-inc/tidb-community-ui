@@ -1,0 +1,47 @@
+name: Asktug header preview
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - uses: pnpm/action-setup@646cdf48217256a3d0b80361c5a50727664284f2
+        with:
+          version: 6.23.6
+
+      - name: Set up Node.js v16
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
+          cache: pnpm
+
+      - name: Install deps
+        run: pnpm install --frozen-lockfile --prod
+
+      - name: Build preview
+        run: |
+          rm -rf ./packages/asktug-theme/dist
+          pnpm run build:ui
+          pnpm run build:site-components
+          pnpm run build:asktug:preview
+
+      - name: Upload to Aliyun oss
+        id: upload_to_oss
+        uses: AliyunWorkbench/workbench-oss@1.0.0
+        with:
+          ACCESS_KEY: ${{ secrets.OSS_ACCESS_KEY }}
+          ACCESS_SECRET: ${{ secrets.OSS_ACCESS_SECRET }}
+          OSS_REGION: oss-cn-beijing
+          OSS_BUCKET: tidb-community-site
+          OSS_PATH: /tidb-community-ui/
+          UPLOAD_PATH: ./packages/asktug-theme/dist

@@ -8,6 +8,8 @@
     "build:ui": "pnpm run build --filter @pingcap-inc/tidb-community-ui",
     "build:site-components": "pnpm run build --filter @pingcap-inc/tidb-community-site-components",
     "build:storybook": "pnpm run build --filter @pingcap-inc/tidb-community-ui-storybook",
+    "build:asktug:preview": "pnpm run build:preview --filter @pingcap-inc/tidb-community-asktug-theme",
+    "build:asktug:production": "pnpm run build:production --filter @pingcap-inc/tidb-community-asktug-theme",
     "storybook": "pnpm run storybook --filter @pingcap-inc/tidb-community-ui-storybook",
     "dev": "pnpm run dev --filter @pingcap-inc/tidb-community-ui",
     "test": "echo \"Error: no test specified\" && exit 1"

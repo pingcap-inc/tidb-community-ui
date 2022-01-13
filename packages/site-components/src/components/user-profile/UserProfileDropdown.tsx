@@ -4,6 +4,7 @@ import { Avatar, Dropdown, Menu } from 'antd'
 import { DownOutlined } from '@ant-design/icons'
 import './style.less'
 import { useUserProfileItems } from './hooks'
+import { getContainer } from '../../utils/popup-container'
 
 const UserProfileDropdown = ({ me }: { me: MeData['data'] }) => {
   const items = useUserProfileItems(me)
@@ -12,6 +13,7 @@ const UserProfileDropdown = ({ me }: { me: MeData['data'] }) => {
     <Dropdown
       className="ti-site-user-profile"
       placement="bottomRight"
+      getPopupContainer={getContainer}
       overlay={
         <Menu>{items}</Menu>
       }>

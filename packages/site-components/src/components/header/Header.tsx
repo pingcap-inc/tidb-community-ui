@@ -12,6 +12,7 @@ import { useMeData } from '../../datasource/accounts'
 import { Skeleton } from 'antd'
 import { useCommonHeaderData } from '../../datasource/home'
 import { HeaderBreakpoint, headerBreakpoints } from './constants'
+import HeaderNotifications from './HeaderNotifications'
 
 
 const Header = (): JSX.Element => {
@@ -37,7 +38,10 @@ const Header = (): JSX.Element => {
               initializing={<Skeleton.Button size="small" active />}
               fallback={<LoginButton className="ant-btn-xs" />}
             >
-              <HeaderButtons buttons={buttons} />
+              <>
+                <HeaderNotifications />
+                <HeaderButtons buttons={buttons} />
+              </>
             </SwrData>
           </Responsive.Breakpoint>
 

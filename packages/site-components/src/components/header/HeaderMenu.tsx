@@ -7,6 +7,7 @@ import { AntWrapper, Responsive, SwrData } from '@pingcap-inc/tidb-community-ui'
 import { useMeData } from '../../datasource/accounts'
 import { HeaderBreakpoint } from './constants'
 import { UserProfileSubMenu } from '../user-profile'
+import { getContainer } from '../../utils/popup-container'
 
 
 const HeaderMenu = ({ style }: { style?: React.CSSProperties }): JSX.Element => {
@@ -17,6 +18,7 @@ const HeaderMenu = ({ style }: { style?: React.CSSProperties }): JSX.Element => 
       className="ti-site-header-menu"
       style={style}
       mode="horizontal"
+      getPopupContainer={getContainer}
       overflowedIndicator={
         <MenuOutlined />
       }>

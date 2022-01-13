@@ -38,8 +38,8 @@ const siteConfig: Record<Site, SiteConfig> = {
   [Site.asktug]: {
     baseUrl: {
       [Env.prod]: 'https://asktug.com',
-      [Env.preview]: 'https://new.asktug.com',
-      [Env.local]: 'https://new.asktug.com',
+      [Env.preview]: 'https://sso-test.asktug.com',
+      [Env.local]: 'https://sso-test.asktug.com',
     },
     hasRouter: false,
   },

@@ -2,8 +2,6 @@ import { defineSiteComponentsConfig, Env, Site } from '@pingcap-inc/tidb-communi
 import { Responsive } from '@pingcap-inc/tidb-community-ui'
 import React from 'react'
 
-console.log(Responsive)
-
 defineSiteComponentsConfig({
   site: Site.others,
   env: Env.local
