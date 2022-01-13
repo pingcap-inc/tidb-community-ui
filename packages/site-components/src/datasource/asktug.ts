@@ -1,8 +1,6 @@
-import { useContext, useEffect, useMemo, useRef } from 'react'
+import { useContext, useMemo, useRef } from 'react'
 import SiteComponentsContext from '../context/site-components-context'
 import useSWR from 'swr'
-import { getUrl, Site } from '../utils/site'
-import { getSiteComponentsConfig } from '../app-config'
 
 export enum NotificationType {
   mentioned = 1,
@@ -28,23 +26,43 @@ export enum NotificationType {
   code_review_commit_approved = 21
 }
 
-export interface AsktugNotification {
+export interface AsktugNotification<Data extends AsktugNotificationData = AsktugNotificationData> {
   id: number
   notification_type: NotificationType
   read: boolean
   created_at: '2021-08-23T07:11:25.000Z'
   post_number: number
-  topic_id: number
-  fancy_title: string
-  slug: string
-  data: {
-    topic_title: string
-    original_post_id: number
-    original_post_type: number
-    original_username: string
-    revision_number: null | number
-    display_username: string
-  }
+  topic_id?: number
+  fancy_title?: string
+  slug?: string
+  data: Data
+}
+
+export interface AsktugNotificationData {
+}
+
+export interface TopicData extends AsktugNotificationData {
+  topic_title: string
+  original_post_id: number
+  original_post_type: number
+  original_username: string
+  revision_number: null | number
+  display_username: string
+}
+
+export interface BadgeData extends AsktugNotificationData {
+  badge_id: number,
+  badge_name: string,
+  badge_slug: string,
+  badge_title: string,
+  username: string
+}
+
+export interface GroupData extends AsktugNotificationData {
+  group_id: number
+  group_name: string
+  inbox_count: number
+  username: string
 }
 
 export interface Notifications {
@@ -56,6 +74,9 @@ export interface Notifications {
 
 export interface GetNotificationParams {
   unread?: 1
+  limit?: number
+  recent?: 1
+  silent?: 1
 }
 
 export interface AsktugPrivateMessage {

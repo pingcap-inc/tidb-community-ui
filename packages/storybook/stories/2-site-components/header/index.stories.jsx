@@ -1,7 +1,7 @@
 import { Header, SiteComponentsContext } from '@pingcap-inc/tidb-community-site-components'
 import React, { useCallback, useEffect } from 'react'
 import { mutate } from 'swr'
-import notificationsJson from './notification.json'
+import notificationsJson from '../notification.json'
 import privateMessagesJson from './private-messages.json'
 
 const HeaderPreview = ({ notifications, privateMessages, loggedIn }) => {
