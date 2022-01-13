@@ -1,6 +1,8 @@
-import { useContext } from 'react'
+import { useContext, useEffect, useMemo, useRef } from 'react'
 import SiteComponentsContext from '../context/site-components-context'
 import useSWR from 'swr'
+import { getUrl, Site } from '../utils/site'
+import { getSiteComponentsConfig } from '../app-config'
 
 export enum NotificationType {
   mentioned = 1,
@@ -56,7 +58,70 @@ export interface GetNotificationParams {
   unread?: 1
 }
 
-export const useAsktugNotifications = (params: GetNotificationParams) => {
+export interface AsktugPrivateMessage {
+  id: number
+  slug: string
+  fancy_title: string
+  posters: {
+    user_id: number
+  }[]
+}
+
+export interface AsktugUser {
+  id: number
+  username: string
+  is_verified: boolean
+}
+
+export interface PrivateMessages {
+  users: AsktugUser[]
+  topic_list: {
+    per_page: number
+    topics: AsktugPrivateMessage[]
+  }
+}
+
+export interface GetPrivateMessagesParams {
+  unread?: 1
+}
+
+export const useAsktugNotifications = (params: GetNotificationParams = {}) => {
   const { fetchers: { asktug: fetcher } } = useContext(SiteComponentsContext)
   return useSWR<Notifications>(['asktug.getNotifications', JSON.stringify(params)], { fetcher })
+}
+
+export const useAsktugPrivateMessages = (params: GetNotificationParams = {}) => {
+  const { fetchers: { asktug: fetcher } } = useContext(SiteComponentsContext)
+  return useSWR<PrivateMessages>(['asktug.getPrivateMessages', JSON.stringify(params)], { fetcher })
+}
+
+export interface PrivateMessage {
+  sender: string[]
+  title: string
+  slug: string
+  id: number
+}
+
+export const usePrivateMessages = (params: GetNotificationParams = {}): PrivateMessage[] => {
+  const { data } = useAsktugPrivateMessages()
+  const mappedUsers = useRef<Map<number, AsktugUser>>()
+
+  useEffect(() => {
+    mappedUsers.current = new Map()
+  }, [])
+
+  return useMemo(() => {
+    for (const user of data?.users ?? []) {
+      mappedUsers.current!.set(user.id, user)
+    }
+
+    return data?.topic_list.topics.map(topic => {
+      return {
+        sender: topic.posters.map(poster => mappedUsers.current!.get(poster.user_id)?.username ?? 'unknown'),
+        title: topic.fancy_title,
+        slug: topic.slug,
+        id: topic.id
+      }
+    }) ?? []
+  }, [data])
 }

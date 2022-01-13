@@ -2,20 +2,16 @@ import React from 'react'
 import { CSSTransition, SwitchTransition } from 'react-transition-group'
 import { Skeleton } from 'antd'
 import Space from './Space'
-import HeaderButtons from './HeaderButtons'
 import { UserProfileDropdown } from '../user-profile'
-import { useButtons } from './hooks'
 import LoginButton from './LoginButton'
 import { useMeData } from '../../datasource/accounts'
 import { SwrData } from '@pingcap-inc/tidb-community-ui'
 import { swrState } from '../../utils/swr'
-import { useCommonHeaderData } from '../../datasource/home'
 import HeaderNotifications from './HeaderNotifications'
+import HeaderPrivateMessages from './HeaderPrivateMessages'
 
 const HeaderUserSlot = () => {
   const me = useMeData()
-  const commonHeaderData = useCommonHeaderData()
-  const buttons = useButtons(commonHeaderData)
 
   return (
     <div style={{ maxWidth: 150, minWidth: 150 }}>
@@ -36,7 +32,7 @@ const HeaderUserSlot = () => {
               {(me) => (
                 <>
                   <HeaderNotifications />
-                  <HeaderButtons buttons={buttons} />
+                  <HeaderPrivateMessages />
                   <Space size={30} />
                   <UserProfileDropdown me={me.data} />
                 </>

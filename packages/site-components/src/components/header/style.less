@@ -123,6 +123,8 @@
 .ti-site-header-button-popover-overlay {
   .ant-popover-inner-content {
     padding: 0;
+    max-width: 320px;
+    min-width: 240px;
     .ant-tabs {
       margin-left: 8px;
       margin-right: 8px;
@@ -142,6 +144,9 @@
     .ant-list-item {
       font-size: 12px;
       padding: 4px 8px;
+      a:not(:hover) {
+        color: @D5;
+      }
     }
   }
 }

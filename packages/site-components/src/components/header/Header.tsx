@@ -6,18 +6,15 @@ import Space from './Space'
 import HeaderUserSlot from './HeaderUserSlot'
 import { Responsive, SwrData } from '@pingcap-inc/tidb-community-ui'
 import LoginButton from './LoginButton'
-import { useButtons } from './hooks'
-import HeaderButtons from './HeaderButtons'
 import { useMeData } from '../../datasource/accounts'
 import { Skeleton } from 'antd'
-import { useCommonHeaderData } from '../../datasource/home'
 import { HeaderBreakpoint, headerBreakpoints } from './constants'
 import HeaderNotifications from './HeaderNotifications'
+import HeaderPrivateMessages from './HeaderPrivateMessages'
 
 
 const Header = (): JSX.Element => {
   const meData = useMeData()
-  const buttons = useButtons(useCommonHeaderData())
 
   return (
     <Responsive breakpoints={headerBreakpoints}>
@@ -40,7 +37,7 @@ const Header = (): JSX.Element => {
             >
               <>
                 <HeaderNotifications />
-                <HeaderButtons buttons={buttons} />
+                <HeaderPrivateMessages />
               </>
             </SwrData>
           </Responsive.Breakpoint>
