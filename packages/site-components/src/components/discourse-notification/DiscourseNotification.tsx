@@ -2,25 +2,27 @@ import React from 'react'
 import { AsktugNotification, BadgeData, GroupData, NotificationType, TopicData } from '../../datasource/asktug'
 import { Space, Typography } from 'antd'
 import renderTopicNotification from './types/topic'
-import { EditOutlined, LikeOutlined, LinkOutlined, MailOutlined } from '@ant-design/icons'
+import Icon, { CommentOutlined, EditOutlined, LikeOutlined, LinkOutlined, MailOutlined, SendOutlined } from '@ant-design/icons'
 import renderGrantBadge from './types/badge'
 import renderPostApproved from './types/post-approved'
 import renderGroupMessageSummary from './types/group-message-summary'
 import classnames from 'classnames'
 import { LuxonDuration } from '@pingcap-inc/tidb-community-ui'
+import MentionedSvg from './icons/mentioned.svg'
+import QuoteSvg from './icons/quote.svg'
 
 const DiscourseNotification = ({ notification, wrap }: { notification: AsktugNotification, wrap?: (el: JSX.Element) => JSX.Element }) => {
   let el: JSX.Element | undefined = undefined
 
   switch (notification.notification_type) {
     case NotificationType.mentioned:
-      el = renderTopicNotification(notification as AsktugNotification<TopicData>, null, '在', '提及了您')
+      el = renderTopicNotification(notification as AsktugNotification<TopicData>, <Icon component={MentionedSvg}/>, '在', '提及了您')
       break
     case NotificationType.replied:
-      el = renderTopicNotification(notification as AsktugNotification<TopicData>, null, '回复了')
+      el = renderTopicNotification(notification as AsktugNotification<TopicData>, <CommentOutlined />, '回复了')
       break
     case NotificationType.quoted:
-      el = renderTopicNotification(notification as AsktugNotification<TopicData>, null, '在', '引用了您的内容')
+      el = renderTopicNotification(notification as AsktugNotification<TopicData>, <Icon component={QuoteSvg}/>, '在', '引用了您的内容')
       break
     case NotificationType.edited:
       el = renderTopicNotification(notification as AsktugNotification<TopicData>, <EditOutlined />, '编辑了')
@@ -29,14 +31,13 @@ const DiscourseNotification = ({ notification, wrap }: { notification: AsktugNot
       el = renderTopicNotification(notification as AsktugNotification<TopicData>, <LikeOutlined />, '喜欢了')
       break
     case NotificationType.private_message:
-      el = renderTopicNotification(notification as AsktugNotification<TopicData>, <MailOutlined />, '：')
-      break
     case NotificationType.invited_to_private_message:
+      el = renderTopicNotification(notification as AsktugNotification<TopicData>, <MailOutlined />, '：')
       break
     case NotificationType.invitee_accepted:
       break
     case NotificationType.posted:
-      el = renderTopicNotification(notification as AsktugNotification<TopicData>)
+      el = renderTopicNotification(notification as AsktugNotification<TopicData>, <SendOutlined />)
       break
     case NotificationType.moved_post:
       break
