@@ -4,10 +4,13 @@ import { stringify } from 'qs'
 const ACCOUNTS_BASE = '/_/sso'
 
 const processResponse = (res: Response) => {
-  if (res.status >= 400) {
-    return Promise.reject(res)
-  } else {
+  if (process.env.NODE_ENV !== 'production') {
+    console.debug('fetch [%s %s] %s: %o', res.status, res.statusText, res.url, res)
+  }
+  if (res.ok) {
     return res.json()
+  } else {
+    return Promise.reject(res)
   }
 }
 
