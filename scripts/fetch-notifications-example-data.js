@@ -1,5 +1,6 @@
 const axios = require('axios')
 const fs = require('fs/promises')
+const path = require('path')
 
 async function * fetch () {
   let url = '/notifications'
@@ -13,7 +14,7 @@ async function * fetch () {
       headers: {
         accept: 'application/json',
         'api-key': process.env.ASKTUG_API_KEY,
-        'api-username': 'billmay'
+        'api-username': process.env.ASKTUG_API_USERNAME
       }
     })
 
@@ -28,16 +29,28 @@ async function * fetch () {
   }
 }
 
+const filename = path.resolve(__dirname, '../packages/storybook/stories/2-site-components/notification.json')
+
 async function main () {
   const types = new Map()
 
-  for await (let notification of fetch()) {
+  const put = (notification) => {
     let arr = types.get(notification.notification_type)
     if (!arr) {
       arr = []
       types.set(notification.notification_type, arr)
     }
     arr.push(notification)
+  }
+
+  const { notifications: prevNotifications } = JSON.parse(await fs.readFile(filename, { encoding: 'utf-8' }))
+
+  for (let notification of prevNotifications) {
+    put(notification)
+  }
+
+  for await (let notification of fetch()) {
+    put(notification)
   }
 
   const notifications = []
@@ -52,7 +65,7 @@ async function main () {
   }
 
   const text = JSON.stringify(result, undefined, 2)
-  await fs.writeFile('./packages/storybook/stories/2-site-components/notification.json', text, { encoding: 'utf-8' })
+  await fs.writeFile(filename, text, { encoding: 'utf-8' })
 }
 
 main().catch(console.error)

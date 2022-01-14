@@ -2,29 +2,31 @@ import React from 'react'
 import { AsktugNotification, BadgeData, GroupData, NotificationType, TopicData } from '../../datasource/asktug'
 import { Space, Typography } from 'antd'
 import renderTopicNotification from './types/topic'
-import { EditOutlined, LikeOutlined, MailOutlined } from '@ant-design/icons'
+import { EditOutlined, LikeOutlined, LinkOutlined, MailOutlined } from '@ant-design/icons'
 import renderGrantBadge from './types/badge'
 import renderPostApproved from './types/post-approved'
 import renderGroupMessageSummary from './types/group-message-summary'
 import classnames from 'classnames'
+import { LuxonDuration } from '@pingcap-inc/tidb-community-ui'
 
 const DiscourseNotification = ({ notification, wrap }: { notification: AsktugNotification, wrap?: (el: JSX.Element) => JSX.Element }) => {
   let el: JSX.Element | undefined = undefined
 
   switch (notification.notification_type) {
     case NotificationType.mentioned:
-      el = renderTopicNotification(notification as AsktugNotification<TopicData>, null, '在', '提及了我')
+      el = renderTopicNotification(notification as AsktugNotification<TopicData>, null, '在', '提及了您')
       break
     case NotificationType.replied:
       el = renderTopicNotification(notification as AsktugNotification<TopicData>, null, '回复了')
       break
     case NotificationType.quoted:
+      el = renderTopicNotification(notification as AsktugNotification<TopicData>, null, '在', '引用了您的内容')
       break
     case NotificationType.edited:
-      el = renderTopicNotification(notification as AsktugNotification<TopicData>, null, <EditOutlined />)
+      el = renderTopicNotification(notification as AsktugNotification<TopicData>, <EditOutlined />, '编辑了')
       break
     case NotificationType.liked:
-      el = renderTopicNotification(notification as AsktugNotification<TopicData>, null, <LikeOutlined />)
+      el = renderTopicNotification(notification as AsktugNotification<TopicData>, <LikeOutlined />, '喜欢了')
       break
     case NotificationType.private_message:
       el = renderTopicNotification(notification as AsktugNotification<TopicData>, <MailOutlined />, '：')
@@ -34,11 +36,12 @@ const DiscourseNotification = ({ notification, wrap }: { notification: AsktugNot
     case NotificationType.invitee_accepted:
       break
     case NotificationType.posted:
-      el = renderTopicNotification(notification as AsktugNotification<TopicData>, null, '发布了')
+      el = renderTopicNotification(notification as AsktugNotification<TopicData>)
       break
     case NotificationType.moved_post:
       break
     case NotificationType.linked:
+      el = renderTopicNotification(notification as AsktugNotification<TopicData>, <LinkOutlined />, '在', '链接了您的帖子')
       break
     case NotificationType.granted_badge:
       el = renderGrantBadge(notification as AsktugNotification<BadgeData>)
@@ -66,6 +69,7 @@ const DiscourseNotification = ({ notification, wrap }: { notification: AsktugNot
   }
 
   if (el) {
+    el = <span>{el}&nbsp;-&nbsp;<LuxonDuration from={notification.created_at} />前</span>
     return React.cloneElement(wrap ? wrap(el) : el, { className: classnames('ti-asktug-notification', { 'ti-asktug-notification-read': notification.read }) })
   }
 

@@ -37,6 +37,24 @@
       }
     },
     {
+      "id": 663465,
+      "notification_type": 3,
+      "read": true,
+      "created_at": "2021-11-30T08:29:27.000Z",
+      "post_number": 2,
+      "topic_id": 273353,
+      "fancy_title": "CDC 无法快速的定位问题",
+      "slug": "topic",
+      "data": {
+        "topic_title": "CDC 无法快速的定位问题",
+        "original_post_id": 284087,
+        "original_post_type": 1,
+        "original_username": "qizheng",
+        "revision_number": null,
+        "display_username": "qizheng"
+      }
+    },
+    {
       "id": 692090,
       "notification_type": 4,
       "read": true,
