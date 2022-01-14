@@ -1,6 +1,8 @@
 name: Asktug header preview
 
 on:
+  create:
+    tags: ['asktug-theme/v*']
   push:
     branches: [ main ]
   pull_request:
@@ -28,12 +30,22 @@ jobs:
       - name: Install deps
         run: pnpm install --frozen-lockfile
 
-      - name: Build preview
+      - name: Build libs
         run: |
           rm -rf ./packages/asktug-theme/dist
           pnpm run build:ui
           pnpm run build:site-components
-          pnpm run build:asktug:preview
+
+      - name: Build preview
+        run: pnpm run build:asktug:preview
+        env:
+          BUILD_REF: ${{ github.event.after || github.event.number }}
+
+      - name: Build production
+        run: pnpm run build:asktug:production
+        if: ${{ github.event_name == 'create' && github.event.ref_type == 'tag' }}
+        env:
+          BUILD_REF: ${{ github.event.ref || ('PR-' + github.event.number) }}
 
       - name: Upload to Aliyun oss
         id: upload_to_oss

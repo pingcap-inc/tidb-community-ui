@@ -5,6 +5,8 @@ import { routeTo } from './asktug-routing'
 import fetchers from './fetchers'
 import './index.less'
 
+console.debug('@pingcap-inc/tidb-community-asktug-theme %s', process.env.BUILD_REF)
+
 defineSiteComponentsConfig({
   site: Site.asktug,
   env: process.env.NODE_ENV === 'production' ? Env.prod : Env.preview,

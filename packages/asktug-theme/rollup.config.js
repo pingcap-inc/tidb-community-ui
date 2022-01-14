@@ -40,6 +40,7 @@ export default defineConfig({
     commonjs(),
     replace({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+      'process.env.BUILD_REF': JSON.stringify(process.env.BUILD_REF),
       preventAssignment: true
     }),
     externalGlobals({

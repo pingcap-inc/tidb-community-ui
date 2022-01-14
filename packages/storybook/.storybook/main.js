@@ -18,7 +18,7 @@ module.exports = {
     const svgRule = config.module.rules.find((rule) => 'test.svg'.match(rule.test));
     svgRule.exclude = [root];
 
-    config.resolve.alias['@pingcap-inc/tidb-community-site-components$'] = path.resolve(__dirname, '../node_modules/@pingcap-inc/tidb-community-site-components/src/index.ts')
+    config.resolve.alias['@pingcap-inc/tidb-community-site-components$'] = path.resolve(__dirname, '../node_modules/@pingcap-inc/tidb-community-site-components/index.ts')
     config.resolve.alias['@pingcap-inc/tidb-community-ui$'] = path.resolve(__dirname, '../node_modules/@pingcap-inc/tidb-community-ui/index.ts')
     config.module.rules.push({
       test: /\.less$/,
