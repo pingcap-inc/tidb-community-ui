@@ -1,7 +1,9 @@
-import { useMemo } from 'react'
+import React, { useMemo } from 'react'
 import { createMenuItem, NavItem } from '../../utils/nav-item'
 import { Site } from '../../utils/site'
 import { MeData } from '../../datasource/accounts'
+import { Menu } from 'antd'
+import { logout } from '../../utils/account'
 
 export const useUserProfileItems = (me?: MeData['data']) => {
 
@@ -51,17 +53,7 @@ export const useUserProfileItems = (me?: MeData['data']) => {
       },
     })
 
-    items.push({
-      key: 'logout',
-      title: '退出登录',
-      config: {
-        site: Site.accounts,
-        url: '/logout',
-        newWindow: false,
-      },
-    })
-
-    return items.map(createMenuItem)
+    return items.map(createMenuItem).concat(<Menu.Item key="logout" onClick={logout}>退出登录</Menu.Item>)
   }, [me, me?.org, me?.org_enroll, me?.org_invitations])
 
   return items
