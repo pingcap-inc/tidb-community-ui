@@ -6,7 +6,7 @@ import svgr from '@svgr/rollup'
 import { peerDependencies } from './package.json'
 
 export default defineConfig({
-  input: './src/index.ts',
+  input: './index.ts',
   external: [
     ...Object.keys(peerDependencies || {})
   ],
