@@ -41,13 +41,16 @@ export interface AsktugNotification<Data extends AsktugNotificationData = Asktug
 export interface AsktugNotificationData {
 }
 
-export interface TopicData extends AsktugNotificationData {
+export interface TopicBasicData extends AsktugNotificationData {
   topic_title: string
+  display_username: string
+}
+
+export interface TopicData extends TopicBasicData {
   original_post_id: number
   original_post_type: number
   original_username: string
   revision_number: null | number
-  display_username: string
 }
 
 export interface BadgeData extends AsktugNotificationData {
@@ -63,6 +66,16 @@ export interface GroupData extends AsktugNotificationData {
   group_name: string
   inbox_count: number
   username: string
+}
+
+export interface CustomData extends TopicBasicData {
+  message: string
+}
+
+export interface LikedConsolidatedData extends AsktugNotificationData {
+  username: string
+  display_username: string
+  count: number
 }
 
 export interface Notifications {

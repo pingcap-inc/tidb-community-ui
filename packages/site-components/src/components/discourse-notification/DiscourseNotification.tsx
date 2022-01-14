@@ -1,5 +1,5 @@
 import React from 'react'
-import { AsktugNotification, BadgeData, GroupData, NotificationType, TopicData } from '../../datasource/asktug'
+import { AsktugNotification, BadgeData, CustomData, GroupData, LikedConsolidatedData, NotificationType, TopicData } from '../../datasource/asktug'
 import { Space, Typography } from 'antd'
 import renderTopicNotification from './types/topic'
 import Icon, { CommentOutlined, EditOutlined, LikeOutlined, LinkOutlined, MailOutlined, SendOutlined } from '@ant-design/icons'
@@ -10,6 +10,8 @@ import classnames from 'classnames'
 import { LuxonDuration } from '@pingcap-inc/tidb-community-ui'
 import MentionedSvg from './icons/mentioned.svg'
 import QuoteSvg from './icons/quote.svg'
+import renderCustom from './types/custom'
+import renderLikedConsolidated from './types/liked-consolidated'
 
 const DiscourseNotification = ({ notification, wrap }: { notification: AsktugNotification, wrap?: (el: JSX.Element) => JSX.Element }) => {
   let el: JSX.Element | undefined = undefined
@@ -50,6 +52,7 @@ const DiscourseNotification = ({ notification, wrap }: { notification: AsktugNot
     case NotificationType.invited_to_topic:
       break
     case NotificationType.custom:
+      el = renderCustom(notification as AsktugNotification<CustomData>)
       break
     case NotificationType.group_mentioned:
       break
@@ -61,6 +64,7 @@ const DiscourseNotification = ({ notification, wrap }: { notification: AsktugNot
     case NotificationType.topic_reminder:
       break
     case NotificationType.liked_consolidated:
+      el = renderLikedConsolidated(notification as AsktugNotification<LikedConsolidatedData>)
       break
     case NotificationType.post_approved:
       el = renderPostApproved(notification)
@@ -70,7 +74,7 @@ const DiscourseNotification = ({ notification, wrap }: { notification: AsktugNot
   }
 
   if (el) {
-    el = <span>{el}&nbsp;-&nbsp;<LuxonDuration from={notification.created_at} />前</span>
+    el = <span>{el}&nbsp;&nbsp;<LuxonDuration className='ti-asktug-notification__time' from={notification.created_at} suffix='前'/></span>
     return React.cloneElement(wrap ? wrap(el) : el, { className: classnames('ti-asktug-notification', { 'ti-asktug-notification-read': notification.read }) })
   }
 
