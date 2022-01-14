@@ -45,7 +45,7 @@ jobs:
         run: pnpm run build:asktug:production
         if: ${{ github.event_name == 'create' && github.event.ref_type == 'tag' }}
         env:
-          BUILD_REF: ${{ github.event.ref || ('PR-' + github.event.number) }}
+          BUILD_REF: ${{ github.event.ref || format('PR-{0}', github.event.number) }}
 
       - name: Upload to Aliyun oss
         id: upload_to_oss
