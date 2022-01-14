@@ -1,5 +1,6 @@
 {
   "name": "@pingcap-inc/tidb-community-asktug-theme",
+  "private": true,
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
