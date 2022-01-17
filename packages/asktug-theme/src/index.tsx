@@ -1,9 +1,10 @@
+// this must import before any components
+import './index.less'
 import { defineSiteComponentsConfig, Env, Footer, Header, Site, SiteComponentsContext } from '@pingcap-inc/tidb-community-site-components'
 import React, { MouseEvent } from 'react'
 import ReactDOM from 'react-dom'
 import { routeTo } from './asktug-routing'
 import fetchers from './fetchers'
-import './index.less'
 
 console.debug('@pingcap-inc/tidb-community-asktug-theme %s', process.env.BUILD_REF)
 

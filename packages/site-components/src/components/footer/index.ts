@@ -1,3 +1,3 @@
-import './style.less'
-
 export { default } from './Footer'
+
+import './style.less'

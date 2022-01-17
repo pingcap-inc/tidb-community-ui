@@ -2,22 +2,27 @@
   "name": "@pingcap-inc/tidb-community-site-components",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "dev": "rollup -w -c rollup.config.js",
     "build": "rollup -c rollup.config.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepack": "run-prepack",
+    "postpack": "run-postpack"
   },
   "author": "",
-  "license": "ISC",
-  "module": "dist/index.js",
+  "license": "MIT",
+  "module": "index.ts",
   "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "devDependencies": {
     "@ant-design/icons": "^4.7.0",
     "@pingcap-inc/tidb-community-ui": "*",
     "@svgr/rollup": "^6.2.0",
     "@types/react-transition-group": "^4.4.4",
     "antd": "4.15.6",
+    "buildtool": "*",
     "classnames": "^2.3.1",
     "less": "^4.1.2",
     "less-plugin-npm-import": "^2.1.0",
