@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import { AsktugNotification, BadgeData, CustomData, GroupData, LikedConsolidatedData, NotificationType, TopicData } from '../../datasource/asktug'
 import { Space, Typography } from 'antd'
 import renderTopicNotification from './types/topic'
@@ -13,7 +13,13 @@ import QuoteSvg from './icons/quote.svg'
 import renderCustom from './types/custom'
 import renderLikedConsolidated from './types/liked-consolidated'
 
-const DiscourseNotification = ({ notification, wrap }: { notification: AsktugNotification, wrap?: (el: JSX.Element) => JSX.Element }) => {
+export interface DiscourseNotificationProps {
+  notification: AsktugNotification
+  wrap?: (el: JSX.Element) => JSX.Element
+  markRead?: (notificationId: number) => Promise<void>
+}
+
+const DiscourseNotification = ({ notification, wrap, markRead }: DiscourseNotificationProps) => {
   let el: JSX.Element | undefined = undefined
 
   switch (notification.notification_type) {
@@ -73,9 +79,19 @@ const DiscourseNotification = ({ notification, wrap }: { notification: AsktugNot
       break
   }
 
+  const onClick = useCallback((event) => {
+    console.log(notification)
+    if (!notification.read) {
+      markRead?.(notification.id)
+    }
+  }, [notification.read, notification.id, markRead])
+
   if (el) {
     el = <span>{el}&nbsp;&nbsp;<LuxonDuration className='ti-asktug-notification__time' from={notification.created_at} suffix='前'/></span>
-    return React.cloneElement(wrap ? wrap(el) : el, { className: classnames('ti-asktug-notification', { 'ti-asktug-notification-read': notification.read }) })
+    return React.cloneElement(wrap ? wrap(el) : el, {
+      className: classnames('ti-asktug-notification', { 'ti-asktug-notification-read': notification.read }),
+      onClick
+    })
   }
 
   return (

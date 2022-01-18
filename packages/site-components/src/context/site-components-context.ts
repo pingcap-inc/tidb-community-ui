@@ -1,13 +1,15 @@
 import { Fetcher } from 'swr'
 import { createContext } from 'react'
 
+type FetcherKey = [key: string, ...args: any[]]
+
 export interface SiteComponentsContextProps {
   fetchers: {
     // fetcher for accounts.pingcap.com/*
-    accounts: Fetcher<any>
+    accounts: Fetcher<any, FetcherKey>
 
     // fetcher for asktug.com/*
-    asktug: Fetcher<any>
+    asktug: Fetcher<any, FetcherKey>
   }
 }
 

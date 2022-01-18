@@ -1,6 +1,7 @@
-import { useContext, useMemo, useRef } from 'react'
+import { useCallback, useContext, useMemo, useRef } from 'react'
 import SiteComponentsContext from '../context/site-components-context'
 import useSWR from 'swr'
+import { SWRResponse } from 'swr/dist/types'
 
 export enum NotificationType {
   mentioned = 1,
@@ -119,9 +120,29 @@ export interface GetPrivateMessagesParams {
   unread?: 1
 }
 
-export const useAsktugNotifications = (params: GetNotificationParams = {}) => {
+export const useAsktugNotifications = (params: GetNotificationParams = {}): SWRResponse<Notifications> & { markRead: (notificationId: number) => Promise<void> } => {
   const { fetchers: { asktug: fetcher } } = useContext(SiteComponentsContext)
-  return useSWR<Notifications>(['asktug.getNotifications', JSON.stringify(params)], { fetcher })
+  const swrResponse = useSWR<Notifications>(['asktug.getNotifications', JSON.stringify(params)], { fetcher })
+
+  const { mutate } = swrResponse
+
+  const markRead = useCallback(async (notificationId: number) => {
+    try {
+      await mutate(notifications => {
+        const notification = notifications?.notifications.find(notification => notification.id === notificationId)
+        if (notification) {
+          notification.read = true
+        }
+
+        return notifications
+      }, false)
+      await fetcher('asktug.readNotification', notificationId)
+    } catch (e) {
+      console.error('failed to mark notification read', e)
+    }
+  }, [fetcher, swrResponse])
+
+  return { ...swrResponse, markRead }
 }
 
 export const useAsktugPrivateMessages = (params: GetNotificationParams = {}) => {

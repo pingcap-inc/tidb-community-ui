@@ -39,13 +39,13 @@ const HeaderNotifications = () => {
             <List
               size='small'
               dataSource={notifications.data?.notifications ?? []}
-              renderItem={(item) => <DiscourseNotification notification={item} wrap={el => <List.Item>{el}</List.Item>} />}
+              renderItem={(item) => <DiscourseNotification markRead={notifications.markRead} notification={item} wrap={el => <List.Item>{el}</List.Item>} />}
             />
           </Tabs.TabPane>
         </Tabs>
       )}
     >
-      <Badge dot={!!notifications.data?.total_rows_notifications}>
+      <Badge dot={!!notifications.data?.notifications.reduce((unread, notification) => unread + (notification.read ? 0 : 1), 0)}>
         {btn}
       </Badge>
     </Popover>

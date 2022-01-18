@@ -1,3 +1,3 @@
-export { default } from './DiscourseNotification'
+export { default, DiscourseNotificationProps } from './DiscourseNotification'
 
 import './style.less'
