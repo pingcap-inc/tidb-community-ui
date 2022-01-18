@@ -45,12 +45,21 @@ const asktug: Fetcher = (key: string, params) => {
     case 'asktug.getNotifications':
       return fetch(`/notifications?${stringify(params)}`, { headers: { accept: 'application/json' } }).then(processResponse)
     case 'asktug.readNotification':
-      return fetch(`/notifications/mark-read`, { method: 'put', headers: { accept: 'application/json' }, body: JSON.stringify({ id: params }) }).then(processResponse)
+      return fetch(`/notifications/mark-read`, { method: 'put', headers: { accept: 'application/json' }, body: JSON.stringify({ id: params, ...getAsktugCsrf() }) }).then(processResponse)
     default:
       throw new Error('not implemented')
   }
 }
 
+const getAsktugCsrf = () => {
+  const param = (document.querySelector('meta[name=csrf-param]') as HTMLMetaElement)?.content
+  const token = (document.querySelector('meta[name=csrf-token]') as HTMLMetaElement)?.content
+
+  return (param && token) ? {
+    [param]: token,
+  } : {}
+}
+
 export default {
-  accounts, asktug
+  accounts, asktug,
 }
