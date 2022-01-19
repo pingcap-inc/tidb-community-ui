@@ -90,7 +90,7 @@ const DiscourseNotification = ({ notification, wrap, markRead }: DiscourseNotifi
     el = <span>{el}&nbsp;&nbsp;<LuxonDuration className='ti-asktug-notification__time' from={notification.created_at} suffix='前'/></span>
     return React.cloneElement(wrap ? wrap(el) : el, {
       className: classnames('ti-asktug-notification', { 'ti-asktug-notification-read': notification.read }),
-      onClick
+      onClickCapture: onClick
     })
   }
 

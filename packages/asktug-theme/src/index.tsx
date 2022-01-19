@@ -11,16 +11,26 @@ console.debug('@pingcap-inc/tidb-community-asktug-theme %s', process.env.BUILD_R
 defineSiteComponentsConfig({
   site: Site.asktug,
   env: process.env.NODE_ENV === 'production' ? Env.prod : Env.preview,
-  wrapRouteLink: (key, url, elm) => {
-    return React.cloneElement(elm, {
-      key,
-      onClick: (event: MouseEvent) => {
-        routeTo(url)
-        event.preventDefault()
-        event.stopPropagation()
-        return false
-      },
-    })
+  wrapRouteLink: (key, url, node) => {
+    const onClick = (event: MouseEvent) => {
+      routeTo(url)
+      event.preventDefault()
+      event.stopPropagation()
+      return false
+    }
+
+    if (React.isValidElement(node)) {
+      return React.cloneElement(node, {
+        key,
+        onClick,
+      })
+    } else {
+      return (
+        <a href={url} key={key} onClick={onClick}>
+          {node}
+        </a>
+      )
+    }
   },
 })
 

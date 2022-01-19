@@ -1,12 +1,13 @@
 import { Site } from './utils/site'
 import { Env } from './utils/env'
+import React from 'react'
 
 let appConfig: AppConfig
 
 export interface AppConfig {
   site: Site
   env: Env
-  wrapRouteLink?: (key: string | undefined, url: string, elm: JSX.Element) => JSX.Element
+  wrapRouteLink?: (key: string | undefined, url: string, node: React.ReactNode) => JSX.Element
 }
 
 export function defineSiteComponentsConfig (config: AppConfig) {

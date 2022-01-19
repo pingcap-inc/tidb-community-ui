@@ -1,6 +1,5 @@
-import React, { useMemo } from 'react'
-import { getSiteComponentsConfig } from '../../app-config'
-import { getUrl, Site } from '../../utils/site'
+import React from 'react'
+import { Site } from '../../utils/site'
 import SiteLink from '../site-link/SiteLink'
 
 

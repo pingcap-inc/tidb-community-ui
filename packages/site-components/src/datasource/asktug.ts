@@ -1,4 +1,4 @@
-import { useCallback, useContext, useEffect, useMemo, useRef } from 'react'
+import { useCallback, useContext, useMemo, useRef } from 'react'
 import SiteComponentsContext from '../context/site-components-context'
 import useSWR, { SWRResponse } from 'swr'
 import useSWRInfinite from 'swr/infinite'

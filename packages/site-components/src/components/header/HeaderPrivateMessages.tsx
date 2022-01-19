@@ -20,7 +20,7 @@ const PrivateMessageLink = ({ privateMessage }: { privateMessage: PrivateMessage
 }
 
 const HeaderPrivateMessages = () => {
-  const privateMessages = usePrivateMessages({ unread: 1 })
+  const privateMessages = usePrivateMessages({ })
 
   return (
     <Popover
