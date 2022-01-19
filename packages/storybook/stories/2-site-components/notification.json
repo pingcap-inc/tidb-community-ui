@@ -220,5 +220,6 @@
       }
     }
   ],
-  "load_more_notifications": "fake"
+  "load_more_notifications": "fake",
+  "total_rows_notifications": 60
 }

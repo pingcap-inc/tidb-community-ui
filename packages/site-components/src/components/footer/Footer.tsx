@@ -5,6 +5,7 @@ import FooterSection from './FooterSection'
 import FooterIcons from './FooterIcons'
 import { headerBreakpoints } from '../header/constants'
 import Logo from '../logo'
+import Header from '../header'
 
 const Footer = () => {
   return (
@@ -25,5 +26,7 @@ const Footer = () => {
     </Responsive>
   )
 }
+
+Header.displayName = 'TiSiteFooter'
 
 export default Footer

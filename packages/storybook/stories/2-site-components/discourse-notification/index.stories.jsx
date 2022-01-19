@@ -8,7 +8,7 @@ export default {
   component: DiscourseNotification
 }
 
-const Template = ({ notifications }) => console.log(notifications) || (
+const Template = ({ notifications }) => (
   <List
     dataSource={notifications}
     renderItem={notification => <DiscourseNotification notification={notification} wrap={el => <List.Item>{el}</List.Item>} />}

@@ -24,4 +24,6 @@ const Search = ({ style }: { style?: React.CSSProperties }): JSX.Element => {
   )
 }
 
+Search.displayName = 'TiSiteSearch'
+
 export default Search

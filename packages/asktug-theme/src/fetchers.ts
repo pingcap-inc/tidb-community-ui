@@ -45,7 +45,7 @@ const asktug: Fetcher = (key: string, params) => {
     case 'asktug.getNotifications':
       return fetch(`/notifications?${stringify(params)}`, { headers: { accept: 'application/json' } }).then(processResponse)
     case 'asktug.readNotification':
-      return fetch(`/notifications/mark-read?${stringify(getAsktugCsrf())}`, { method: 'put', headers: { accept: 'application/json' }, body: JSON.stringify({ id: params }) }).then(processResponse)
+      return fetch(`/notifications/mark-read?${stringify({ id: params, ...getAsktugCsrf() })}`, { method: 'put', headers: { accept: 'application/json' } }).then(processResponse)
     default:
       throw new Error('not implemented')
   }

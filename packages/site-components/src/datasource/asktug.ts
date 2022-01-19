@@ -1,7 +1,7 @@
-import { useCallback, useContext, useMemo, useRef } from 'react'
+import { useCallback, useContext, useEffect, useMemo, useRef } from 'react'
 import SiteComponentsContext from '../context/site-components-context'
-import useSWR from 'swr'
-import { SWRResponse } from 'swr/dist/types'
+import useSWR, { SWRResponse } from 'swr'
+import useSWRInfinite from 'swr/infinite'
 
 export enum NotificationType {
   mentioned = 1,
@@ -120,29 +120,52 @@ export interface GetPrivateMessagesParams {
   unread?: 1
 }
 
-export const useAsktugNotifications = (params: GetNotificationParams = {}): SWRResponse<Notifications> & { markRead: (notificationId: number) => Promise<void> } => {
-  const { fetchers: { asktug: fetcher } } = useContext(SiteComponentsContext)
-  const swrResponse = useSWR<Notifications>(['asktug.getNotifications', JSON.stringify(params)], { fetcher })
+const collectNotifications = (notificationsSet: Notifications[] | undefined): AsktugNotification[] => {
+  return notificationsSet?.reduce((all: AsktugNotification[], notifications) => all.concat(notifications?.notifications || []), []) || []
+}
 
-  const { mutate } = swrResponse
+export const useAsktugNotifications = (params: GetNotificationParams = {}): Omit<SWRResponse<AsktugNotification[]>, 'mutate'> & { markRead: (notificationId: number) => Promise<void>, loadMore: () => void, reset: () => void, isEnd: boolean } => {
+  const { fetchers: { asktug: fetcher } } = useContext(SiteComponentsContext)
+
+  delete params.recent
+
+  const { size, setSize, mutate, error, isValidating, data } = useSWRInfinite<Notifications>(index => ['asktug.getNotifications', JSON.stringify({ offset: index * 60, ...params })], fetcher)
+
+  const notifications: AsktugNotification[] = collectNotifications(data)
 
   const markRead = useCallback(async (notificationId: number) => {
     try {
-      await mutate(notifications => {
-        const notification = notifications?.notifications.find(notification => notification.id === notificationId)
-        if (notification) {
-          notification.read = true
+      await mutate(notificationsSet => {
+        for (let notifications of notificationsSet ?? []) {
+          const notification = notifications?.notifications.find(notification => notification.id === notificationId)
+          if (notification) {
+            notification.read = true
+          }
         }
-
-        return notifications
+        return notificationsSet
       }, false)
       await fetcher('asktug.readNotification', notificationId)
     } catch (e) {
       console.error('failed to mark notification read', e)
     }
-  }, [fetcher, swrResponse])
+  }, [fetcher, mutate])
 
-  return { ...swrResponse, markRead }
+  const loadMore = useCallback(() => {
+    setSize(size => size + 1).then()
+  }, [setSize])
+
+  const reset = useCallback(() => {
+    setSize(1).then()
+  }, [setSize])
+
+  const isEnd = (() => {
+    if (isValidating) {
+      return false
+    }
+    return (data?.[size - 1]?.total_rows_notifications ?? 0) <= notifications.length
+  })()
+
+  return { data: notifications, isValidating, error, loadMore, reset, markRead, isEnd }
 }
 
 export const useAsktugPrivateMessages = (params: GetNotificationParams = {}) => {

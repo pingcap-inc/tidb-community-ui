@@ -2,7 +2,7 @@ import React, { useCallback } from 'react'
 import { AsktugNotification, BadgeData, CustomData, GroupData, LikedConsolidatedData, NotificationType, TopicData } from '../../datasource/asktug'
 import { Space, Typography } from 'antd'
 import renderTopicNotification from './types/topic'
-import Icon, { CommentOutlined, EditOutlined, LikeOutlined, LinkOutlined, MailOutlined, SendOutlined } from '@ant-design/icons'
+import Icon, { CommentOutlined, EditOutlined, LikeOutlined, LinkOutlined, MailOutlined } from '@ant-design/icons'
 import renderGrantBadge from './types/badge'
 import renderPostApproved from './types/post-approved'
 import renderGroupMessageSummary from './types/group-message-summary'
@@ -101,5 +101,7 @@ const DiscourseNotification = ({ notification, wrap, markRead }: DiscourseNotifi
     </Space>
   )
 }
+
+DiscourseNotification.displayName = 'TiSiteDiscourseNotification'
 
 export default DiscourseNotification

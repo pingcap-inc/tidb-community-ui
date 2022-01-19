@@ -55,4 +55,6 @@ const Header = (): JSX.Element => {
   )
 }
 
+Header.displayName = 'TiSiteHeader'
+
 export default Header

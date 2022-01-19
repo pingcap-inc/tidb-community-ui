@@ -5,8 +5,10 @@ importers:
   .:
     specifiers:
       axios: ^0.24.0
+      chance: ^1.1.8
     devDependencies:
       axios: 0.24.0
+      chance: 1.1.8
 
   packages/asktug-theme:
     specifiers:
@@ -101,6 +103,7 @@ importers:
       postcss: ^8.4.5
       react: ^17.0.2
       react-cool-dimensions: ^2.0.7
+      react-infinite-scroll-component: ^6.1.0
       react-transition-group: ^4.4.2
       rollup: ^2.61.1
       rollup-plugin-copy: ^3.4.0
@@ -121,6 +124,7 @@ importers:
       postcss: 8.4.5
       react: 17.0.2
       react-cool-dimensions: 2.0.7_react@17.0.2
+      react-infinite-scroll-component: 6.1.0_react@17.0.2
       react-transition-group: 4.4.2_react@17.0.2
       rollup: 2.61.1
       rollup-plugin-copy: 3.4.0
@@ -11847,6 +11851,15 @@ packages:
       shallowequal: 1.1.0
     dev: true
 
+  /react-infinite-scroll-component/6.1.0_react@17.0.2:
+    resolution: {integrity: sha512-SQu5nCqy8DxQWpnUVLx7V7b7LcA37aM7tvoWjTLZp1dk6EJibM5/4EJKzOnl07/BsM1Y40sKLuqjCwwH/xV0TQ==}
+    peerDependencies:
+      react: '>=16.0.0'
+    dependencies:
+      react: 17.0.2
+      throttle-debounce: 2.3.0
+    dev: true
+
   /react-inspector/5.1.1_react@17.0.2:
     resolution: {integrity: sha512-GURDaYzoLbW8pMGXwYPDBIv6nqei4kK7LPRZ9q9HCZF54wqXz/dnylBp/kfE9XmekBhHvLDdcYeyIwSrvtOiWg==}
     peerDependencies:
@@ -13430,6 +13443,11 @@ packages:
 
   /text-table/0.2.0:
     resolution: {integrity: sha1-f17oI66AUgfACvLfSoTsP8+lcLQ=}
+    dev: true
+
+  /throttle-debounce/2.3.0:
+    resolution: {integrity: sha512-H7oLPV0P7+jgvrk+6mwwwBDmxTaxnu9HMXmloNLXwnNO0ZxZ31Orah2n8lU1eMPvsaowP2CX+USCgyovXfdOFQ==}
+    engines: {node: '>=8'}
     dev: true
 
   /throttle-debounce/3.0.1:

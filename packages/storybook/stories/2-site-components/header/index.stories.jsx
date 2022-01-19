@@ -4,37 +4,39 @@ import { mutate } from 'swr'
 import notificationsJson from '../notification.json'
 import privateMessagesJson from './private-messages.json'
 
-const HeaderPreview = ({ notifications, privateMessages, loggedIn }) => {
+const sleep = (ms = 2000) => new Promise(resolve => {
+  setTimeout(() => {
+    resolve()
+  }, ms)
+})
+
+const HeaderPreview = ({ loggedIn }) => {
 
   useEffect(() => {
-    mutate(['me'], null)
+    mutate(['me'], null).then()
   }, [loggedIn])
 
-  useEffect(() => {
-    mutate(['common.headerData'])
-  }, [notifications, privateMessages])
-
-  const accounts = useCallback((key) => {
+  const accounts = useCallback(async (key, ...params) => {
+    console.log('accounts.fetcher', key, ...params)
     if (key === 'me') {
       if (loggedIn) {
-        return new Promise(resolve => {
-          setTimeout(() => {
-            resolve({
-              data: {
-                avatar_url: 'https://asktug.com/letter_avatar_proxy/v4/letter/d/13edae/50.png',
-                id: 12345,
-                username: 'fake'
-              }
-            })
-          }, 2000)
-        })
+        await sleep()
+        return {
+          data: {
+            avatar_url: 'https://asktug.com/letter_avatar_proxy/v4/letter/d/13edae/50.png',
+            id: 12345,
+            username: 'fake'
+          }
+        }
       } else {
         return Promise.reject()
       }
     }
   }, [loggedIn])
 
-  const asktug = useCallback((key) => {
+  const asktug = useCallback(async (key, ...params) => {
+    console.log('asktug.fetcher', key, ...params)
+    await sleep()
     if (key === 'asktug.getNotifications') {
       return Promise.resolve(notificationsJson)
     } else if (key === 'asktug.getPrivateMessages') {
@@ -59,8 +61,6 @@ const Template = (args) => <HeaderPreview {...args} />
 export const Preview = Template.bind({})
 
 Preview.args = {
-  loggedIn: true,
-  notifications: false,
-  privateMessages: true
+  loggedIn: true
 }
 

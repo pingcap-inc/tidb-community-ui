@@ -1,7 +1,6 @@
 import React from 'react'
 import { NavItem } from '../../utils/nav-item'
-import { getSiteComponentsConfig } from '../../app-config'
-import { getUrl } from '../../utils/site'
+import SiteLink from '../site-link/SiteLink'
 
 export interface FooterSectionProps {
   title: string
@@ -23,22 +22,7 @@ const FooterSection = ({ title, items }: FooterSectionProps) => {
 const createItem = ({ key, title, config }: Omit<NavItem, 'children'>) => {
   let el: JSX.Element
   if (config) {
-    const { site, env, wrapRouteLink } = getSiteComponentsConfig()
-    const { url, canUseRouter } = getUrl(site, env, config)
-
-    el = (
-      <a
-        href={url}
-        target={config.newWindow ? '_blank' : undefined}
-        rel={config.newWindow ? 'noreferrer' : undefined}
-      >
-        {title}
-      </a>
-    )
-
-    if (canUseRouter && wrapRouteLink) {
-      el = wrapRouteLink(undefined, url, el)
-    }
+    el = <SiteLink {...config}>{title}</SiteLink>
   } else {
     el = <a href="javascript:void(0)">{title}</a>
   }

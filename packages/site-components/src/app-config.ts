@@ -13,6 +13,7 @@ export function defineSiteComponentsConfig (config: AppConfig) {
   appConfig = config
 }
 
+// TODO: is it possible to use context?
 export function getSiteComponentsConfig () {
   if (!appConfig) {
     throw new Error('call defineSiteComponentsConfig first to config "@pingcap-inc/tidb-community-site-components"')
