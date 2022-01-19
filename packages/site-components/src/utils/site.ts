@@ -15,7 +15,6 @@ export interface RouteToConfig {
 
 interface SiteConfig {
   baseUrl: Record<Env, string>
-  hasRouter: boolean
 }
 
 const siteConfig: Record<Site, SiteConfig> = {
@@ -25,7 +24,6 @@ const siteConfig: Record<Site, SiteConfig> = {
       [Env.preview]: 'https://dev-accounts.pingcap.com',
       [Env.local]: 'https://dev-accounts.pingcap.com'
     },
-    hasRouter: false
   },
   [Site.home]: {
     baseUrl: {
@@ -33,7 +31,6 @@ const siteConfig: Record<Site, SiteConfig> = {
       [Env.preview]: 'https://community-preview.tidb.io',
       [Env.local]: 'http://localhost:4000',
     },
-    hasRouter: true,
   },
   [Site.asktug]: {
     baseUrl: {
@@ -41,7 +38,6 @@ const siteConfig: Record<Site, SiteConfig> = {
       [Env.preview]: 'https://sso-test.asktug.com',
       [Env.local]: 'https://sso-test.asktug.com',
     },
-    hasRouter: false,
   },
   [Site.others]: {
     baseUrl: {
@@ -49,7 +45,6 @@ const siteConfig: Record<Site, SiteConfig> = {
       [Env.preview]: '',
       [Env.local]: '',
     },
-    hasRouter: false,
   },
 }
 
@@ -62,7 +57,7 @@ export function getUrl (site: Site, env: Env, config: RouteToConfig): GetUrlResu
   if (site === config.site) {
     return {
       url: config.url,
-      canUseRouter: siteConfig[site].hasRouter && !config.newWindow,
+      canUseRouter: !config.newWindow,
     }
   } else {
     return {

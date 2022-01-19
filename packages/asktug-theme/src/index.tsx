@@ -15,8 +15,10 @@ defineSiteComponentsConfig({
     return React.cloneElement(elm, {
       key,
       onClick: (event: MouseEvent) => {
-        event.preventDefault()
         routeTo(url)
+        event.preventDefault()
+        event.stopPropagation()
+        return false
       },
     })
   },

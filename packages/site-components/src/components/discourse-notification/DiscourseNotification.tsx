@@ -40,12 +40,12 @@ const DiscourseNotification = ({ notification, wrap, markRead }: DiscourseNotifi
       break
     case NotificationType.private_message:
     case NotificationType.invited_to_private_message:
-      el = renderTopicNotification(notification as AsktugNotification<TopicData>, <MailOutlined />, '：')
+      el = renderTopicNotification(notification as AsktugNotification<TopicData>, <MailOutlined />)
       break
     case NotificationType.invitee_accepted:
       break
     case NotificationType.posted:
-      el = renderTopicNotification(notification as AsktugNotification<TopicData>, <SendOutlined />)
+      el = renderTopicNotification(notification as AsktugNotification<TopicData>, <CommentOutlined />, '回复了')
       break
     case NotificationType.moved_post:
       break
