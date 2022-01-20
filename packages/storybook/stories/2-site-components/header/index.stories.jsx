@@ -1,7 +1,8 @@
 import { Header, SiteComponentsContext } from '@pingcap-inc/tidb-community-site-components'
 import React, { useCallback, useEffect } from 'react'
 import { mutate } from 'swr'
-import notificationsJson from '../notification.json'
+import asktugNotificationsJson from '../asktug-notification.json'
+import blogNotificationsJson from '../blog-notification.json'
 import privateMessagesJson from './private-messages.json'
 
 const sleep = (ms = 2000) => new Promise(resolve => {
@@ -38,14 +39,27 @@ const HeaderPreview = ({ loggedIn }) => {
     console.log('asktug.fetcher', key, ...params)
     await sleep()
     if (key === 'asktug.getNotifications') {
-      return Promise.resolve(notificationsJson)
+      return Promise.resolve(asktugNotificationsJson)
     } else if (key === 'asktug.getPrivateMessages') {
       return Promise.resolve(privateMessagesJson)
+    } else {
+      return Promise.reject()
+    }
+  }, [])
+
+
+  const blog = useCallback(async (key, ...params) => {
+    console.log('asktug.fetcher', key, ...params)
+    await sleep()
+    if (key === 'blog.getNotifications') {
+      return Promise.resolve(blogNotificationsJson)
+    } else {
+      return Promise.reject()
     }
   }, [])
 
   return (
-    <SiteComponentsContext.Provider value={{ fetchers: { accounts, asktug } }}>
+    <SiteComponentsContext.Provider value={{ fetchers: { accounts, asktug, blog } }}>
       <Header />
     </SiteComponentsContext.Provider>
   )

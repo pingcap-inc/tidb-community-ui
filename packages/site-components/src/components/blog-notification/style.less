@@ -1,0 +1,19 @@
+@import "../../theme";
+
+.ti-blog-notification {
+  padding-left: 8px;
+  padding-right: 8px;
+  background: @B9;
+
+  &.ti-blog-notification-read {
+    span, a:not(:hover) {
+      color: @F3 !important;
+    }
+    background: white;
+  }
+
+  &__time {
+    white-space: nowrap;
+    font-size: 12px;
+  }
+}

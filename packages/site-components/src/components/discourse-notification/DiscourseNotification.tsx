@@ -80,7 +80,6 @@ const DiscourseNotification = ({ notification, wrap, markRead }: DiscourseNotifi
   }
 
   const onClick = useCallback((event) => {
-    console.log(notification)
     if (!notification.read) {
       markRead?.(notification.id)
     }

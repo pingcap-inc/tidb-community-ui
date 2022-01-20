@@ -1,7 +1,7 @@
 import { DiscourseNotification } from '@pingcap-inc/tidb-community-site-components'
 import { List } from 'antd'
 import React from 'react'
-import json from '../notification.json'
+import json from '../asktug-notification.json'
 
 export default {
   title: 'site/DiscourseNotification',

@@ -124,6 +124,14 @@ const collectNotifications = (notificationsSet: Notifications[] | undefined): As
   return notificationsSet?.reduce((all: AsktugNotification[], notifications) => all.concat(notifications?.notifications || []), []) || []
 }
 
+export const useAsktugUnreadNotifications = (): number => {
+  const { fetchers: { asktug: fetcher } } = useContext(SiteComponentsContext)
+
+  const { data } = useSWR<Notifications>(['asktug.readNotification', { unread: 1 }], { fetcher })
+
+  return data?.total_rows_notifications ?? 0
+}
+
 export const useAsktugNotifications = (params: GetNotificationParams = {}): Omit<SWRResponse<AsktugNotification[]>, 'mutate'> & { markRead: (notificationId: number) => Promise<void>, loadMore: () => void, reset: () => void, isEnd: boolean } => {
   const { fetchers: { asktug: fetcher } } = useContext(SiteComponentsContext)
 

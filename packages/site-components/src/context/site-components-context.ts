@@ -10,6 +10,9 @@ export interface SiteComponentsContextProps {
 
     // fetcher for asktug.com/*
     asktug: Fetcher<any, FetcherKey>
+
+    // fetcher for tidb.io/blog/*
+    blog: Fetcher<any, FetcherKey>
   }
 }
 
@@ -21,6 +24,9 @@ const SiteComponentsContext = createContext<SiteComponentsContextProps>({
     asktug: () => {
       throw new Error('fetchers.asktug not provided')
     },
+    blog: () => {
+      throw new Error('fetchers.blog not provided')
+    }
   },
 })
 
