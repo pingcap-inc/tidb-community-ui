@@ -60,7 +60,7 @@ const blog: Fetcher = (key: string, params) => {
     case 'blog.getNotifications':
       return fetch(`${BLOG_BASE}/api/notifications?${stringify(params)}`, { headers: { accept: 'application/json' } }).then(processResponse)
     case 'blog.getNotificationsSummary':
-      return fetch(`${BLOG_BASE}/api/notifications/summary`, { method: 'put', headers: { accept: 'application/json' } }).then(processResponse)
+      return fetch(`${BLOG_BASE}/api/notifications/summary`, { headers: { accept: 'application/json' } }).then(processResponse)
     case 'blog.readNotification':
       return fetch(`${BLOG_BASE}/api/notifications/${params}/read`, { method: 'patch' })
     default:

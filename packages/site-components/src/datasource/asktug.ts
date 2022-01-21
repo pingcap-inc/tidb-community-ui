@@ -127,7 +127,7 @@ const collectNotifications = (notificationsSet: Notifications[] | undefined): As
 export const useAsktugUnreadNotifications = (): number => {
   const { fetchers: { asktug: fetcher } } = useContext(SiteComponentsContext)
 
-  const { data } = useSWR<Notifications>(['asktug.readNotification', { unread: 1 }], { fetcher })
+  const { data } = useSWR<Notifications>(['asktug.getNotifications', { unread: 1 }], { fetcher })
 
   return data?.total_rows_notifications ?? 0
 }
