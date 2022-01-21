@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react'
+import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react'
 import { Badge, List, Popover, Spin, Tabs } from 'antd'
 import { Site } from '../../utils/site'
 import { BellOutlined, LoadingOutlined } from '@ant-design/icons'
@@ -9,6 +9,7 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 import SiteLink from '../site-link/SiteLink'
 import { BlogNotification as BlogNotificationType, useBlogNotifications, useBlogNotificationsSummary } from '../../datasource/blog'
 import BlogNotification from '../blog-notification'
+import SiteComponentsContext from '../../context/site-components-context'
 
 const loadingIcon = <LoadingOutlined style={{ fontSize: 16 }} spin />
 
@@ -69,6 +70,7 @@ const AsktugNotifications = () => {
 }
 
 const BlogNotifications = () => {
+  const { fetchers: { blog: fetcher } } = useContext(SiteComponentsContext)
   const [page, setPage] = useState(1)
   const { data, mutate, error, isValidating } = useBlogNotifications({ page })
   const [notifications, setNotifications] = useState<BlogNotificationType[]>([])
@@ -79,6 +81,7 @@ const BlogNotifications = () => {
       }
       return notification
     }))
+    fetcher('blog.readNotification', id)
   }, [setNotifications])
 
   useEffect(() => {
