@@ -62,7 +62,7 @@ const blog: Fetcher = (key: string, params) => {
     case 'blog.getNotificationsSummary':
       return fetch(`${BLOG_BASE}/api/notifications/summary`, { headers: { accept: 'application/json' } }).then(processResponse)
     case 'blog.readNotification':
-      return fetch(`${BLOG_BASE}/api/notifications/${params}/read`, { method: 'patch' })
+      return fetch(`${BLOG_BASE}/api/notifications/${params}/read`, { method: 'PATCH' })
     default:
       throw new Error('not implemented')
   }
