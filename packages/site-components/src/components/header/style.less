@@ -120,6 +120,13 @@
   }
 }
 
+.ti-site-header-load-more {
+  text-align: center;
+  > * {
+    transform: rotate(90deg);
+  }
+}
+
 .ti-site-header-button-popover-overlay {
   .ant-popover-inner-content {
     padding: 0;
@@ -135,6 +142,10 @@
       }
       &-nav {
         margin-bottom: 4px;
+      }
+      &-content {
+        max-height: 60vh;
+        overflow-y: scroll;
       }
       #ti-header-asktug-notifications-scroll-target {
         max-height: 60vh;

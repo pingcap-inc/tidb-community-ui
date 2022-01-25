@@ -21,7 +21,7 @@
     {
       "id": 777089,
       "notification_type": 2,
-      "read": false,
+      "read": true,
       "created_at": "2022-01-13T07:45:55.000Z",
       "post_number": 4,
       "topic_id": 392810,
@@ -75,7 +75,7 @@
     {
       "id": 777077,
       "notification_type": 5,
-      "read": false,
+      "read": true,
       "created_at": "2022-01-13T07:36:25.000Z",
       "post_number": 6,
       "topic_id": 212815,
@@ -111,7 +111,7 @@
     {
       "id": 20866,
       "notification_type": 7,
-      "read": false,
+      "read": true,
       "created_at": "2022-01-14T03:37:30.000Z",
       "post_number": 1,
       "topic_id": 2271,
@@ -173,50 +173,6 @@
         "badge_slug": "-",
         "badge_title": true,
         "username": "Billmay"
-      }
-    },
-    {
-      "id": 691190,
-      "notification_type": 14,
-      "read": false,
-      "created_at": "2022-01-05T12:39:00.000Z",
-      "post_number": 15,
-      "topic_id": 273284,
-      "fancy_title": "关于 Tiflash 缩容问题",
-      "slug": "topic",
-      "data": {
-        "message": "solved.accepted_notification",
-        "display_username": "aiden20170114",
-        "topic_title": "关于 Tiflash 缩容问题"
-      }
-    },
-    {
-      "id": 691775,
-      "notification_type": 16,
-      "read": false,
-      "created_at": "2022-01-06T20:30:07.000Z",
-      "post_number": null,
-      "topic_id": null,
-      "slug": null,
-      "data": {
-        "group_id": 1,
-        "group_name": "管理面板",
-        "inbox_count": 38,
-        "username": "billmay"
-      }
-    },
-    {
-      "id": 673386,
-      "notification_type": 19,
-      "read": true,
-      "created_at": "2021-12-18T14:05:47.000Z",
-      "post_number": null,
-      "topic_id": null,
-      "slug": null,
-      "data": {
-        "username": "FoolishPeki",
-        "display_username": "FoolishPeki",
-        "count": 4
       }
     }
   ],

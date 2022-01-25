@@ -1,8 +1,10 @@
 import { Header, SiteComponentsContext } from '@pingcap-inc/tidb-community-site-components'
 import React, { useCallback, useEffect } from 'react'
 import { mutate } from 'swr'
+import asktugUnreadNotificationsJson from '../asktug-notification-unread.json'
 import asktugNotificationsJson from '../asktug-notification.json'
 import blogNotificationsJson from '../blog-notification.json'
+import blogUnreadNotificationsJson from '../blog-notification-unread.json'
 import privateMessagesJson from './private-messages.json'
 
 const sleep = (ms = 2000) => new Promise(resolve => {
@@ -39,7 +41,11 @@ const HeaderPreview = ({ loggedIn }) => {
     console.log('asktug.fetcher', key, ...params)
     await sleep()
     if (key === 'asktug.getNotifications') {
-      return Promise.resolve(asktugNotificationsJson)
+      if (params[0].unread) {
+        return Promise.resolve(asktugUnreadNotificationsJson)
+      } else {
+        return Promise.resolve(asktugNotificationsJson)
+      }
     } else if (key === 'asktug.getPrivateMessages') {
       return Promise.resolve(privateMessagesJson)
     } else {
@@ -47,12 +53,15 @@ const HeaderPreview = ({ loggedIn }) => {
     }
   }, [])
 
-
   const blog = useCallback(async (key, ...params) => {
-    console.log('asktug.fetcher', key, ...params)
+    console.log('blog.fetcher', key, ...params)
     await sleep()
     if (key === 'blog.getNotifications') {
-      return Promise.resolve(blogNotificationsJson)
+      if (params[0].haveRead) {
+        return Promise.resolve(blogUnreadNotificationsJson)
+      } else {
+        return Promise.resolve(blogNotificationsJson)
+      }
     } else {
       return Promise.reject()
     }

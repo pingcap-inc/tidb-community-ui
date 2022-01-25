@@ -1,7 +1,6 @@
 import { useCallback, useContext, useMemo, useRef } from 'react'
 import SiteComponentsContext from '../context/site-components-context'
 import useSWR, { SWRResponse } from 'swr'
-import useSWRInfinite from 'swr/infinite'
 
 export enum NotificationType {
   mentioned = 1,
@@ -31,7 +30,7 @@ export interface AsktugNotification<Data extends AsktugNotificationData = Asktug
   id: number
   notification_type: NotificationType
   read: boolean
-  created_at: '2021-08-23T07:11:25.000Z'
+  created_at: string
   post_number: number
   topic_id?: number
   fancy_title?: string
@@ -120,60 +119,68 @@ export interface GetPrivateMessagesParams {
   unread?: 1
 }
 
-const collectNotifications = (notificationsSet: Notifications[] | undefined): AsktugNotification[] => {
-  return notificationsSet?.reduce((all: AsktugNotification[], notifications) => all.concat(notifications?.notifications || []), []) || []
-}
-
 export const useAsktugUnreadNotifications = (): number => {
   const { fetchers: { asktug: fetcher } } = useContext(SiteComponentsContext)
 
-  const { data } = useSWR<Notifications>(['asktug.getNotifications', { unread: 1 }], { fetcher })
+  const { data } = useSWR<Notifications>(['asktug.getNotifications', { unread: 1, recent: 1, limit: 1 }], { fetcher })
 
-  return data?.total_rows_notifications ?? 0
+  return data?.notifications.length ?? 0
 }
 
-export const useAsktugNotifications = (params: GetNotificationParams = {}): Omit<SWRResponse<AsktugNotification[]>, 'mutate'> & { markRead: (notificationId: number) => Promise<void>, loadMore: () => void, reset: () => void, isEnd: boolean } => {
+export const useAsktugNotifications = (max: number = 12): SWRResponse<AsktugNotification[]> & { markRead: (notificationId: number) => Promise<void> } => {
   const { fetchers: { asktug: fetcher } } = useContext(SiteComponentsContext)
 
-  delete params.recent
+  const combinedFetcher = useCallback(async (max) => {
+    const params: GetNotificationParams = { recent: 1, limit: max }
+    params.unread = 1
+    const unread: AsktugNotification[] = (await fetcher('asktug.getNotifications', params)).notifications
+    if (unread.length >= max) {
+      return unread.slice(0, max)
+    } else {
+      params.unread = undefined
+      const read: AsktugNotification[] = (await fetcher('asktug.getNotifications', params)).notifications
+      return unread.concat(read.filter(n => n.read).slice(0, max - unread.length))
+    }
+  }, ['asktug', fetcher])
 
-  const { size, setSize, mutate, error, isValidating, data } = useSWRInfinite<Notifications>(index => ['asktug.getNotifications', JSON.stringify({ offset: index * 60, ...params })], fetcher)
+  const notifications = useSWR<AsktugNotification[]>([max, 'asktug'], { fetcher: combinedFetcher })
 
-  const notifications: AsktugNotification[] = collectNotifications(data)
+  const { mutate } = notifications
 
   const markRead = useCallback(async (notificationId: number) => {
-    try {
-      await mutate(notificationsSet => {
-        for (let notifications of notificationsSet ?? []) {
-          const notification = notifications?.notifications.find(notification => notification.id === notificationId)
-          if (notification) {
-            notification.read = true
-          }
-        }
-        return notificationsSet
-      }, false)
-      await fetcher('asktug.readNotification', notificationId)
-    } catch (e) {
-      console.error('failed to mark notification read', e)
-    }
+    fetcher('asktug.readNotification', notificationId)
+    await mutate(notifications => {
+      if (!notifications) {
+        return
+      }
+      const i = notifications.findIndex(notification => notification.id === notificationId && !notification.read)
+      if (i < 0) {
+        // no change
+        return notifications
+      }
+
+      // create a new array
+      notifications = [...notifications]
+
+      // find the marking notification
+      const [theNotification] = notifications.splice(i, 1)
+      theNotification.read = true
+
+      // find the first which was read and created less than the notification
+      const ui = notifications.findIndex(notification => notification.read && notification.created_at < theNotification.created_at)
+      if (ui === -1) {
+        // the notification is oldest, add to tail
+        notifications.push(theNotification)
+      } else {
+        // insert the notification to proper position
+        notifications.splice(ui, 0, theNotification)
+      }
+
+      return notifications
+    }, { revalidate: false })
   }, [fetcher, mutate])
 
-  const loadMore = useCallback(() => {
-    setSize(size => size + 1).then()
-  }, [setSize])
-
-  const reset = useCallback(() => {
-    setSize(1).then()
-  }, [setSize])
-
-  const isEnd = (() => {
-    if (isValidating) {
-      return false
-    }
-    return (data?.[size - 1]?.total_rows_notifications ?? 0) <= notifications.length
-  })()
-
-  return { data: notifications, isValidating, error, loadMore, reset, markRead, isEnd }
+  return { ...notifications, markRead }
 }
 
 export const useAsktugPrivateMessages = (params: GetNotificationParams = {}) => {

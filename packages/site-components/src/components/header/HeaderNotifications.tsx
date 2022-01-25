@@ -1,23 +1,21 @@
-import React, { useCallback, useContext, useEffect, useMemo, useState } from 'react'
-import { Badge, List, Popover, Spin, Tabs } from 'antd'
+import React from 'react'
+import { Badge, List, Popover, Tabs } from 'antd'
 import { Site } from '../../utils/site'
-import { BellOutlined, LoadingOutlined } from '@ant-design/icons'
+import { BellOutlined } from '@ant-design/icons'
 import { useAsktugNotifications, useAsktugUnreadNotifications } from '../../datasource/asktug'
 import { getContainer } from '../../utils/popup-container'
 import DiscourseNotification from '../discourse-notification'
-import InfiniteScroll from 'react-infinite-scroll-component'
 import SiteLink from '../site-link/SiteLink'
-import { BlogNotification as BlogNotificationType, useBlogNotifications, useBlogNotificationsSummary } from '../../datasource/blog'
+import { useBlogNotifications, useBlogNotificationsSummary } from '../../datasource/blog'
 import BlogNotification from '../blog-notification'
-import SiteComponentsContext from '../../context/site-components-context'
-
-const loadingIcon = <LoadingOutlined style={{ fontSize: 16 }} spin />
+import LoadMore from './LoadMore'
 
 const HeaderNotifications = () => {
   const asktugCount = useAsktugUnreadNotifications()
   const { data: blogNotificationsSummary } = useBlogNotificationsSummary()
 
-  const unread = asktugCount + (blogNotificationsSummary?.unreadCount ?? 0)
+  const blogCount = (blogNotificationsSummary?.unreadCount ?? 0)
+  const unread = asktugCount + blogCount
 
   return (
     <Popover
@@ -26,108 +24,68 @@ const HeaderNotifications = () => {
       getPopupContainer={getContainer}
       content={(
         <Tabs size="small">
-          <Tabs.TabPane key="asktug" tab="AskTUG">
-            <AsktugNotifications />
+          <Tabs.TabPane key="asktug" tabKey="asktug" tab={<Badge dot={asktugCount > 0}><span>AskTUG</span></Badge>}>
+            <AsktugNotifications
+              footer={(
+                <SiteLink site={Site.home} url="/notifications/asktug" newWindow={false}>
+                  <LoadMore />
+                </SiteLink>
+              )}
+            />
           </Tabs.TabPane>
-          <Tabs.TabPane key="blog" tab="专栏">
-            <BlogNotifications />
+          <Tabs.TabPane key="blog" tabKey="blog" tab={<Badge dot={blogCount > 0}><span>专栏</span></Badge>}>
+            <BlogNotifications
+              footer={(
+                <SiteLink site={Site.home} url="/notifications/blog" newWindow={false}>
+                  <LoadMore />
+                </SiteLink>
+              )}
+            />
           </Tabs.TabPane>
         </Tabs>
       )}
     >
       <Badge dot={unread > 0}>
-        <SiteLink site={Site.home} url="/notifications" newWindow={false}>
-          <BellOutlined />
-        </SiteLink>
+        <BellOutlined />
       </Badge>
     </Popover>
   )
 }
 
-const loading = <div style={{ padding: 8, textAlign: 'center' }}><Spin spinning indicator={loadingIcon} /></div>
 const wrap = (el: JSX.Element) => <List.Item>{el}</List.Item>
 
-const AsktugNotifications = () => {
-  const { data: notifications, isEnd, loadMore, markRead } = useAsktugNotifications({})
-
+const AsktugNotifications = ({ max = 12, footer }: { max?: number, footer: React.ReactNode }) => {
+  const { data: notifications, error, isValidating, markRead } = useAsktugNotifications(max)
+  if (error) {
+    console.error(error)
+    return <p>服务异常</p>
+  }
   return (
-    <div id="ti-header-asktug-notifications-scroll-target">
-      <InfiniteScroll
-        next={loadMore}
-        hasMore={!isEnd}
-        loader={loading}
-        dataLength={notifications?.length ?? 0}
-        scrollableTarget="ti-header-asktug-notifications-scroll-target"
-      >
-        <List
-          size="small"
-          dataSource={notifications ?? []}
-          renderItem={(item) => <DiscourseNotification markRead={markRead} notification={item} wrap={wrap} />}
-        />
-      </InfiniteScroll>
-    </div>
+    <List
+      size="small"
+      loading={isValidating}
+      dataSource={notifications ?? []}
+      renderItem={(item) => <DiscourseNotification markRead={markRead} notification={item} wrap={wrap} />}
+      footer={footer}
+    />
   )
 }
 
-const BlogNotifications = () => {
-  const { fetchers: { blog: fetcher } } = useContext(SiteComponentsContext)
-  const [page, setPage] = useState(1)
-  const { data, mutate, error, isValidating } = useBlogNotifications({ page })
-  const [notifications, setNotifications] = useState<BlogNotificationType[]>([])
-  const markRead = useCallback((id: number) => {
-    setNotifications(notifications => notifications.map(notification => {
-      if (notification.id === id) {
-        notification.haveRead = true
-      }
-      return notification
-    }))
-    fetcher('blog.readNotification', id)
-  }, [setNotifications])
-
-  useEffect(() => {
-    if (data && !error && !isValidating) {
-      if (data.page.number === page) {
-        setNotifications(notifications => notifications.concat(data.content))
-      }
-    }
-  }, [page, data, error, isValidating])
-
-  const isEnd = useMemo(() => {
-    if (data && !isValidating && !error) {
-      return data.page.totalPages >= page
-    } else {
-      return false
-    }
-  }, [page, data, isValidating, error])
-
-  const loadMore = useCallback(() => {
-    if (!isValidating) {
-      if (error) {
-        console.log(error)
-        mutate().then()
-      }
-      if (!isEnd) {
-        setPage(page => page + 1)
-      }
-    }
-  }, [page, mutate, isEnd, error, isValidating])
-
+const BlogNotifications = ({ max = 12, footer }: { max?: number, footer: React.ReactNode }) => {
+  const { data: notifications, error, isValidating, markRead } = useBlogNotifications(max)
+  if (error) {
+    console.error(error)
+    return <p>服务异常</p>
+  }
 
   return (
-    <div id="ti-header-asktug-notifications-scroll-target">
-      <InfiniteScroll
-        next={loadMore}
-        hasMore={!isEnd}
-        loader={loading}
-        dataLength={notifications.length}
-      >
-        <List
-          size="small"
-          dataSource={notifications}
-          renderItem={(item) => <BlogNotification notification={item} markRead={markRead} wrap={wrap} />}
-        />
-      </InfiniteScroll>
-    </div>
+    <List
+      size="small"
+      loading={isValidating}
+      dataSource={notifications}
+      renderItem={(item) => <BlogNotification notification={item} markRead={markRead} wrap={wrap} />}
+      footer={footer}
+    />
   )
 }
 
