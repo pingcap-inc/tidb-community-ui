@@ -58,9 +58,9 @@ const HeaderPreview = ({ loggedIn }) => {
     await sleep()
     if (key === 'blog.getNotifications') {
       if (params[0].haveRead) {
-        return Promise.resolve(blogUnreadNotificationsJson)
-      } else {
         return Promise.resolve(blogNotificationsJson)
+      } else {
+        return Promise.resolve(blogUnreadNotificationsJson)
       }
     } else {
       return Promise.reject()

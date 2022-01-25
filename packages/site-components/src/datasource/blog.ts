@@ -62,13 +62,13 @@ export const useBlogNotifications = (max: number = 12): SWRResponse<BlogNotifica
   const { fetchers: { blog: fetcher } } = useContext(SiteComponentsContext)
 
   const combinedFetcher = useCallback(async (max) => {
-    const params: BlogNotificationsParams = { page: 1, size: max, haveRead: true }
+    const params: BlogNotificationsParams = { page: 1, size: max, haveRead: false }
     const unread: BlogNotification[] = (await fetcher('blog.getNotifications', params)).content
     if (unread.length >= max) {
       return unread.slice(0, max)
     } else {
       const restSize = max - unread.length
-      params.haveRead = false
+      params.haveRead = true
       params.size = restSize
       const read: BlogNotification[] = (await fetcher('blog.getNotifications', params)).content
       return unread.concat(read.filter(n => n.haveRead).slice(0, restSize))
