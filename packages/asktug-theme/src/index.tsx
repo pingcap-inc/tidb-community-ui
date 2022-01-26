@@ -1,7 +1,7 @@
 // this must import before any components
 import './index.less'
 import { defineSiteComponentsConfig, Env, Footer, Header, Site, SiteComponentsContext } from '@pingcap-inc/tidb-community-site-components'
-import React, { MouseEvent } from 'react'
+import React, { MouseEvent, useEffect, useState } from 'react'
 import ReactDOM from 'react-dom'
 import { routeTo } from './asktug-routing'
 import fetchers from './fetchers'
@@ -38,49 +38,61 @@ const context = {
   fetchers,
 }
 
-const renderHeader = () => {
+const AsktugHeader = () => {
   const headerElem = document.getElementById('asktug-header')
-  ReactDOM.render((
-    <SiteComponentsContext.Provider value={context}>
-      <Header />
-    </SiteComponentsContext.Provider>
-  ), headerElem)
+  if (!headerElem) {
+    return null
+  }
+  return ReactDOM.createPortal(<Header />, headerElem)
 }
 
-const renderFooter = () => {
-  const footerId = 'asktug-footer'
+const AsktugFooter = () => {
+  const [key, setKey] = useState(0)
 
-  const footerElem = document.getElementById(footerId)
-  if (footerElem) {
-    ReactDOM.render((
-      <SiteComponentsContext.Provider value={context}>
-        <Footer />
-      </SiteComponentsContext.Provider>
-    ), footerElem)
-  }
+  useEffect(() => {
+    const MutationObserver = window.MutationObserver || (window as any).WebkitMutationObserver
 
-  const MutationObserver = window.MutationObserver || (window as any).WebkitMutationObserver
-
-  const observer = new MutationObserver((mutations) => {
-    mutations.forEach(function (mutation) {
-      mutation.addedNodes.forEach(function (node) {
-        if ((node as Element).id === footerId) {
-          const footerElem = document.getElementById(footerId)
-          ReactDOM.render((
-            <SiteComponentsContext.Provider value={context}>
-              <Footer />
-            </SiteComponentsContext.Provider>
-          ), footerElem)
-        }
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach(function (mutation) {
+        mutation.addedNodes.forEach(function (node) {
+          if ((node as Element).id === footerId) {
+            setKey(key => key + 1)
+          }
+        })
       })
     })
-  })
 
-  observer.observe(document.body, {
-    childList: true,
-    subtree: true,
-  })
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+    })
+
+    return () => {
+      observer.disconnect()
+    }
+  }, [])
+
+  const footerId = 'asktug-footer'
+  const footerElem = document.getElementById(footerId)
+
+  if (!footerElem) {
+    return null
+  }
+
+  return ReactDOM.createPortal(<Footer />, footerElem)
 }
 
-renderHeader()
-renderFooter()
+const AsktugSite = () => {
+  return (
+    <SiteComponentsContext.Provider value={context}>
+      <AsktugHeader />
+      <AsktugFooter />
+    </SiteComponentsContext.Provider>
+  )
+}
+
+const container = document.createElement('div')
+container.className = '__ti-site-holder'
+document.body.append(container)
+
+ReactDOM.render(<AsktugSite />, container)
