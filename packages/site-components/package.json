@@ -51,7 +51,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/pingcap-inc/tidb-community-site-components"
+    "url": "https://github.com/pingcap-inc/tidb-community-ui"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
