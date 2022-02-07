@@ -14,9 +14,10 @@ on:
 
 jobs:
   build:
+    name: build and publish
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
 
     steps:
       - name: Checkout repository
