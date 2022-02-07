@@ -101,7 +101,7 @@ export const navItems: NavItem[] = [
     children: [
       {
         key: 'tug',
-        title: 'Tug',
+        title: 'TUG',
         config: {
           site: Site.home,
           url: '/tug',
