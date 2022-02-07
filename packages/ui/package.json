@@ -35,13 +35,6 @@
   "files": [
     "dist"
   ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/pingcap-inc/tidb-community-ui"
-  },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
-  },
   "peerDependencies": {
     "antd": "4.15.6",
     "classnames": "^2.3.1",
@@ -53,5 +46,12 @@
   "optionalDependencies": {
     "react-cool-dimensions": "^2.0.7",
     "swr": "^1.1.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pingcap-inc/tidb-community-ui"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
   }
 }

@@ -1,10 +1,16 @@
-name: Asktug theme preview
+name: Publish packages in production
 
 on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: bump version
+        required: true
+        type: choice
+        options:
+          - major
+          - minor
+          - patch
 
 jobs:
   build:
@@ -34,18 +40,10 @@ jobs:
           pnpm run build:ui
           pnpm run build:site-components
 
-      - name: Build preview
-        run: pnpm run build:asktug:preview
-        env:
-          BUILD_REF: ${{ github.event.after || github.event.number }}
-
-      - name: Upload to Aliyun oss
-        id: upload_to_oss
-        uses: AliyunWorkbench/workbench-oss@1.0.0
+      - name: Create Release Pull Request or Publish to npm
+        id: changesets
+        uses: changesets/action@v1
         with:
-          ACCESS_KEY: ${{ secrets.OSS_ACCESS_KEY }}
-          ACCESS_SECRET: ${{ secrets.OSS_ACCESS_SECRET }}
-          OSS_REGION: oss-cn-beijing
-          OSS_BUCKET: tidb-community-site
-          OSS_PATH: /tidb-community-ui/
-          UPLOAD_PATH: ./packages/asktug-theme/dist
+          publish: pnpm publish
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

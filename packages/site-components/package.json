@@ -48,5 +48,12 @@
     "react-infinite-scroll-component": "^6.1.0",
     "react-transition-group": "^4.4.2",
     "swr": "^1.1.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pingcap-inc/tidb-community-site-components"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
   }
 }
