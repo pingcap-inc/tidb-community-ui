@@ -1,8 +1,41 @@
-.ti-site-search {
-  max-width: 370px;
-  min-width: 240px;
+@import "~@pingcap-inc/tidb-community-ui/theme/colors";
 
-  &> &__input {
-    width: calc(~"100% - 50px");
+.ti-site-search {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  height: 32px;
+  max-width: 370px;
+  min-width: 180px;
+  border-radius: 16px;
+  background: @F7;
+  border: 1px solid @F5;
+  color: @F4;
+  padding-left: 8px;
+  padding-right: 8px;
+  transition: all .2s ease;
+  overflow: hidden;
+
+  input {
+    background: transparent;
+    color: @F3;
+    line-height: 32px;
+    border: none;
+    outline: none;
+    &::placeholder {
+      color: @F4;
+    }
+  }
+
+  a {
+    color: @F4;
+  }
+
+  &:focus-within {
+    background: white;
+    a {
+      color: @B4;
+    }
   }
 }
