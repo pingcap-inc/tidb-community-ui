@@ -13,7 +13,8 @@ defineSiteComponentsConfig({
   env: process.env.NODE_ENV === 'production' ? Env.prod : Env.preview,
   wrapRouteLink: (key, url, node) => {
     const onClick = (event: MouseEvent) => {
-      routeTo(url)
+      // routeTo(url)
+      location.href = url
       event.preventDefault()
       event.stopPropagation()
       return false

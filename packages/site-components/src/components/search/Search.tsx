@@ -19,7 +19,7 @@ const Search = ({style}: { style?: React.CSSProperties }): JSX.Element => {
         placeholder='全站搜索'
         onKeyPress={e => e.key === 'Enter' && handle()}
       />
-      <a href={href} target='_blank' rel='noreferrer'>
+      <a href={href} target='_blank' rel='noreferrer' className='ti-site-search-icon'>
         <SearchOutlined />
       </a>
     </div>

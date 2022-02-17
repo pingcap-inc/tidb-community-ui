@@ -32,7 +32,7 @@
 
 .ti-site-header {
   background: @M1;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 
   .ti-site-header-button {
     & + .ti-site-header-button {
@@ -156,9 +156,17 @@
     }
     .ant-list-item {
       font-size: 14px;
-      padding: 4px 8px;
+      padding: 8px 8px;
       a:not(:hover) {
         color: @D5;
+      }
+      &:hover, a:hover{
+        span, a {
+          color: @M1 !important;
+        }
+      }
+      &:hover {
+        background-color: @B4;
       }
     }
   }
