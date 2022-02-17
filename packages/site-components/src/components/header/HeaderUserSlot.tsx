@@ -32,7 +32,7 @@ const HeaderUserSlot = () => {
               {(me) => (
                 <>
                   <HeaderNotifications />
-                  <HeaderPrivateMessages />
+                  <HeaderPrivateMessages username={me?.data.username} />
                   <Space size={30} />
                   <UserProfileDropdown me={me.data} />
                 </>
