@@ -37,7 +37,7 @@ const Header = (): JSX.Element => {
             >
               <>
                 <HeaderNotifications />
-                <HeaderPrivateMessages />
+                <HeaderPrivateMessages username={meData?.data?.data.username || ''} />
               </>
             </SwrData>
           </Responsive.Breakpoint>

@@ -47,6 +47,12 @@ const asktug: Fetcher = (key: string, params) => {
       return fetch(`/notifications?${stringify(params)}`, { headers: { accept: 'application/json' } }).then(processResponse)
     case 'asktug.readNotification':
       return fetch(`/notifications/mark-read?${stringify({ id: params, ...getAsktugCsrf() })}`, { method: 'put', headers: { accept: 'application/json' } }).then(processResponse)
+    case 'asktug.getPrivateMessages':
+      // @ts-ignore
+      return fetch(`/topics/private-messages/${params.username}`, { headers: { accept: 'application/json' } }).then(processResponse)
+    case 'asktug.getPrivateMessagesSent':
+      // @ts-ignore
+      return fetch(`/topics/private-messages-sent/${params.username}`, { headers: { accept: 'application/json' } }).then(processResponse)
     default:
       throw new Error('not implemented')
   }

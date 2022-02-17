@@ -92,6 +92,11 @@ export interface GetNotificationParams {
   silent?: 1
 }
 
+export interface GetPrivateMessagesParams {
+  username: string;
+  unread?: 1;
+}
+
 export interface AsktugPrivateMessage {
   id: number
   slug: string
@@ -183,7 +188,9 @@ export const useAsktugNotifications = (max: number = 12): SWRResponse<AsktugNoti
   return { ...notifications, markRead }
 }
 
-export const useAsktugPrivateMessages = (params: GetNotificationParams = {}) => {
+
+
+export const useAsktugPrivateMessages = (params: GetPrivateMessagesParams) => {
   const { fetchers: { asktug: fetcher } } = useContext(SiteComponentsContext)
   return useSWR<PrivateMessages>(['asktug.getPrivateMessages', JSON.stringify(params)], { fetcher })
 }
@@ -195,8 +202,8 @@ export interface PrivateMessage {
   id: number
 }
 
-export const usePrivateMessages = (params: GetNotificationParams = {}): PrivateMessage[] => {
-  const { data } = useAsktugPrivateMessages()
+export const usePrivateMessages = (params: GetPrivateMessagesParams): PrivateMessage[] => {
+  const { data } = useAsktugPrivateMessages(params)
   const mappedUsers = useRef<Map<number, AsktugUser>>()
 
   return useMemo(() => {

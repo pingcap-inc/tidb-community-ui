@@ -19,8 +19,8 @@ const PrivateMessageLink = ({ privateMessage }: { privateMessage: PrivateMessage
   )
 }
 
-const HeaderPrivateMessages = () => {
-  const privateMessages = usePrivateMessages({ })
+const HeaderPrivateMessages = ({username}: {username: string}) => {
+  const privateMessages = usePrivateMessages({username})
 
   return (
     <Popover
