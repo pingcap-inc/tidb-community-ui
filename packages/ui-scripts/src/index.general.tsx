@@ -20,13 +20,13 @@ defineSiteComponentsConfig({
 const context = { fetchers }
 
 const GeneralHeader = () => {
-    const headerElem = document.getElementById('general-header')
+    const headerElem = document.getElementById('tidb-community-header')
     if (!headerElem) return null
-    return ReactDOM.createPortal(<Header/>, headerElem)
+    return ReactDOM.createPortal(<Header showSearch={false}/>, headerElem)
 }
 
 const GeneralFooter = () => {
-    const footerId = 'general-footer'
+    const footerId = 'tidb-community-footer'
     const footerElem = document.getElementById(footerId)
     if (!footerElem) return null
     return ReactDOM.createPortal(<Footer/>, footerElem)
