@@ -1,7 +1,10 @@
-name: Asktug theme production
+name: UI Scripts preview
 
 on:
-  workflow_dispatch:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
   build:
@@ -27,14 +30,14 @@ jobs:
 
       - name: Build libs
         run: |
-          rm -rf ./packages/asktug-theme/dist
+          rm -rf ./packages/ui-scripts/dist
           pnpm run build:ui
           pnpm run build:site-components
 
-      - name: Build production
-        run: pnpm run build:asktug:production
+      - name: Build preview
+        run: pnpm run build:ui-scripts:preview
         env:
-          BUILD_REF: production@${{ github.event.ref }}
+          BUILD_REF: ${{ github.event.after || github.event.number }}
 
       - name: Upload to Aliyun oss
         id: upload_to_oss
@@ -45,4 +48,4 @@ jobs:
           OSS_REGION: oss-cn-beijing
           OSS_BUCKET: tidb-community-site
           OSS_PATH: /tidb-community-ui/
-          UPLOAD_PATH: ./packages/asktug-theme/dist
+          UPLOAD_PATH: ./packages/ui-scripts/dist

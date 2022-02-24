@@ -14,11 +14,13 @@ import { terser } from 'rollup-plugin-terser'
 import ts from 'rollup-plugin-ts'
 import { visualizer } from 'rollup-plugin-visualizer'
 
+const src = `index.${process.env.target}.tsx`
+
 export default defineConfig({
-  input: './src/index.tsx',
+  input: `./src/${src}`,
   external: [],
   output: {
-    file: `dist/ti-site-asktug.${process.env.NODE_ENV}.js`,
+    file: `dist/ti-site-${process.env.target}.${process.env.NODE_ENV}.js`,
     format: 'es'
   },
   plugins: [
@@ -37,7 +39,7 @@ export default defineConfig({
     }),
     antd({
       template: component => `
-          @use postcss-wrap-selector(selector = '.ti-site-asktug');
+          @use postcss-wrap-selector(selector = '.ti-site-${process.env.target}');
           @import "~@pingcap-inc/tidb-community-ui/theme/index-commons.less";
           @import "~antd/lib/${component}/style";
           @import "~@pingcap-inc/tidb-community-ui/theme/index-overrides.less";
@@ -47,7 +49,7 @@ export default defineConfig({
       include: ['**/*.svg', '../**/*.svg']
     }),
     postcss({
-      extract: `ti-site-asktug.${process.env.NODE_ENV}.css`,
+      extract: `ti-site-${process.env.target}.${process.env.NODE_ENV}.css`,
       inject: false,
       use: {
         less: {
@@ -58,7 +60,7 @@ export default defineConfig({
         }
       },
       plugins: [
-        postcssWrapSelector({ selector: '.ti-site-asktug' })
+        postcssWrapSelector({ selector: `.ti-site-${process.env.target}` })
       ].concat(process.env.NODE_ENV === 'production' ? [postcssMinify()] : [])
     }),
     externalGlobals({
