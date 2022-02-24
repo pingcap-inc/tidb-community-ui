@@ -45,4 +45,4 @@ jobs:
           OSS_REGION: oss-cn-beijing
           OSS_BUCKET: tidb-community-site
           OSS_PATH: /tidb-community-ui/
-          UPLOAD_PATH: ./packages/ui-scripts/dist
+          UPLOAD_PATH: /tidb-community-ui/packages/ui-scripts/dist
