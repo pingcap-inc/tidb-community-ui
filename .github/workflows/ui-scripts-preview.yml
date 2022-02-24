@@ -39,11 +39,6 @@ jobs:
         env:
           BUILD_REF: ${{ github.event.after || github.event.number }}
 
-# ls -l ./packages/ui-scripts/dist
-      - name: debug
-        run: tree -L 3
-
-
       - name: Upload to Aliyun oss
         id: upload_to_oss
         uses: AliyunWorkbench/workbench-oss@1.0.0
@@ -53,4 +48,5 @@ jobs:
           OSS_REGION: oss-cn-beijing
           OSS_BUCKET: tidb-community-site
           OSS_PATH: /tidb-community-ui/
-          UPLOAD_PATH: /tidb-community-ui/packages/ui-scripts/dist
+          UPLOAD_PATH: ./packages/ui-scripts/dist
+
