@@ -1,11 +1,9 @@
 import { FooterSectionProps } from './FooterSection'
 import { Site } from '../../utils/site'
-import Facebook from './icons/facebook.svg'
 import Github from './icons/github.svg'
-import Linkedin from './icons/linkedin.svg'
-import Slack from './icons/slack.svg'
-import Twitter from './icons/twitter.svg'
-import Youtube from './icons/youtube.svg'
+import Email from './icons/email.svg'
+import MailingList from './icons/mailing-list.svg'
+import BiliBili from './icons/bilibili.svg'
 import { FC } from 'react'
 
 interface SectionData extends FooterSectionProps {
@@ -194,33 +192,23 @@ export const sections: SectionData[] = [
 
 export const icons: IconData[] = [
   {
-    Icon: Facebook,
-    href: '/',
-    alt: 'facebook'
+    Icon: Email,
+    href: 'mailto:user-zh@tidb.io',
+    alt: 'email'
   },
   {
     Icon: Github,
-    href: '/',
+    href: 'https://github.com/pingcap/community',
     alt: 'github'
   },
   {
-    Icon: Linkedin,
-    href: '/',
+    Icon: BiliBili,
+    href: 'https://space.bilibili.com/584479667',
     alt: 'linkedin'
   },
   {
-    Icon: Slack,
-    href: '/',
-    alt: 'slack'
+    Icon: MailingList,
+    href: 'https://lists.tidb.io/g/main',
+    alt: 'Mailing List',
   },
-  {
-    Icon: Twitter,
-    href: '/',
-    alt: 'twitter'
-  },
-  {
-    Icon: Youtube,
-    href: '/',
-    alt: 'youtube'
-  }
 ]

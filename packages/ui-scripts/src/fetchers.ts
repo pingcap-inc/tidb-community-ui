@@ -1,7 +1,9 @@
 import { Fetcher } from 'swr'
 import { stringify } from 'qs'
 
-const ACCOUNTS_BASE = '/_/sso'
+const ACCOUNTS_BASE = process.env.NODE_ENV === 'preview'
+  ?  ""
+  : 'http://localhost:3000/graphql'
 const BLOG_BASE = '/_/blog'
 
 const processResponse = (res: Response) => {
