@@ -1,10 +1,13 @@
 import { Fetcher } from 'swr'
 import { stringify } from 'qs'
 
-const ACCOUNTS_BASE = process.env.NODE_ENV === 'preview'
-  ?  ""
-  : 'http://localhost:3000/graphql'
-const BLOG_BASE = '/_/blog'
+let ACCOUNTS_BASE = '/_/sso'
+let BLOG_BASE = '/_/blog'
+
+export const setFetcherUrlBase = (base: string) => {
+  ACCOUNTS_BASE = base + '/_/sso'
+  BLOG_BASE = base + '/_/blog'
+}
 
 const processResponse = (res: Response) => {
   if (process.env.NODE_ENV !== 'production') {

@@ -10,13 +10,13 @@ import {
 } from '@pingcap-inc/tidb-community-site-components'
 import React from 'react'
 import ReactDOM from 'react-dom'
-import fetchers from './fetchers'
+import fetchers, {setFetcherUrlBase} from './fetchers'
 
 defineSiteComponentsConfig({
     site: Site.asktug,
     env: process.env.NODE_ENV === 'production' ? Env.prod : Env.preview,
 })
-
+setFetcherUrlBase(process.env.NODE_ENV === 'production' ? 'https://asktug.com' : 'https://sso-test.asktug.com')
 const context = { fetchers }
 
 const GeneralHeader = () => {
