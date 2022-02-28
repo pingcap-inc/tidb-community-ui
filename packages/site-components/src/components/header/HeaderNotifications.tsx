@@ -23,7 +23,7 @@ const HeaderNotifications = () => {
       overlayClassName="ti-site-header-button-popover-overlay"
       getPopupContainer={getContainer}
       content={(
-        <Tabs size="small">
+        <Tabs size="small" className="ti-site-header-tabs">
           <Tabs.TabPane key="asktug" tabKey="asktug" tab={<Badge dot={asktugCount > 0}><span>AskTUG</span></Badge>}>
             <AsktugNotifications
               footer={(

@@ -119,6 +119,12 @@
   }
 }
 
+.ti-site-header-tabs {
+  .ant-tabs-tab-btn {
+    padding: 4px;
+  }
+}
+
 .ti-site-header-load-more {
   text-align: center;
   > * {
@@ -127,6 +133,10 @@
 }
 
 .ti-site-header-button-popover-overlay {
+  .ti-site-header-private-messages-list {
+    max-height: 16rem;
+    overflow-y: auto;
+  }
   .ant-popover-inner-content {
     padding: 0;
     max-width: 320px;
@@ -144,11 +154,11 @@
       }
       &-content {
         max-height: 60vh;
-        overflow-y: scroll;
+        overflow-y: auto;
       }
       #ti-header-asktug-notifications-scroll-target {
         max-height: 60vh;
-        overflow-y: scroll;
+        overflow-y: auto;
       }
     }
     .ant-list {
@@ -159,14 +169,6 @@
       padding: 8px 8px;
       a:not(:hover) {
         color: @D5;
-      }
-      &:hover, a:hover{
-        span, a {
-          color: @M1 !important;
-        }
-      }
-      &:hover {
-        background-color: @B4;
       }
     }
   }

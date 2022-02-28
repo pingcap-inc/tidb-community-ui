@@ -5,6 +5,13 @@
   padding-right: 8px;
   background: @B9;
 
+  &:not(.ti-asktug-notification-read):hover {
+    background: @B4 !important;
+    span, a {
+      color: @B9 !important;
+    }
+  }
+
   &.ti-asktug-notification-read {
     span, a:not(:hover) {
       color: @F3 !important;

@@ -31,6 +31,7 @@ const HeaderPrivateMessages = ({username}: {username: string}) => {
         <List
           size="small"
           dataSource={privateMessages}
+          className="ti-site-header-private-messages-list"
           renderItem={(item) => {
             return (
               <List.Item>

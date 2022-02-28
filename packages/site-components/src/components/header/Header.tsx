@@ -11,10 +11,14 @@ import {Skeleton} from 'antd'
 import {HeaderBreakpoint, headerBreakpoints} from './constants'
 import HeaderNotifications from './HeaderNotifications'
 import HeaderPrivateMessages from './HeaderPrivateMessages'
+import {SearchOutlined} from "@ant-design/icons";
+import SiteLink from "../site-link";
+import {Site} from "../../utils/site";
 
 interface HeaderProps {
     showSearch?: boolean
 }
+
 
 const Header = ({showSearch = true}: HeaderProps): JSX.Element => {
     const meData = useMeData()
@@ -45,6 +49,9 @@ const Header = ({showSearch = true}: HeaderProps): JSX.Element => {
                             fallback={<LoginButton className="ant-btn-xs"/>}
                         >
                             <>
+                                <div  className="ti-site-header-button">
+                                    <a href="https://search.asktug.com/blog" target='_blank' rel='noreferrer'><SearchOutlined /></a>
+                                </div>
                                 <HeaderNotifications/>
                                 <HeaderPrivateMessages
                                     username={meData?.data?.data.username || ''}/>
