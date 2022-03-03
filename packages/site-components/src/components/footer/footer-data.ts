@@ -53,7 +53,7 @@ export const sections: SectionData[] = [
         title: 'TiKV 社区',
         config: {
           site: Site.others,
-          url: 'https://internals.tidb.io',
+          url: 'https://tikv.org',
           newWindow: true,
         },
       },
@@ -95,7 +95,7 @@ export const sections: SectionData[] = [
         title: '专栏',
         config: {
           site: Site.home,
-          url: '/blogs',
+          url: '/blog',
           newWindow: true,
         },
       },

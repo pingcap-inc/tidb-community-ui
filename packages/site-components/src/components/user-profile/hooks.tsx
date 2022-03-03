@@ -18,7 +18,7 @@ export const useUserProfileItems = (me?: MeData['data']) => {
       title: '个人主页',
       config: {
         site: Site.home,
-        url: '/profile',
+        url: `/u/${me.username}/answer`,
         newWindow: false,
       },
     }, {
@@ -26,7 +26,7 @@ export const useUserProfileItems = (me?: MeData['data']) => {
       title: '会员中心',
       config: {
         site: Site.home,
-        url: '/vip-center',
+        url: '/member',
         newWindow: false,
       },
     })
@@ -37,7 +37,7 @@ export const useUserProfileItems = (me?: MeData['data']) => {
         title: '我的团队',
         config: {
           site: Site.home,
-          url: `/orgs/${me.org.slug}`,
+          url: `/orgs/${me.org.slug}/home`,
           newWindow: false,
         },
       })

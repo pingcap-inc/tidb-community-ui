@@ -27,7 +27,7 @@ const HeaderNotifications = () => {
           <Tabs.TabPane key="asktug" tabKey="asktug" tab={<Badge dot={asktugCount > 0}><span>AskTUG</span></Badge>}>
             <AsktugNotifications
               footer={(
-                <SiteLink site={Site.home} url="/notifications/asktug" newWindow={false}>
+                <SiteLink site={Site.home} url="/notifications?from=asktug" newWindow={false}>
                   <LoadMore />
                 </SiteLink>
               )}
@@ -36,7 +36,7 @@ const HeaderNotifications = () => {
           <Tabs.TabPane key="blog" tabKey="blog" tab={<Badge dot={blogCount > 0}><span>专栏</span></Badge>}>
             <BlogNotifications
               footer={(
-                <SiteLink site={Site.home} url="/notifications/blog" newWindow={false}>
+                <SiteLink site={Site.home} url="/notifications?from=blog" newWindow={false}>
                   <LoadMore />
                 </SiteLink>
               )}

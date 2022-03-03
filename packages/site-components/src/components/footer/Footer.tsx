@@ -18,9 +18,9 @@ const Footer = () => {
             ))}
           </ul>
           <FooterIcons />
-          <div className='ti-site-footer-logo'>
-            <Logo />
-          </div>
+          {/*<div className='ti-site-footer-logo'>*/}
+          {/*  <Logo />*/}
+          {/*</div>*/}
         </div>
       </footer>
     </Responsive>

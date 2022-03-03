@@ -122,7 +122,7 @@ export const navItems: NavItem[] = [
                 title: '问答之星',
                 config: {
                     site: Site.asktug,
-                    url: '/ranking',
+                    url: '/x/ranking',
                     newWindow: false
                 }
             },
