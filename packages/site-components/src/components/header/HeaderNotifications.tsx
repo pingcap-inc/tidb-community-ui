@@ -22,6 +22,7 @@ const HeaderNotifications = () => {
       className="ti-site-header-button"
       overlayClassName="ti-site-header-button-popover-overlay"
       getPopupContainer={getContainer}
+      align={{offset: [0, -20]}}
       content={(
         <Tabs size="small" className="ti-site-header-tabs">
           <Tabs.TabPane key="asktug" tabKey="asktug" tab={<Badge dot={asktugCount > 0}><span>AskTUG</span></Badge>}>
@@ -67,6 +68,7 @@ const AsktugNotifications = ({ max = 12, footer }: { max?: number, footer: React
       dataSource={notifications ?? []}
       renderItem={(item) => <DiscourseNotification markRead={markRead} notification={item} wrap={wrap} />}
       footer={footer}
+      locale={{ emptyText: '暂无消息' }}
     />
   )
 }
@@ -85,6 +87,7 @@ const BlogNotifications = ({ max = 12, footer }: { max?: number, footer: React.R
       dataSource={notifications}
       renderItem={(item) => <BlogNotification notification={item} markRead={markRead} wrap={wrap} />}
       footer={footer}
+      locale={{ emptyText: '暂无消息' }}
     />
   )
 }

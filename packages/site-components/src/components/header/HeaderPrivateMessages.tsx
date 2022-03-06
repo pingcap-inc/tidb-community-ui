@@ -1,5 +1,5 @@
 import React from 'react'
-import { Badge, List, Popover } from 'antd'
+import {Badge, List, Popover, Tabs} from 'antd'
 import { Site } from '../../utils/site'
 import { PrivateMessage, usePrivateMessages } from '../../datasource/asktug'
 import { getContainer } from '../../utils/popup-container'
@@ -27,20 +27,25 @@ const HeaderPrivateMessages = ({username}: {username: string}) => {
       className="ti-site-header-button"
       overlayClassName="ti-site-header-button-popover-overlay"
       getPopupContainer={getContainer}
-      content={(
-        <List
-          size="small"
-          dataSource={privateMessages}
-          className="ti-site-header-private-messages-list"
-          renderItem={(item) => {
-            return (
-              <List.Item>
-                <PrivateMessageLink privateMessage={item} />
-              </List.Item>
-            )
-          }}
-        />
-      )}
+      align={{offset: [0, -20]}}
+      content={
+          <Tabs size="small" className="ti-site-header-tabs">
+              <Tabs.TabPane key="private" tabKey="private" tab={<Badge dot={privateMessages.length > 0}><span>论坛私信</span></Badge>}>
+                  <List
+                      size="small"
+                      dataSource={privateMessages}
+                      className="ti-site-header-private-messages-list"
+                      locale={{ emptyText: '暂无消息' }}
+                      renderItem={(item) => {
+                          return (
+                              <List.Item>
+                                  <PrivateMessageLink privateMessage={item} />
+                              </List.Item>
+                          )
+                      }}
+                  />
+              </Tabs.TabPane>
+          </Tabs>}
     >
       <Badge dot={!!privateMessages.length}>
          <SiteLink site={Site.home} url="/private-messages" newWindow={false}>

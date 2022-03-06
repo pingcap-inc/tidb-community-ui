@@ -64,7 +64,7 @@ export const navItems: NavItem[] = [
     },
     {
         key: 'developers',
-        title: '开发者专区',
+        title: '贡献者专区',
         children: [
             {
                 key: 'contribute',
@@ -137,6 +137,15 @@ export const navItems: NavItem[] = [
             },
             {
                 key: 'principal',
+                title: '社区准则',
+                config: {
+                    site: Site.others,
+                    url: 'https://github.com/pingcap/community/blob/master/CODE_OF_CONDUCT.md',
+                    newWindow: true
+                }
+            },
+            {
+                key: 'contact-us',
                 title: '社区准则',
                 config: {
                     site: Site.others,

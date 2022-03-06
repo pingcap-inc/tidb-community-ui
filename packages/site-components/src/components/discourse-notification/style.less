@@ -3,9 +3,12 @@
 .ti-asktug-notification {
   padding-left: 8px;
   padding-right: 8px;
-  background: @B9;
+  background: #F7F8F9;
+  span, a {
+    transition: none !important;
+  }
 
-  &:not(.ti-asktug-notification-read):hover {
+  &:hover {
     background: @B4 !important;
     span, a {
       color: @B9 !important;
@@ -13,8 +16,11 @@
   }
 
   &.ti-asktug-notification-read {
-    span, a:not(:hover) {
-      color: @F3 !important;
+    a {
+      transition: none !important;
+    }
+    span, a {
+      transition: none !important;
     }
     background: white;
   }

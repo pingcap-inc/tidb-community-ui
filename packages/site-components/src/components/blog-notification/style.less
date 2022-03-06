@@ -1,21 +1,37 @@
 @import "../../theme";
 
 .ti-blog-notification {
+  a {
+    transition: none !important;
+  }
   padding-left: 8px;
   padding-right: 8px;
-  background: @B9;
+  background: #F7F8F9;
 
   &:hover {
     background: @B4 !important;
+
     span, a {
       color: @B9 !important;
     }
   }
 
   &.ti-blog-notification-read {
+    a {
+      transition: none !important;
+    }
+    &:hover {
+      background: @B4 !important;
+
+      span, a {
+        color: @B9 !important;
+      }
+    }
+
     span, a:not(:hover) {
       color: @F3 !important;
     }
+
     background: white;
   }
 

@@ -16,7 +16,7 @@ const Search = ({style}: { style?: React.CSSProperties }): JSX.Element => {
       <input
         value={q}
         onChange={e => setQ(e.target.value)}
-        placeholder='全站搜索'
+        placeholder='找文档/帖子/文章'
         onKeyPress={e => e.key === 'Enter' && handle()}
       />
       <a href={href} target='_blank' rel='noreferrer' className='ti-site-search-icon'>
