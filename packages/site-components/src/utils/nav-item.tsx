@@ -22,7 +22,7 @@ export function createMenuItem ({ key, title, config, children }: NavItem): JSX.
     )
   } else if (children) {
     return (
-      <Menu.SubMenu key={key} title={title}>
+      <Menu.SubMenu key={key} title={title} popupOffset={[0, 20]}>
         {children.map(createMenuItem)}
       </Menu.SubMenu>
     )

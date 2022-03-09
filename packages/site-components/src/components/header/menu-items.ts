@@ -143,15 +143,6 @@ export const navItems: NavItem[] = [
                     url: 'https://github.com/pingcap/community/blob/master/CODE_OF_CONDUCT.md',
                     newWindow: true
                 }
-            },
-            {
-                key: 'contact-us',
-                title: '社区准则',
-                config: {
-                    site: Site.others,
-                    url: 'https://github.com/pingcap/community/blob/master/CODE_OF_CONDUCT.md',
-                    newWindow: true
-                }
             }
         ]
     }
