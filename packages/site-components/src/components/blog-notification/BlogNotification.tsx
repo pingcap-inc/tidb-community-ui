@@ -1,10 +1,18 @@
-import React, { useCallback } from 'react'
-import { BlogNotification as BlogNotificationType, NotificationType } from '../../datasource/blog'
-import SiteLink from '../site-link'
-import { Site } from '../../utils/site'
-import { CommentOutlined, LikeOutlined, StarOutlined } from '@ant-design/icons'
-import { Space, Typography } from 'antd'
-import classnames from 'classnames'
+import React, { useCallback } from 'react';
+import {
+  BlogNotification as BlogNotificationType,
+  NotificationType,
+} from '../../datasource/blog';
+import SiteLink from '../site-link';
+import { Site } from '../../utils/site';
+import {
+  CommentOutlined,
+  LikeOutlined,
+  NotificationFilled, NotificationOutlined,
+  StarOutlined,
+} from '@ant-design/icons';
+import { Space, Typography } from 'antd';
+import classnames from 'classnames';
 
 export interface BlogNotificationProps {
   notification: BlogNotificationType
@@ -60,12 +68,29 @@ const BlogNotification = ({ notification, markRead, wrap }: BlogNotificationProp
           <b>{notification.actor.username}</b>
           &nbsp;
           点赞了
+          {notification.relatedPost &&
           <SiteLink
             site={Site.home}
             url={`/blog/posts/${notification.relatedPost.slug}`}
             newWindow={false}
           >
             {notification.relatedPost.title}
+          </SiteLink>
+          }
+        </span>
+      )
+      break
+    case NotificationType.POST:
+      el = (
+        <span>
+          <NotificationOutlined />
+          &nbsp;
+          <SiteLink
+            site={Site.home}
+            url={notification.target_url || ''}
+            newWindow={false}
+          >
+            {notification.title}
           </SiteLink>
         </span>
       )

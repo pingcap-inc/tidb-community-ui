@@ -1,7 +1,7 @@
 import React from 'react'
 import { Badge, List, Popover, Tabs } from 'antd'
 import { Site } from '../../utils/site'
-import { BellOutlined } from '@ant-design/icons'
+import { BellOutlined, MailOutlined } from '@ant-design/icons';
 import { useAsktugNotifications, useAsktugUnreadNotifications } from '../../datasource/asktug'
 import { getContainer } from '../../utils/popup-container'
 import DiscourseNotification from '../discourse-notification'
@@ -47,7 +47,9 @@ const HeaderNotifications = () => {
       )}
     >
       <Badge dot={unread > 0}>
-        <BellOutlined />
+        <SiteLink site={Site.home} url="/notifications" newWindow={false}>
+          <BellOutlined />
+        </SiteLink>
       </Badge>
     </Popover>
   )
