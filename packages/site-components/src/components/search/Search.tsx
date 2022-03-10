@@ -5,7 +5,7 @@ const Search = ({style}: { style?: React.CSSProperties }): JSX.Element => {
 
   const [q, setQ] = useState('')
 
-  const href = `https://search.asktug.com/blog?q=${encodeURIComponent(q)}`
+  const href = `https://search.asktug.com/?q=${encodeURIComponent(q)}`
 
   const handle = () => {
     window.open(href, '_blank')

@@ -13,6 +13,7 @@ const UserProfileDropdown = ({ me }: { me: MeData['data'] }) => {
     <Dropdown
       className="ti-site-user-profile"
       placement="bottomRight"
+      align={{offset: [0, 22]}}
       getPopupContainer={getContainer}
       overlay={
         <Menu>{items}</Menu>
