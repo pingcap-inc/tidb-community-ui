@@ -61,7 +61,7 @@ export default defineConfig({
         }
       },
       plugins: [
-        postcssWrapSelector({ selector: `.ti-site-${process.env.target}` })
+        postcssWrapSelector({ selector: `.ti-site-${process.env.target}`, skipRootSelector: ['#asktug-header', '.custom-search-banner'] }),
       ].concat(process.env.NODE_ENV === 'production' ? [postcssMinify()] : [])
     }),
     externalGlobals({
