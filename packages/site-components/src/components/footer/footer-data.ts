@@ -66,15 +66,6 @@ export const sections: SectionData[] = [
           newWindow: true,
         },
       },
-      {
-        key: 'cooperation',
-        title: '社区合作',
-        config: {
-          site: Site.home,
-          url: '/contact-us/cooperation',
-          newWindow: true,
-        },
-      },
     ],
   },
   {
@@ -179,7 +170,7 @@ export const sections: SectionData[] = [
       },
       {
         key: 'business support',
-        title: '商业支持',
+        title: '联系我们',
         config: {
           site: Site.others,
           url: 'https://pingcap.com/zh/contact',
