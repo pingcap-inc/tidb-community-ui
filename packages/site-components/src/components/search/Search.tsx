@@ -26,7 +26,7 @@ const Search = ({style}: { style?: React.CSSProperties }): JSX.Element => {
   const handle = () => window.open(href, '_blank')
 
   return (
-    <Dropdown overlayStyle={{width: 370}} overlay={
+    <Dropdown overlayStyle={{width: 370, zIndex: 99999}} overlayClassName="ti-site-asktug" overlay={
       (candidates && candidates.length > 0 ) ? <Menu>
         {
           candidates.map(candidate => <Menu.Item key={candidate} onClick={() => {setQ(candidate); handle()}}>{candidate}</Menu.Item>)
