@@ -2,7 +2,8 @@ import React, { useContext, useEffect, useState } from 'react';
 import {SearchOutlined} from '@ant-design/icons'
 import useDebounce from '../../utils/hooks';
 import { Dropdown, Menu } from 'antd';
-const CANDIDATES_END_POINT = 'https://search.asktug.com/api/search/keyword-suggestions'
+// const CANDIDATES_END_POINT = 'https://search.asktug.com/api/search/keyword-suggestions'
+const CANDIDATES_END_POINT = 'https://8cc4c584-bb3b-493d-836b-5e5525619bbe.mock.pstmn.io/api/search/keyword-suggestions'
 
 const Search = ({style}: { style?: React.CSSProperties }): JSX.Element => {
 
@@ -26,12 +27,12 @@ const Search = ({style}: { style?: React.CSSProperties }): JSX.Element => {
   const handle = () => window.open(href, '_blank')
 
   return (
-    <Dropdown overlayStyle={{width: 370, zIndex: 99999}} overlayClassName="ti-site-asktug" overlay={
-      (candidates && candidates.length > 0 ) ? <Menu>
+    <Dropdown overlayStyle={{width: 370, zIndex: 99999}} overlay={
+      (candidates && candidates.length > 0 ) ? <ul className="ti-site-search-candidate-list">
         {
-          candidates.map(candidate => <Menu.Item key={candidate} onClick={() => {setQ(candidate); handle()}}>{candidate}</Menu.Item>)
+          candidates.map(candidate => <li className="ti-site-search-candidate-item" key={candidate} onClick={() => {setQ(candidate); handle()}}>{candidate}</li>)
         }
-      </Menu> : <div/>
+      </ul> : <div/>
     }
     >
       <div className='ti-site-search'>
