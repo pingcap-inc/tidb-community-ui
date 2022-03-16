@@ -27,17 +27,23 @@ const Search = ({style}: { style?: React.CSSProperties }): JSX.Element => {
   const handle = () => window.open(href, '_blank')
 
   return (
-    <Dropdown overlayStyle={{width: 370, zIndex: 99999}} overlay={
+    <div id="ti-site-search-wrapper">
+    <Dropdown getPopupContainer={(_) => document.getElementById('ti-site-search-wrapper')!} overlayStyle={{width: 370, zIndex: 99999}} overlay={
       (candidates && candidates.length > 0 ) ? <ul className="ti-site-search-candidate-list">
         {
-          candidates.map(candidate => <li className="ti-site-search-candidate-item" key={candidate} onClick={() => {setQ(candidate); handle()}}>{candidate}</li>)
+          candidates.map(candidate => <li className="ti-site-search-candidate-item" key={candidate} onClick={(e) => {e.preventDefault();setQ(candidate); handle()}}>{candidate}</li>)
         }
       </ul> : <div/>
     }
+
     >
       <div className='ti-site-search'>
       <input
-        onBlur={() => setCandidates([])}
+        onBlur={() => {
+          setTimeout(() => {
+            setCandidates([])
+          }, 500)
+        }}
         value={q}
         onChange={e => setQ(e.target.value)}
         placeholder='找文档/帖子/文章'
@@ -46,7 +52,7 @@ const Search = ({style}: { style?: React.CSSProperties }): JSX.Element => {
       <a href={href} target='_blank' rel='noreferrer' className='ti-site-search-icon'>
         <SearchOutlined />
       </a></div>
-    </Dropdown>)
+    </Dropdown></div>)
 }
 
 Search.displayName = 'TiSiteSearch'

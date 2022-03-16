@@ -56,14 +56,14 @@ export interface BlogNotificationsParams {
   page: number
   size: number
   haveRead: boolean
-  sort: string[]
+  sort: string
 }
 
 export const useBlogNotifications = (max: number = 12): SWRResponse<BlogNotification[]> & { markRead: (notificationId: number) => Promise<void> } => {
   const { fetchers: { blog: fetcher } } = useContext(SiteComponentsContext)
 
   const combinedFetcher = useCallback(async (max) => {
-    const params: BlogNotificationsParams = { page: 1, size: max, haveRead: false, sort: ["desc"] }
+    const params: BlogNotificationsParams = { page: 1, size: max, haveRead: false, sort: "desc" }
     const unread: BlogNotification[] = (await fetcher('blog.getNotifications', params)).content
     if (unread.length >= max) {
       return unread.slice(0, max)
