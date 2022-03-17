@@ -79,6 +79,11 @@
     transition: all .2s ease;
     cursor: pointer;
 
+    // fix to one line
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
     &:hover {
       background: @M2;
     }
