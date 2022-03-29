@@ -10,7 +10,7 @@
     "build:preview": "pnpm run build-asktug:preview && pnpm run build-general:preview",
     "build-asktug:production": "NODE_ENV=production target=asktug rollup -c rollup.config.js",
     "build-asktug:preview": "NODE_ENV=development target=asktug rollup -c rollup.config.js",
-    "build-general:production": "NODE_ENV=development target=general rollup -c rollup.config.js",
+    "build-general:production": "NODE_ENV=production target=general rollup -c rollup.config.js",
     "build-general:preview": "NODE_ENV=development target=general rollup -c rollup.config.js"
   },
   "author": "",
