@@ -33,7 +33,7 @@ const BlogNotification = ({ notification, markRead, wrap }: BlogNotificationProp
           在
           <SiteLink
             site={Site.home}
-            url={`/blog/posts/${notification.relatedPost.slug}`}
+            url={`/blog/${notification.relatedPost.slug}`}
             newWindow={false}
           >
             {notification.relatedPost.title}
