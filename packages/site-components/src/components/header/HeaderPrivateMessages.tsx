@@ -1,7 +1,7 @@
 import React from 'react'
 import {Badge, List, Popover, Tabs} from 'antd'
 import { Site } from '../../utils/site'
-import { PrivateMessage, usePrivateMessages } from '../../datasource/asktug'
+import {PrivateMessage, usePrivateMessages, usePrivateMessagesUnread} from '../../datasource/asktug'
 import { getContainer } from '../../utils/popup-container'
 import { MailOutlined } from '@ant-design/icons'
 import SiteLink from '../site-link/SiteLink'
@@ -20,6 +20,7 @@ const PrivateMessageLink = ({ privateMessage }: { privateMessage: PrivateMessage
 }
 
 const HeaderPrivateMessages = ({username}: {username: string}) => {
+  const privateMessagesUnread = usePrivateMessagesUnread({username})
   const privateMessages = usePrivateMessages({username})
 
   return (
@@ -30,7 +31,7 @@ const HeaderPrivateMessages = ({username}: {username: string}) => {
       align={{offset: [0, -20]}}
       content={
           <Tabs size="small" className="ti-site-header-tabs">
-              <Tabs.TabPane key="private" tabKey="private" tab={<Badge dot={privateMessages.length > 0}><span>论坛私信</span></Badge>}>
+              <Tabs.TabPane key="private" tabKey="private" tab={<Badge dot={privateMessagesUnread > 0}><span>论坛私信</span></Badge>}>
                   <List
                       size="small"
                       dataSource={privateMessages}
@@ -47,7 +48,7 @@ const HeaderPrivateMessages = ({username}: {username: string}) => {
               </Tabs.TabPane>
           </Tabs>}
     >
-      <Badge dot={!!privateMessages.length}>
+      <Badge dot={privateMessagesUnread > 0}>
          <SiteLink site={Site.home} url="/private-messages" newWindow={false}>
           <MailOutlined />
         </SiteLink>

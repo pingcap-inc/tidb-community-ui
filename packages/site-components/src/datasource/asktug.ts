@@ -190,9 +190,9 @@ export const useAsktugNotifications = (max: number = 12): SWRResponse<AsktugNoti
 
 
 
-export const useAsktugPrivateMessages = (params: GetPrivateMessagesParams) => {
+export const useAsktugPrivateMessages = (params: GetPrivateMessagesParams, extra: string = '') => {
   const { fetchers: { asktug: fetcher } } = useContext(SiteComponentsContext)
-  return useSWR<PrivateMessages>(['asktug.getPrivateMessages', JSON.stringify(params)], { fetcher })
+  return useSWR<PrivateMessages>([`asktug.getPrivateMessages${extra}`, JSON.stringify(params)], { fetcher })
 }
 
 export interface PrivateMessage {
@@ -223,5 +223,13 @@ export const usePrivateMessages = (params: GetPrivateMessagesParams): PrivateMes
         id: topic.id
       }
     }) ?? []
+  }, [data])
+}
+
+export const usePrivateMessagesUnread = (params: GetPrivateMessagesParams): number => {
+  const { data } = useAsktugPrivateMessages(params, 'Unread')
+
+  return useMemo(() => {
+    return data?.topic_list?.topics?.length ?? 0
   }, [data])
 }

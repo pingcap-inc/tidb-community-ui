@@ -43,7 +43,7 @@ const tryJson = (data: string): object | string => {
   }
 }
 
-const asktug: Fetcher = (key: string, params) => {
+const asktug: Fetcher = (key: string, params: any) => {
   if (typeof params === 'string') {
     params = tryJson(params)
   }
@@ -57,13 +57,16 @@ const asktug: Fetcher = (key: string, params) => {
       return fetch(`/topics/private-messages/${params.username}`, { headers: { accept: 'application/json' } }).then(processResponse)
     case 'asktug.getPrivateMessagesSent':
       // @ts-ignore
+      return fetch(`/topics/private-messages-unread/${params.username}`, { headers: { accept: 'application/json' } }).then(processResponse)
+    case 'asktug.getPrivateMessagesUnread':
+      // @ts-ignore
       return fetch(`/topics/private-messages-sent/${params.username}`, { headers: { accept: 'application/json' } }).then(processResponse)
     default:
       throw new Error('not implemented')
   }
 }
 
-const blog: Fetcher = (key: string, params) => {
+const blog: Fetcher = (key: string, params: any) => {
   if (typeof params === 'string') {
     params = tryJson(params)
   }
