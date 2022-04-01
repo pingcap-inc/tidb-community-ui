@@ -58,7 +58,7 @@ jobs:
     needs: [ build-preview ]
     uses: ./.github/workflows/reuse-deploy.yml
     with:
-      package: ui-script
+      package: ui-scripts
       build-env: preview
     secrets:
       OSS_ACCESS_KEY: ${{ secrets.OSS_ACCESS_KEY }}
@@ -68,7 +68,7 @@ jobs:
     needs: [ build-production ]
     uses: ./.github/workflows/reuse-deploy.yml
     with:
-      package: ui-script
+      package: ui-scripts
       build-env: production
     secrets:
       OSS_ACCESS_KEY: ${{ secrets.OSS_ACCESS_KEY }}
