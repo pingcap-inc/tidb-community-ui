@@ -68,7 +68,7 @@ jobs:
       bump-version: ${{ github.event.inputs.version }}
     secrets:
       PUBLISH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    if: ${{ jobs.build-production.outputs.ui-rebuilt == 'true' }}
+    if: ${{ needs.build-production.outputs.ui-rebuilt == 'true' }}
 
   publish-site-components:
     needs: [ build-production ]
@@ -78,4 +78,4 @@ jobs:
       bump-version: ${{ github.event.inputs.version }}
     secrets:
       PUBLISH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    if: ${{ jobs.build-production.outputs.site-components-rebuilt == 'true' }}
+    if: ${{ needs.build-production.outputs.site-components-rebuilt == 'true' }}
