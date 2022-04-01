@@ -1,0 +1,64 @@
+name: Reusable build
+
+on:
+  workflow_call:
+    inputs:
+      package:
+        required: true
+        type: string
+      build-env:
+        required: true
+        type: string
+    secrets:
+      OSS_ACCESS_KEY:
+        required: true
+      OSS_ACCESS_SECRET:
+        required: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.build-env }}
+
+    steps:
+      - uses: actions/checkout@v2.4.0
+
+      - uses: pnpm/action-setup@646cdf48217256a3d0b80361c5a50727664284f2
+        with:
+          version: 6.23.6
+
+      - name: Set up Node.js v16
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
+          cache: pnpm
+
+      - name: Resolve prod dependencies
+        id: prod-dep-caches
+        uses: actions/cache@v2
+        with:
+          path: |
+            node_modules
+            packages/*/node_modules
+          key: ${{ runner.os }}-build-${{ hashFiles('package-lock.json', 'packages/*/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-build
+
+      - uses: actions/download-artifact@v2
+        name: Download ${{ inputs.build-env }} artifact
+        with:
+          name: ${{ inputs.package }}-${{ inputs.build-env }}
+
+      - name: Un-compress target
+        run: tar -zxf ${{ inputs.package }}-${{ inputs.build-env }}.tar && rm ${{ inputs.package }}-${{ inputs.build-env }}.tar
+
+      - name: Deploy ${{ inputs.package }}-${{ inputs.build-env }} to Ali OSS
+        uses: 634750802/upload-to-oss@beta-v2-0
+        with:
+          access-key-id: ${{ secrets.OSS_ACCESS_KEY }}
+          access-key-secret: ${{ secrets.OSS_ACCESS_SECRET }}
+          bucket: tidb-community-site
+          endpoint: oss-cn-beijing.aliyuncs.com
+          local-path: packages/${{ inputs.package }}/dist
+          remote-path: tidb-community-ui
+          headers: '{ "Cache-Control": "no-cache" }'
+          keep-missing-remote-files: true

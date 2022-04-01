@@ -11,8 +11,7 @@
     "build:ui-scripts:preview": "pnpm run build:preview --filter @pingcap-inc/tidb-community-ui-scripts",
     "build:ui-scripts:production": "pnpm run build:production --filter @pingcap-inc/tidb-community-ui-scripts",
     "storybook": "pnpm run storybook --filter @pingcap-inc/tidb-community-ui-storybook",
-    "dev": "pnpm run dev --filter @pingcap-inc/tidb-community-ui",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "pnpm run dev --filter @pingcap-inc/tidb-community-ui"
   },
   "keywords": [],
   "author": "",

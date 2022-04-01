@@ -1,0 +1,96 @@
+name: Main workflow
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+    inputs:
+      version:
+        type: choice
+        description: 'Publishing version'
+        options:
+          - major
+          - minor
+          - patch
+        default: 'patch'
+        required: true
+      publish-ui:
+        description: 'Should publish ui'
+        type: boolean
+        required: true
+        default: false
+      publish-site-components:
+        description: 'Should publish site-components'
+        type: boolean
+        required: true
+        default: true
+      deploy-ui-scripts:
+        description: 'Should deploy ui-scripts'
+        type: boolean
+        required: true
+        default: true
+
+permissions:
+  contents: write
+  packages: write
+
+jobs:
+  verify:
+    uses: ./.github/workflows/reuse-verify.yml
+
+  build-preview:
+    needs: [ verify ]
+    if: ${{ github.event_name != 'workflow_dispatch' }}
+    uses: ./.github/workflows/reuse-build.yml
+    with:
+      build-env: preview
+
+  build-production:
+    needs: [ verify ]
+    if: ${{ github.event_name == 'workflow_dispatch' }} # Only trigger for production when manual triggered
+    uses: ./.github/workflows/reuse-build.yml
+    with:
+      build-env: production
+
+  deploy-preview:
+    needs: [ build-preview ]
+    uses: ./.github/workflows/reuse-deploy.yml
+    with:
+      package: ui-scripts
+      build-env: preview
+    secrets:
+      OSS_ACCESS_KEY: ${{ secrets.OSS_ACCESS_KEY }}
+      OSS_ACCESS_SECRET: ${{ secrets.OSS_ACCESS_SECRET }}
+
+  deploy-production:
+    needs: [ build-production ]
+    uses: ./.github/workflows/reuse-deploy.yml
+    with:
+      package: ui-scripts
+      build-env: production
+    secrets:
+      OSS_ACCESS_KEY: ${{ secrets.OSS_ACCESS_KEY }}
+      OSS_ACCESS_SECRET: ${{ secrets.OSS_ACCESS_SECRET }}
+    if: ${{ github.event.inputs.deploy-ui-scripts }}
+
+  publish-ui:
+    needs: [ build-production ]
+    uses: ./.github/workflows/reuse-publish.yml
+    with:
+      package: ui
+      bump-version: ${{ github.event.inputs.version }}
+    secrets:
+      PUBLISH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    if: ${{ github.event.inputs.publish-ui }}
+
+  publish-site-components:
+    needs: [ build-production ]
+    uses: ./.github/workflows/reuse-publish.yml
+    with:
+      package: site-components
+      bump-version: ${{ github.event.inputs.version }}
+    secrets:
+      PUBLISH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    if: ${{ github.event.inputs.publish-site-components }}

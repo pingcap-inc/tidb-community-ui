@@ -1,0 +1,78 @@
+name: Reusable build
+
+on:
+  workflow_call:
+    inputs:
+      build-env:
+        required: true
+        type: string
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2.4.0
+
+      - uses: pnpm/action-setup@646cdf48217256a3d0b80361c5a50727664284f2
+        with:
+          version: 6.23.6
+
+      - name: Set up Node.js v16
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
+          cache: pnpm
+
+      - name: Cache dependencies
+        id: dep-caches
+        uses: actions/cache@v2
+        with:
+          path: |
+            node_modules
+            packages/*/node_modules
+          key: ${{ runner.os }}-build-${{ hashFiles('package-lock.json', 'packages/*/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-build
+
+      - name: Build ui
+        run: npm run build:ui
+
+      - name: Build site-components
+        run: npm run build:site-components
+
+      - name: Build ui-scripts:${{ inputs.build-env }}
+        run: npm run build:ui-scripts:${{ inputs.build-env }}
+
+      - name: Bundle ui artifact
+        run: tar -zcf ui.tar packages/ui/dist
+        if: ${{ inputs.build-env == 'production' }}
+
+      - name: Bundle site-components artifact
+        run: tar -zcf site-component.tar packages/site-components/dist
+        if: ${{ inputs.build-env == 'production' }}
+
+      - name: Bundle ui-scripts artifact for ${{ inputs.build-env }}
+        run: tar -zcf ui-scripts-${{ inputs.build-env }}.tar packages/ui-scripts/dist
+
+      - name: Upload ui artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: ui
+          path: ui.tar
+          if-no-files-found: error
+        if: ${{ inputs.build-env == 'production' }}
+
+      - name: Upload site-components artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: site-components
+          path: site-components.tar
+          if-no-files-found: error
+        if: ${{ inputs.build-env == 'production' }}
+
+      - name: Upload ui-scripts artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: ui-scripts-${{ inputs.build-env }}
+          path: ui-scripts-${{ inputs.build-env }}.tar
+          if-no-files-found: error
