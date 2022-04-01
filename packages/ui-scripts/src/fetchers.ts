@@ -1,5 +1,5 @@
-import { Fetcher } from 'swr'
-import { stringify } from 'qs'
+import {Fetcher} from 'swr'
+import {stringify} from 'qs'
 
 let ACCOUNTS_BASE = '/_/sso'
 let BLOG_BASE = '/_/blog'
@@ -23,7 +23,7 @@ const processResponse = (res: Response) => {
 const accounts: Fetcher = (key: string) => {
   switch (key) {
     case 'me':
-      return fetch(`${ACCOUNTS_BASE}/api/me`).then(processResponse)
+      return fetch(`${ACCOUNTS_BASE}/api/me`, { credentials: 'include' }).then(processResponse)
     default:
       throw new Error('not implemented')
   }
@@ -49,18 +49,18 @@ const asktug: Fetcher = (key: string, params: any) => {
   }
   switch (key) {
     case 'asktug.getNotifications':
-      return fetch(`/notifications?${stringify(params)}`, { headers: { accept: 'application/json' } }).then(processResponse)
+      return fetch(`/notifications?${stringify(params)}`, { headers: { accept: 'application/json' }, credentials: 'include' }).then(processResponse)
     case 'asktug.readNotification':
-      return fetch(`/notifications/mark-read?${stringify({ id: params, ...getAsktugCsrf() })}`, { method: 'put', headers: { accept: 'application/json' } }).then(processResponse)
+      return fetch(`/notifications/mark-read?${stringify({ id: params, ...getAsktugCsrf() })}`, { method: 'put', headers: { accept: 'application/json' }, credentials: 'include' }).then(processResponse)
     case 'asktug.getPrivateMessages':
       // @ts-ignore
-      return fetch(`/topics/private-messages/${params.username}`, { headers: { accept: 'application/json' } }).then(processResponse)
+      return fetch(`/topics/private-messages/${params.username}`, { headers: { accept: 'application/json' }, credentials: 'include' }).then(processResponse)
     case 'asktug.getPrivateMessagesSent':
       // @ts-ignore
-      return fetch(`/topics/private-messages-unread/${params.username}`, { headers: { accept: 'application/json' } }).then(processResponse)
+      return fetch(`/topics/private-messages-unread/${params.username}`, { headers: { accept: 'application/json' }, credentials: 'include' }).then(processResponse)
     case 'asktug.getPrivateMessagesUnread':
       // @ts-ignore
-      return fetch(`/topics/private-messages-sent/${params.username}`, { headers: { accept: 'application/json' } }).then(processResponse)
+      return fetch(`/topics/private-messages-sent/${params.username}`, { headers: { accept: 'application/json' }, credentials: 'include' }).then(processResponse)
     default:
       throw new Error('not implemented')
   }
@@ -72,11 +72,11 @@ const blog: Fetcher = (key: string, params: any) => {
   }
   switch (key) {
     case 'blog.getNotifications':
-      return fetch(`${BLOG_BASE}/api/notifications?${stringify(params)}`, { headers: { accept: 'application/json' } }).then(processResponse)
+      return fetch(`${BLOG_BASE}/api/notifications?${stringify(params)}`, { headers: { accept: 'application/json' }, credentials: 'include' }).then(processResponse)
     case 'blog.getNotificationsSummary':
-      return fetch(`${BLOG_BASE}/api/notifications/summary`, { headers: { accept: 'application/json' } }).then(processResponse)
+      return fetch(`${BLOG_BASE}/api/notifications/summary`, { headers: { accept: 'application/json' }, credentials: 'include' }).then(processResponse)
     case 'blog.readNotification':
-      return fetch(`${BLOG_BASE}/api/notifications/${params}/read`, { method: 'PATCH' })
+      return fetch(`${BLOG_BASE}/api/notifications/${params}/read`, { method: 'PATCH', credentials: 'include' })
     default:
       throw new Error('not implemented')
   }
