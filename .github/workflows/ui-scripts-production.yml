@@ -1,7 +1,8 @@
 name: UI Scripts production
 
 on:
-  workflow_dispatch:
+  push:
+    branches: [ main ]
 
 jobs:
   build:
