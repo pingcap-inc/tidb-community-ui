@@ -1,0 +1,43 @@
+name: Reusable verify
+
+on:
+  workflow_call:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+          - uses: pnpm/action-setup@646cdf48217256a3d0b80361c5a50727664284f2
+            with:
+              version: 6.23.6
+
+          - name: Set up Node.js v16
+            uses: actions/setup-node@v2
+            with:
+              node-version: 16
+              cache: pnpm
+
+      - name: Resolve build dependencies
+        id: dep-caches
+        uses: actions/cache@v2
+        with:
+          path: |
+            node_modules
+            packages/*/node_modules
+          key: ${{ runner.os }}-build-${{ hashFiles('package-lock.json', 'packages/*/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-build
+
+      - name: Install
+        run: pnpm install --frozen-lockfile
+        if: steps.dep-caches.outputs.cache-hit != 'true'
+
+      - name: Lint
+        run: npm run lint --if-present
+
+      - name: Test
+        run: npm run test --if-present

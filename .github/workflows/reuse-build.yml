@@ -1,0 +1,92 @@
+name: Reusable build
+
+on:
+  workflow_call:
+    inputs:
+      build-env:
+        required: true
+        type: string
+    outputs:
+      ui-rebuilt:
+        description: 'Is ui rebuilt'
+        value: ${{ jobs.build.outputs.ui-rebuilt }}
+      site-components-rebuilt:
+        description: 'Is site-components rebuilt'
+        value: ${{ jobs.build.outputs.site-component-rebuilt }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2.4.0
+
+      - name: Use Node.js 16.14.0
+        uses: actions/setup-node@v2.5.1
+        with:
+          node-version: 16.14.0
+          cache: 'npm'
+
+      - name: Cache dependencies
+        id: dep-caches
+        uses: actions/cache@v2
+        with:
+          path: |
+            node_modules
+            packages/*/node_modules
+          key: ${{ runner.os }}-build-${{ hashFiles('package-lock.json', 'packages/*/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-build
+
+      - name: Cache ui build result
+        id: build-ui
+        uses: actions/cache@v2
+        with:
+          path: packages/ui/dist
+          key: "${{ runner.os }}-${{ hashFiles('packages/ui/**/*', '!packages/ui/node_modules' }}"
+
+      - name: Build ui
+        run: npm run build:ui
+        if: steps.build-ui.outputs.cache-hit != 'true'
+
+      - name: Cache site-components build result
+        id: build-site-components
+        with:
+          path: packages/ui/dist
+          key: "${{ runner.os }}-${{ hashFiles('packages/ui/**/*', '!packages/ui/node_modules', 'packages/site-components/**/*', '!packages/site-components/node_modules') }}"
+
+      - name: Build site-components
+        run: npm run build:site-components
+        if: steps.build-site-components.outputs.cache-hit != 'true'
+
+      - name: Cache ui-scripts:${{ inputs.build-env }} build result
+        id: build-ui-scripts
+        with:
+          path: packages/ui/dist
+          key: "${{ runner.os }}-${{ hashFiles('packages/ui/**/*', '!packages/ui/node_modules', 'packages/site-components/**/*', '!packages/site-components/node_modules'), 'packages/ui-scripts/**/*', '!packages/ui-scripts/node_modules' }}"
+
+      - name: Build ui-scripts:${{ inputs.build-env }}
+        run: npm run build:ui-scripts:${{ inputs.build-env }}
+        if: steps.build-ui-scripts.outputs.cache-hit != 'true'
+
+      - name: Bundle ui artifact
+        run: tar -zcf ui.tar packages/ui/dist
+
+      - name: Bundle site-components artifact
+        run: tar -zcf site-component.tar packages/site-components/dist
+
+      - name: Bundle ui-scripts artifact for ${{ inputs.build-env }}
+        run: tar -zcf ui-scripts-${{ inputs.build-env }}.tar packages/ui-scripts/dist
+
+      - name: Upload ui artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: ui
+          path: ui.tar
+          if-no-files-found: error
+
+      - name: Upload site-components artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: site-components
+          path: site-components.tar
+          if-no-files-found: error

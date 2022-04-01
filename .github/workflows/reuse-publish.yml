@@ -1,0 +1,64 @@
+name: Reusable build
+
+on:
+  workflow_call:
+    inputs:
+      bump-version:
+        required: true
+        type: string
+      package:
+        required: true
+        type: string
+    secrets:
+      PUBLISH_TOKEN:
+        description: 'Token for publishing npm package'
+        required: true
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.build-env }}
+
+    steps:
+      - uses: actions/checkout@v2.4.0
+
+      - name: Use Node.js 16.14.0
+        uses: actions/setup-node@v2.5.1
+        with:
+          node-version: 16.14.0
+
+      - name: Resolve prod dependencies
+        id: prod-dep-caches
+        uses: actions/cache@v2
+        with:
+          path: |
+            node_modules
+            packages/*/node_modules
+          key: ${{ runner.os }}-build-${{ hashFiles('package-lock.json', 'packages/*/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-build
+
+      - uses: actions/download-artifact@v2
+        name: Download ${{ inputs.package }} artifact
+        with:
+          name: ${{ inputs.package }}
+
+      - name: Un-compress target
+        run: tar -zxf ${{ inputs.package }}.tar && rm ${{ inputs.package }}.tar
+
+      - name: Bump version
+        id: bump-version
+        run: echo "::set-output name=version::$(npm version ${{ inputs.bump-version }})"
+        working-directory: packages/${{ inputs.project }}
+
+      - name: Publish
+        run: |
+          npm config set //npm.pkg.github.com/:_authToken '${{ secrets.PUBLISH_TOKEN }}'
+          npm publish
+
+      - name: Commit and push
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "release(${{ inputs.project }}): ${{ steps.bump-version.outputs.version }}"
+          tagging_message: ${{ steps.bump-version.outputs.version }}
+          file_pattern: "packages/${{ inputs.project }}/package.json"
+          commit_options: '--no-verify --signoff'

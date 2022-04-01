@@ -1,0 +1,81 @@
+name: Main workflow
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+    inputs:
+      version:
+        type: choice
+        description: 'Publishing version'
+        options:
+          - major
+          - minor
+          - patch
+        default: 'patch'
+        required: true
+
+
+permissions:
+  contents: write
+  packages: write
+
+jobs:
+  verify:
+    uses: ./.github/workflows/reuse-verify.yml
+
+  build-preview:
+    needs: [ verify ]
+    if: ${{ github.event_name != 'workflow_dispatch' }}
+    uses: ./.github/workflows/reuse-build.yml
+    with:
+      build-env: preview
+
+  build-production:
+    needs: [ verify ]
+    if: ${{ github.event_name == 'workflow_dispatch' }} # Only trigger for production when manual triggered
+    uses: ./.github/workflows/reuse-build.yml
+    with:
+      build-env: production
+
+  deploy-preview:
+    needs: [ build-preview ]
+    uses: ./.github/workflows/deploy.yml
+    with:
+      package: ui-script
+      build-env: preview
+    secrets:
+      OSS_ACCESS_KEY: ${{ secrets.OSS_ACCESS_KEY }}
+      OSS_ACCESS_SECRET: ${{ secrets.OSS_ACCESS_SECRET }}
+
+  deploy-production:
+    needs: [ build-production ]
+    uses: ./.github/workflows/reuse-deploy.yml
+    with:
+      package: ui-script
+      build-env: production
+    secrets:
+      OSS_ACCESS_KEY: ${{ secrets.OSS_ACCESS_KEY }}
+      OSS_ACCESS_SECRET: ${{ secrets.OSS_ACCESS_SECRET }}
+
+  publish-ui:
+    needs: [ build-production ]
+    uses: ./.github/workflows/reuse-publish.yml
+    with:
+      package: ui
+      bump-version: ${{ inputs.version }}
+    secrets:
+      PUBLISH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    if: ${{ jobs.build-production.outputs.ui-rebuilt == 'true' }}
+
+  publish-site-components:
+    needs: [ build-production ]
+    uses: ./.github/workflows/reuse-publish.yml
+    with:
+      package: site-components
+      bump-version: ${{ inputs.version }}
+    secrets:
+      PUBLISH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    if: ${{ jobs.build-production.outputs.site-components-rebuilt == 'true' }}
