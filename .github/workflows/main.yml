@@ -73,7 +73,7 @@ jobs:
     secrets:
       OSS_ACCESS_KEY: ${{ secrets.OSS_ACCESS_KEY }}
       OSS_ACCESS_SECRET: ${{ secrets.OSS_ACCESS_SECRET }}
-    if: ${{ github.event.inputs.deploy-ui-scripts }}
+    if: ${{ github.event.inputs.deploy-ui-scripts == 'true' }}
 
   publish-ui:
     needs: [ build-production ]
@@ -83,7 +83,7 @@ jobs:
       bump-version: ${{ github.event.inputs.version }}
     secrets:
       PUBLISH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    if: ${{ github.event.inputs.publish-ui }}
+    if: ${{ github.event.inputs.publish-ui == 'true' }}
 
   publish-site-components:
     needs: [ build-production ]
@@ -93,4 +93,4 @@ jobs:
       bump-version: ${{ github.event.inputs.version }}
     secrets:
       PUBLISH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    if: ${{ github.event.inputs.publish-site-components }}
+    if: ${{ github.event.inputs.publish-site-components == 'true' }}

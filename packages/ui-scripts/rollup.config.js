@@ -20,7 +20,7 @@ export default defineConfig({
   input: `./src/${src}`,
   external: [],
   output: {
-    sourcemap: process.env.NODE_ENV === 'development' ? 'inline' : false,
+    sourcemap: process.env.NODE_ENV === 'development',
     file: `dist/ti-site-${process.env.target}.${process.env.NODE_ENV}.js`,
     format: 'es'
   },

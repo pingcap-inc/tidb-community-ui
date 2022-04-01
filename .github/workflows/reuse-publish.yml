@@ -14,6 +14,10 @@ on:
         description: 'Token for publishing npm package'
         required: true
 
+permissions:
+  contents: write
+  packages: write
+
 jobs:
   publish:
     runs-on: ubuntu-latest
@@ -21,6 +25,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2.4.0
+        with:
+          token: ${{ secrets.PUBLISH_TOKEN }}
 
       - uses: pnpm/action-setup@646cdf48217256a3d0b80361c5a50727664284f2
         with:
@@ -50,20 +56,19 @@ jobs:
       - name: Un-compress target
         run: tar -zxf ${{ inputs.package }}.tar && rm ${{ inputs.package }}.tar
 
+      - name: Commit and push
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "release(${{ inputs.project }}): ${{ steps.bump-version.outputs.version }}"
+          commit_options: '--no-verify --signoff'
+          tagging_message: ${{ steps.bump-version.outputs.version }}
+          file_pattern: "packages/${{ inputs.project }}/package.json"
+
       - name: Bump version
         id: bump-version
         run: echo "::set-output name=version::$(npm version ${{ inputs.bump-version }})"
         working-directory: packages/${{ inputs.project }}
 
       - name: Publish
-        run: |
-          npm config set //npm.pkg.github.com/:_authToken '${{ secrets.PUBLISH_TOKEN }}'
-          npm publish
-
-      - name: Commit and push
-        uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          commit_message: "release(${{ inputs.project }}): ${{ steps.bump-version.outputs.version }}"
-          tagging_message: ${{ steps.bump-version.outputs.version }}
-          file_pattern: "packages/${{ inputs.project }}/package.json"
-          commit_options: '--no-verify --signoff'
+        run: npm publish
+        working-directory: packages/${{ inputs.project }}
