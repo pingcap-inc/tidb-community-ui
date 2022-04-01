@@ -22,10 +22,15 @@ jobs:
     steps:
       - uses: actions/checkout@v2.4.0
 
-      - name: Use Node.js 16.14.0
-        uses: actions/setup-node@v2.5.1
+      - uses: pnpm/action-setup@646cdf48217256a3d0b80361c5a50727664284f2
         with:
-          node-version: 16.14.0
+          version: 6.23.6
+
+      - name: Set up Node.js v16
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
+          cache: pnpm
 
       - name: Resolve prod dependencies
         id: prod-dep-caches
