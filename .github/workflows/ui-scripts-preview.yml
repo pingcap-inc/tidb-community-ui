@@ -39,7 +39,7 @@ jobs:
         env:
           BUILD_REF: ${{ github.event.after || github.event.number }}
 
-      - uses: Menci/upload-to-oss@beta-v1
+      - uses: 634750802/upload-to-oss@beta-v2-0
         with:
           access-key-id: ${{ secrets.OSS_ACCESS_KEY }}
           access-key-secret: ${{ secrets.OSS_ACCESS_SECRET }}
@@ -48,3 +48,4 @@ jobs:
           local-path: packages/ui-scripts/dist
           remote-path: tidb-community-ui
           headers: '{ "Cache-Control": "no-cache" }'
+          keep-missing-remote-files: true
