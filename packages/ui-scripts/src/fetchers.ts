@@ -8,7 +8,7 @@ let ASKTUG_BASE = ''
 export const setFetcherUrlBase = (base: string) => {
   ACCOUNTS_BASE = base + '/_/sso'
   BLOG_BASE = base + '/_/blog'
-  ASKTUG_BASE = base + ''
+  ASKTUG_BASE = base + '/_/_asktug'
 }
 
 const processResponse = (res: Response) => {
