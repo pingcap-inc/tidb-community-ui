@@ -48,7 +48,7 @@ jobs:
         if: ${{ inputs.build-env == 'production' }}
 
       - name: Bundle site-components artifact
-        run: tar -zcf site-component.tar packages/site-components/dist
+        run: tar -zcf site-components.tar packages/site-components/dist
         if: ${{ inputs.build-env == 'production' }}
 
       - name: Bundle ui-scripts artifact for ${{ inputs.build-env }}
