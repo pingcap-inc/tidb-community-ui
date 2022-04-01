@@ -13,7 +13,7 @@ import ReactDOM from 'react-dom'
 import fetchers, {setFetcherUrlBase} from './fetchers'
 
 defineSiteComponentsConfig({
-    site: Site.asktug,
+    site: Site.others,
     env: process.env.NODE_ENV === 'production' ? Env.prod : Env.preview,
 })
 setFetcherUrlBase(process.env.NODE_ENV === 'production' ? 'https://asktug.com' : 'https://sso-test.asktug.com')
