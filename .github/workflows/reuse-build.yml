@@ -64,7 +64,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: packages/ui/dist
-          key: "${{ runner.os }}-${{ hashFiles('packages/ui/**/*', '!packages/ui/node_modules', 'packages/site-components/**/*', '!packages/site-components/node_modules'), 'packages/ui-scripts/**/*', '!packages/ui-scripts/node_modules' }}"
+          key: "${{ runner.os }}-${{ hashFiles('packages/ui/**/*', '!packages/ui/node_modules', 'packages/site-components/**/*', '!packages/site-components/node_modules', 'packages/ui-scripts/**/*', '!packages/ui-scripts/node_modules' }}"
 
       - name: Build ui-scripts:${{ inputs.build-env }}
         run: npm run build:ui-scripts:${{ inputs.build-env }}
