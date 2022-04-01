@@ -64,11 +64,16 @@ jobs:
           tagging_message: ${{ steps.bump-version.outputs.version }}
           file_pattern: "packages/${{ inputs.project }}/package.json"
 
+      - name: Setup GIT
+        run: |
+          git config user.email "actions@github.com"
+          git config user.name "GitHub Actions"
+
       - name: Bump version
         id: bump-version
         run: echo "::set-output name=version::$(npm version ${{ inputs.bump-version }})"
-        working-directory: packages/${{ inputs.project }}
+        working-directory: packages/${{ inputs.package }}
 
       - name: Publish
         run: npm publish
-        working-directory: packages/${{ inputs.project }}
+        working-directory: packages/${{ inputs.package }}
