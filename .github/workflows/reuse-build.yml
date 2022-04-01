@@ -6,13 +6,6 @@ on:
       build-env:
         required: true
         type: string
-    outputs:
-      ui-rebuilt:
-        description: 'Is ui rebuilt'
-        value: ${{ jobs.build.outputs.ui-rebuilt }}
-      site-components-rebuilt:
-        description: 'Is site-components rebuilt'
-        value: ${{ jobs.build.outputs.site-component-rebuilt }}
 
 jobs:
   build:
@@ -37,44 +30,22 @@ jobs:
           key: ${{ runner.os }}-build-${{ hashFiles('package-lock.json', 'packages/*/package-lock.json') }}
           restore-keys: ${{ runner.os }}-build
 
-      - name: Cache ui build result
-        id: build-ui
-        uses: actions/cache@v2
-        with:
-          path: packages/ui/dist
-          key: "${{ runner.os }}-${{ hashFiles('packages/ui/**/*', '!packages/ui/node_modules' }}"
-
       - name: Build ui
         run: npm run build:ui
-        if: steps.build-ui.outputs.cache-hit != 'true'
-
-      - name: Cache site-components build result
-        id: build-site-components
-        uses: actions/cache@v2
-        with:
-          path: packages/ui/dist
-          key: "${{ runner.os }}-${{ hashFiles('packages/ui/**/*', '!packages/ui/node_modules', 'packages/site-components/**/*', '!packages/site-components/node_modules') }}"
 
       - name: Build site-components
         run: npm run build:site-components
-        if: steps.build-site-components.outputs.cache-hit != 'true'
-
-      - name: Cache ui-scripts:${{ inputs.build-env }} build result
-        id: build-ui-scripts
-        uses: actions/cache@v2
-        with:
-          path: packages/ui/dist
-          key: "${{ runner.os }}-${{ hashFiles('packages/ui/**/*', '!packages/ui/node_modules', 'packages/site-components/**/*', '!packages/site-components/node_modules', 'packages/ui-scripts/**/*', '!packages/ui-scripts/node_modules' }}"
 
       - name: Build ui-scripts:${{ inputs.build-env }}
         run: npm run build:ui-scripts:${{ inputs.build-env }}
-        if: steps.build-ui-scripts.outputs.cache-hit != 'true'
 
       - name: Bundle ui artifact
         run: tar -zcf ui.tar packages/ui/dist
+        if: ${{ inputs.build-env == 'production' }}
 
       - name: Bundle site-components artifact
         run: tar -zcf site-component.tar packages/site-components/dist
+        if: ${{ inputs.build-env == 'production' }}
 
       - name: Bundle ui-scripts artifact for ${{ inputs.build-env }}
         run: tar -zcf ui-scripts-${{ inputs.build-env }}.tar packages/ui-scripts/dist
@@ -85,10 +56,19 @@ jobs:
           name: ui
           path: ui.tar
           if-no-files-found: error
+        if: ${{ inputs.build-env == 'production' }}
 
       - name: Upload site-components artifact
         uses: actions/upload-artifact@v2
         with:
           name: site-components
           path: site-components.tar
+          if-no-files-found: error
+        if: ${{ inputs.build-env == 'production' }}
+
+      - name: Upload ui-scripts artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: ui-scripts-${{ inputs.build-env }}
+          path: ui-scripts-${{ inputs.build-env }}.tar
           if-no-files-found: error

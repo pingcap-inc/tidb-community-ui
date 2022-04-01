@@ -16,7 +16,21 @@ on:
           - patch
         default: 'patch'
         required: true
-
+      publish-ui:
+        description: 'Should publish ui'
+        type: boolean
+        required: true
+        default: false
+      publish-site-components:
+        description: 'Should publish site-components'
+        type: boolean
+        required: true
+        default: true
+      deploy-ui-scripts:
+        description: 'Should deploy ui-scripts'
+        type: boolean
+        required: true
+        default: true
 
 permissions:
   contents: write
@@ -59,6 +73,7 @@ jobs:
     secrets:
       OSS_ACCESS_KEY: ${{ secrets.OSS_ACCESS_KEY }}
       OSS_ACCESS_SECRET: ${{ secrets.OSS_ACCESS_SECRET }}
+    if: ${{ github.event.inputs.deploy-ui-scripts }}
 
   publish-ui:
     needs: [ build-production ]
@@ -68,7 +83,7 @@ jobs:
       bump-version: ${{ github.event.inputs.version }}
     secrets:
       PUBLISH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    if: ${{ needs.build-production.outputs.ui-rebuilt == 'true' }}
+    if: ${{ github.event.inputs.publish-ui }}
 
   publish-site-components:
     needs: [ build-production ]
@@ -78,4 +93,4 @@ jobs:
       bump-version: ${{ github.event.inputs.version }}
     secrets:
       PUBLISH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    if: ${{ needs.build-production.outputs.site-components-rebuilt == 'true' }}
+    if: ${{ github.event.inputs.publish-site-components }}
