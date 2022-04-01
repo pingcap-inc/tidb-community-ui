@@ -18,9 +18,18 @@ const Footer = () => {
             ))}
           </ul>
           <FooterIcons />
-          {/*<div className='ti-site-footer-logo'>*/}
-          {/*  <Logo />*/}
-          {/*</div>*/}
+        </div>
+        <div className='ti-site-footer__divider'/>
+        <div className='ti-site-footer__copyright'>
+          <span>
+            ©2021 TiDB Community.
+          </span>
+          <a href='https://beian.miit.gov.cn/' target='_blank' rel='noreferrer'>
+            京ICP备16046278号-4
+          </a>
+          <a href='http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11010802035239' target='_blank' rel='noreferrer'>
+            京公网安备11010802035239号
+          </a>
         </div>
       </footer>
     </Responsive>
