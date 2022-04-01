@@ -3,10 +3,12 @@ import {stringify} from 'qs'
 
 let ACCOUNTS_BASE = '/_/sso'
 let BLOG_BASE = '/_/blog'
+let ASKTUG_BASE = ''
 
 export const setFetcherUrlBase = (base: string) => {
   ACCOUNTS_BASE = base + '/_/sso'
   BLOG_BASE = base + '/_/blog'
+  ASKTUG_BASE = base + ''
 }
 
 const processResponse = (res: Response) => {
@@ -49,18 +51,18 @@ const asktug: Fetcher = (key: string, params: any) => {
   }
   switch (key) {
     case 'asktug.getNotifications':
-      return fetch(`/notifications?${stringify(params)}`, { headers: { accept: 'application/json' }, credentials: 'include' }).then(processResponse)
+      return fetch(`${ASKTUG_BASE}/notifications?${stringify(params)}`, { headers: { accept: 'application/json' }, credentials: 'include' }).then(processResponse)
     case 'asktug.readNotification':
-      return fetch(`/notifications/mark-read?${stringify({ id: params, ...getAsktugCsrf() })}`, { method: 'put', headers: { accept: 'application/json' }, credentials: 'include' }).then(processResponse)
+      return fetch(`${ASKTUG_BASE}/notifications/mark-read?${stringify({ id: params, ...getAsktugCsrf() })}`, { method: 'put', headers: { accept: 'application/json' }, credentials: 'include' }).then(processResponse)
     case 'asktug.getPrivateMessages':
       // @ts-ignore
-      return fetch(`/topics/private-messages/${params.username}`, { headers: { accept: 'application/json' }, credentials: 'include' }).then(processResponse)
+      return fetch(`${ASKTUG_BASE}/topics/private-messages/${params.username}`, { headers: { accept: 'application/json' }, credentials: 'include' }).then(processResponse)
     case 'asktug.getPrivateMessagesSent':
       // @ts-ignore
-      return fetch(`/topics/private-messages-unread/${params.username}`, { headers: { accept: 'application/json' }, credentials: 'include' }).then(processResponse)
+      return fetch(`${ASKTUG_BASE}/topics/private-messages-unread/${params.username}`, { headers: { accept: 'application/json' }, credentials: 'include' }).then(processResponse)
     case 'asktug.getPrivateMessagesUnread':
       // @ts-ignore
-      return fetch(`/topics/private-messages-sent/${params.username}`, { headers: { accept: 'application/json' }, credentials: 'include' }).then(processResponse)
+      return fetch(`${ASKTUG_BASE}/topics/private-messages-sent/${params.username}`, { headers: { accept: 'application/json' }, credentials: 'include' }).then(processResponse)
     default:
       throw new Error('not implemented')
   }
