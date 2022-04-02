@@ -78,8 +78,11 @@ jobs:
       - name: Commit and push
         uses: EndBug/add-and-commit@v9
         with:
+          add: "packages/${{ inputs.package }}/package.json"
           message: "release(${{ inputs.package }}): ${{ steps.bump-version.outputs.version }}"
           commit: '--no-verify --signoff'
           tag: ${{ steps.bump-version.outputs.version }}
-          pull: '--rebase --autostash ...'
-          add: "packages/${{ inputs.package }}/package.json"
+          pull: '--rebase --autostash'
+          push: true
+          committer_name: GitHub Actions
+          committer_email: actions@github.com
