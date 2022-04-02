@@ -78,8 +78,8 @@ jobs:
       - name: Commit and push
         uses: EndBug/add-and-commit@v9
         with:
-          message: "release(${{ inputs.project }}): ${{ steps.bump-version.outputs.version }}"
+          message: "release(${{ inputs.package }}): ${{ steps.bump-version.outputs.version }}"
           commit: '--no-verify --signoff'
           tag: ${{ steps.bump-version.outputs.version }}
           pull: '--rebase --autostash ...'
-          add: "packages/${{ inputs.project }}/package.json"
+          add: "packages/${{ inputs.package }}/package.json"
