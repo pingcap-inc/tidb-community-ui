@@ -71,9 +71,14 @@ jobs:
 
       - name: Bump version
         id: bump-version
-        run: echo "::set-output name=version::$(npm version ${{ inputs.bump-version }})"
+        run: |
+          BUMPED_VERSION=$(npm version ${{ inputs.bump-version }})
+          echo bump ${{ inputs.package }} to ${BUMPED_VERSION}
+          echo "::set-output name=version::${BUMPED_VERSION}"
         working-directory: packages/${{ inputs.package }}
 
       - name: Publish
-        run: npm publish
+        run: |
+          npm config set //npm.pkg.github.com/:_authToken '${{ secrets.PUBLISH_TOKEN }}'
+          npm publish
         working-directory: packages/${{ inputs.package }}
