@@ -52,7 +52,7 @@ jobs:
         run: tar -zxf ${{ inputs.package }}-${{ inputs.build-env }}.tar && rm ${{ inputs.package }}-${{ inputs.build-env }}.tar
 
       - name: Deploy ${{ inputs.package }}-${{ inputs.build-env }} to Ali OSS
-        uses: 634750802/upload-to-oss@beta-v2-0
+        uses: Menci/upload-to-oss@beta-v3
         with:
           access-key-id: ${{ secrets.OSS_ACCESS_KEY }}
           access-key-secret: ${{ secrets.OSS_ACCESS_SECRET }}
@@ -61,4 +61,4 @@ jobs:
           local-path: packages/${{ inputs.package }}/dist
           remote-path: tidb-community-ui
           headers: '{ "Cache-Control": "no-cache" }'
-          keep-missing-remote-files: true
+          no-delete-remote-files: true
