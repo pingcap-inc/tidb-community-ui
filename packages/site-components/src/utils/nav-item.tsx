@@ -1,5 +1,5 @@
 import { RouteToConfig } from './site'
-import { Menu } from 'antd'
+import {Badge, Menu} from 'antd'
 import React from 'react'
 import SiteLink from '../components/site-link/SiteLink'
 
@@ -8,27 +8,31 @@ export interface NavItem {
   title: string
   config?: RouteToConfig
   children?: NavItem[]
+  badge?: boolean
 }
 
-
-export function createMenuItem ({ key, title, config, children }: NavItem): JSX.Element {
+export function createMenuItem ({ key, title, config, children, badge }: NavItem): JSX.Element {
+  let wrapped: React.ReactNode = title
+  if (badge) {
+    wrapped = <Badge dot>{title}</Badge>
+  }
   if (config) {
     return (
       <Menu.Item key={key}>
         <SiteLink {...config}>
-          {title}
+          {wrapped}
         </SiteLink>
       </Menu.Item>
     )
   } else if (children) {
     return (
-      <Menu.SubMenu key={key} title={title} popupOffset={[0, 20]}>
+      <Menu.SubMenu key={key} title={wrapped} popupOffset={[0, 20]}>
         {children.map(createMenuItem)}
       </Menu.SubMenu>
     )
   }
 
   return (
-    <Menu.Item key={key}>{title}</Menu.Item>
+    <Menu.Item key={key}>{wrapped}</Menu.Item>
   )
 }

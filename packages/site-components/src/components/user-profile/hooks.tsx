@@ -1,9 +1,9 @@
-import React, { useMemo } from 'react'
-import { createMenuItem, NavItem } from '../../utils/nav-item'
-import { Site } from '../../utils/site'
-import { MeData } from '../../datasource/accounts'
-import { Menu } from 'antd'
-import { logout } from '../../utils/account'
+import React, {useMemo} from 'react'
+import {createMenuItem, NavItem} from '../../utils/nav-item'
+import {Site} from '../../utils/site'
+import {MeData} from '../../datasource/accounts'
+import {Menu} from 'antd'
+import {logout} from '../../utils/account'
 
 export const useUserProfileItems = (me?: MeData['data']) => {
 
@@ -41,6 +41,29 @@ export const useUserProfileItems = (me?: MeData['data']) => {
           newWindow: false,
         },
       })
+    } else {
+      items.splice(1, 0, {
+        key: 'join-team',
+        title: '团队认证',
+        config: {
+          site: Site.home,
+          url: '/account/organization/new',
+          newWindow: true
+        },
+      });
+    }
+
+    if (me.org_invitations?.length) {
+      items.push({
+        key: 'team-invitations',
+        title: '团队邀请',
+        config: {
+          site: Site.home,
+          url: '/account/organization/invitations',
+          newWindow: false
+        },
+        badge: me.org_invitations.some((item) => item.valid),
+      });
     }
 
     items.push({
