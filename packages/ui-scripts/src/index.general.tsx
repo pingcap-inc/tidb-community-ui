@@ -11,6 +11,7 @@ import {
 import React from 'react'
 import ReactDOM from 'react-dom'
 import fetchers, {setFetcherUrlBase} from './fetchers'
+import {footerProps} from "./footer.data";
 
 defineSiteComponentsConfig({
     site: Site.others,
@@ -29,7 +30,7 @@ const GeneralFooter = () => {
     const footerId = 'tidb-community-footer'
     const footerElem = document.getElementById(footerId)
     if (!footerElem) return null
-    return ReactDOM.createPortal(<Footer/>, footerElem)
+    return ReactDOM.createPortal(<Footer { ...footerProps } />, footerElem)
 }
 
 const SiteComponent = () => {

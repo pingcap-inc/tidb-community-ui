@@ -11,6 +11,7 @@ import {
 import React, {MouseEvent, useEffect, useState} from 'react'
 import ReactDOM from 'react-dom'
 import fetchers from './fetchers'
+import {footerProps} from "./footer.data";
 
 console.debug('@pingcap-inc/tidb-community-asktug-theme %s', process.env.BUILD_REF)
 
@@ -86,7 +87,7 @@ const AsktugFooter = () => {
         return null
     }
 
-    return ReactDOM.createPortal(<Footer/>, footerElem)
+    return ReactDOM.createPortal(<Footer { ...footerProps } />, footerElem)
 }
 
 const AsktugSite = () => {
