@@ -30,13 +30,13 @@ const Footer = ({ copyright, icp, icpUrl, number, numberUrl }: FooterProps) => {
         <div className='ti-site-footer__divider'/>
         <div className='ti-site-footer__copyright'>
           <span>
-            {{ copyright }}
+            { copyright }
           </span>
           <a href={icpUrl} target='_blank' rel='noreferrer'>
-            {{ icp }}
+            { icp }
           </a>
           <a href={numberUrl} target='_blank' rel='noreferrer'>
-            {{ number }}
+            { number }
           </a>
         </div>
       </footer>
