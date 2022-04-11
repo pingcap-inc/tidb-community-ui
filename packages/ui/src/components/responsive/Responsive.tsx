@@ -8,6 +8,7 @@ import classNames from 'classnames'
 export interface ResponsiveProps {
   children: JSX.Element
   breakpoints?: Record<string, number>
+  defaultBreakpoint?: string
 }
 
 type ResponsiveComponent = React.FC<ResponsiveProps> & {
@@ -16,10 +17,10 @@ type ResponsiveComponent = React.FC<ResponsiveProps> & {
   Context: typeof ResponsiveContext
 }
 
-const Responsive: ResponsiveComponent = ({ breakpoints, children }: ResponsiveProps) => {
+const Responsive: ResponsiveComponent = ({ breakpoints, defaultBreakpoint, children }: ResponsiveProps) => {
   const { observe, unobserve, ...props } = useDimensions({ breakpoints })
 
-  const { currentBreakpoint } = props
+  const { currentBreakpoint = defaultBreakpoint } = props
 
   const className = classNames(children.props.className, currentBreakpoint ? `ti-responsive-${currentBreakpoint}` : undefined)
 
