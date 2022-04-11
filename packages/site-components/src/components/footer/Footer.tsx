@@ -7,7 +7,15 @@ import { headerBreakpoints } from '../header/constants'
 import Logo from '../logo'
 import Header from '../header'
 
-const Footer = () => {
+export interface FooterProps {
+  copyright: string
+  icp: string
+  icpUrl: string
+  number: string
+  numberUrl: string
+}
+
+const Footer = ({ copyright, icp, icpUrl, number, numberUrl }: FooterProps) => {
   return (
     <Responsive breakpoints={headerBreakpoints}>
       <footer className="ti-site-footer">
@@ -22,13 +30,13 @@ const Footer = () => {
         <div className='ti-site-footer__divider'/>
         <div className='ti-site-footer__copyright'>
           <span>
-            ©2021 TiDB Community.
+            {{ copyright }}
           </span>
-          <a href='https://beian.miit.gov.cn/' target='_blank' rel='noreferrer'>
-            京ICP备16046278号-4
+          <a href={icpUrl} target='_blank' rel='noreferrer'>
+            {{ icp }}
           </a>
-          <a href='http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11010802035239' target='_blank' rel='noreferrer'>
-            京公网安备11010802035239号
+          <a href={numberUrl} target='_blank' rel='noreferrer'>
+            {{ number }}
           </a>
         </div>
       </footer>

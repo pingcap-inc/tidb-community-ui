@@ -1,3 +1,3 @@
-export { default } from './Footer'
+export { default, FooterProps } from './Footer'
 
 import './style.less'

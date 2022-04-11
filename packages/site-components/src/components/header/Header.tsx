@@ -24,7 +24,7 @@ const Header = ({showSearch = true}: HeaderProps): JSX.Element => {
     const meData = useMeData()
 
     return (
-        <Responsive breakpoints={headerBreakpoints}>
+        <Responsive breakpoints={headerBreakpoints} defaultBreakpoint='xl'>
             <header className="ti-site-header">
                 <div className="ti-site-header__container">
                     <TidbCommunityLogo/>
