@@ -41,7 +41,7 @@ const Responsive: ResponsiveComponent = ({ breakpoints, defaultBreakpoint, child
   }
 
   return (
-    <ResponsiveContext.Provider value={{ ...props, width: props.width || (typeof 'window' === 'undefined' ? 0 : window.innerWidth) }}>
+    <ResponsiveContext.Provider value={{ ...props, width: props.width || (typeof window === 'undefined' ? 0 : window.innerWidth) }}>
       {host}
     </ResponsiveContext.Provider>
   )
