@@ -27,7 +27,7 @@ const siteConfig: Record<Site, SiteConfig> = {
   },
   [Site.home]: {
     baseUrl: {
-      [Env.prod]: 'https://tidb.io',
+      [Env.prod]: 'https://tidb.net',
       [Env.preview]: 'https://community-preview.tidb.io',
       [Env.local]: 'http://localhost:4000',
     },
