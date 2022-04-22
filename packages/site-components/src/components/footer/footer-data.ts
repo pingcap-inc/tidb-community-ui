@@ -177,6 +177,15 @@ export const sections: SectionData[] = [
           newWindow: true,
         },
       },
+      {
+        key: 'books',
+        title: '电子书',
+        config: {
+          site: Site.home,
+          url: 'https://tidb.net/book/',
+          newWindow: false
+        }
+      }
     ],
   },
 ]
