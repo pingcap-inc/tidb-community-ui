@@ -143,6 +143,15 @@ export const navItems: NavItem[] = [
                     url: 'https://github.com/pingcap/community/blob/master/CODE_OF_CONDUCT.md',
                     newWindow: true
                 }
+            },
+            {
+                key: 'books',
+                title: '电子书',
+                config: {
+                    site: Site.home,
+                    url: 'https://tidb.net/book/',
+                    newWindow: false
+                }
             }
         ]
     }
