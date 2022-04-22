@@ -149,7 +149,7 @@ export const navItems: NavItem[] = [
                 title: '电子书',
                 config: {
                     site: Site.home,
-                    url: 'https://tidb.net/book/',
+                    url: '/book',
                     newWindow: false
                 }
             }
