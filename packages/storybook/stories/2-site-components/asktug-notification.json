@@ -1,6 +1,24 @@
 {
   "notifications": [
     {
+      "id": 1135903,
+      "notification_type": 17,
+      "read": false,
+      "created_at": "2022-04-19T02:45:03.000Z",
+      "post_number": 1,
+      "topic_id": 663942,
+      "fancy_title": "删除TiDB数据库后磁盘空间怎么释放",
+      "slug": "topic",
+      "data": {
+        "topic_title": "删除TiDB数据库后磁盘空间怎么释放",
+        "original_post_id": 676293,
+        "original_post_type": 1,
+        "original_username": "jingyesi3401",
+        "revision_number": null,
+        "display_username": "jingyesi3401"
+      }
+    },
+    {
       "id": 691583,
       "notification_type": 1,
       "read": true,

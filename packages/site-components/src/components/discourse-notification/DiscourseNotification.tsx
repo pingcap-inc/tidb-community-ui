@@ -66,6 +66,7 @@ const DiscourseNotification = ({ notification, wrap, markRead }: DiscourseNotifi
       el = renderGroupMessageSummary(notification as AsktugNotification<GroupData>)
       break
     case NotificationType.watching_first_post:
+      el = renderTopicNotification(notification as AsktugNotification<TopicData>, <LinkOutlined />, '首次发布了', '')
       break
     case NotificationType.topic_reminder:
       break
