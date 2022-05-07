@@ -37,11 +37,18 @@ const HeaderPrivateMessages = ({username}: {username: string}) => {
                       dataSource={privateMessages}
                       className="ti-site-header-private-messages-list"
                       locale={{ emptyText: '暂无消息' }}
-                      renderItem={(item) => {
+                      renderItem={(privateMessage) => {
                           return (
+                            <SiteLink
+                              className="ti-header-privateMessage"
+                              site={Site.asktug}
+                              url={`/t/${privateMessage.slug}/${privateMessage.id}`}
+                              newWindow={true}
+                            >
                               <List.Item>
-                                  <PrivateMessageLink privateMessage={item} />
+                                <b>{privateMessage.sender.join(', ')}</b>: {privateMessage.title}
                               </List.Item>
+                            </SiteLink>
                           )
                       }}
                   />
