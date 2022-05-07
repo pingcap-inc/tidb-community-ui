@@ -22,8 +22,10 @@ export interface BlogNotificationProps {
 
 const BlogNotification = ({ notification, markRead, wrap }: BlogNotificationProps) => {
   let el: JSX.Element | undefined = undefined
+  let url: string = '#'
   switch (notification.type) {
     case NotificationType.COMMENT:
+      url = `/blog/${notification.relatedPost.slug}`
       el = (
         <span>
           <CommentOutlined />
@@ -31,18 +33,13 @@ const BlogNotification = ({ notification, markRead, wrap }: BlogNotificationProp
           <b>{notification.actor.username}</b>
           &nbsp;
           在
-          <SiteLink
-            site={Site.home}
-            url={`/blog/${notification.relatedPost.slug}`}
-            newWindow={false}
-          >
-            {notification.relatedPost.title}
-          </SiteLink>
+          {notification.relatedPost.title}
           中评论了：{notification.relatedComment.content}
         </span>
       )
       break
     case NotificationType.FAVORITE:
+      url = `/blog/${notification.relatedPost.slug}`
       el = (
         <span>
           <StarOutlined />
@@ -50,17 +47,12 @@ const BlogNotification = ({ notification, markRead, wrap }: BlogNotificationProp
           <b>{notification.actor.username}</b>
           &nbsp;
           收藏了
-          <SiteLink
-            site={Site.home}
-            url={`/blog/${notification.relatedPost.slug}`}
-            newWindow={false}
-          >
-            {notification.relatedPost.title}
-          </SiteLink>
+          {notification.relatedPost.title}
         </span>
       )
       break
     case NotificationType.LIKE:
+      url = `/blog/${notification.relatedPost.slug}`
       el = (
         <span>
           <LikeOutlined />
@@ -68,30 +60,17 @@ const BlogNotification = ({ notification, markRead, wrap }: BlogNotificationProp
           <b>{notification.actor.username}</b>
           &nbsp;
           点赞了
-          {notification.relatedPost &&
-          <SiteLink
-            site={Site.home}
-            url={`/blog/${notification.relatedPost.slug}`}
-            newWindow={false}
-          >
-            {notification.relatedPost.title}
-          </SiteLink>
-          }
+          {notification.relatedPost && (<>{notification.relatedPost.title}</>)}
         </span>
       )
       break
     case NotificationType.POST:
+      url = notification.target_url ?? ''
       el = (
         <span>
           <NotificationOutlined />
           &nbsp;
-          <SiteLink
-            site={Site.home}
-            url={notification.target_url || ''}
-            newWindow={false}
-          >
-            {notification.title}
-          </SiteLink>
+          {notification.title}
         </span>
       )
       break
@@ -104,16 +83,31 @@ const BlogNotification = ({ notification, markRead, wrap }: BlogNotificationProp
   }, [notification.haveRead, notification.id, markRead])
 
   if (el) {
-    return React.cloneElement(wrap ? wrap(el) : el, {
+    const element = React.cloneElement(wrap ? wrap(el) : el, {
       className: classnames('ti-blog-notification', { 'ti-blog-notification-read': notification.haveRead }),
       onClickCapture: onClick
     })
+    return (
+      <SiteLink
+        site={Site.home}
+        url={url}
+        newWindow={true}
+      >
+        {element}
+      </SiteLink>
+    )
   }
   return (
-    <Space direction="vertical">
-      <Typography.Text type="danger">{notification.type}</Typography.Text>
-      <pre>{JSON.stringify(notification, undefined, 2)}</pre>
-    </Space>
+    <SiteLink
+      site={Site.home}
+      url={url}
+      newWindow={true}
+    >
+      <Space direction="vertical">
+        <Typography.Text type="danger">{notification.type}</Typography.Text>
+        <pre>{JSON.stringify(notification, undefined, 2)}</pre>
+      </Space>
+    </SiteLink>
   )
 }
 
