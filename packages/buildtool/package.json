@@ -13,6 +13,6 @@
     "param-case": "^3.0.4"
   },
   "optionalDependencies": {
-    "rollup": "^2.61.1"
+    "rollup": "^2.73.0"
   }
 }
