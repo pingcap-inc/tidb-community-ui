@@ -95,6 +95,7 @@ export interface GetNotificationParams {
 export interface GetPrivateMessagesParams {
   username: string;
   unread?: 1;
+  recent?: 1;
 }
 
 export interface AsktugPrivateMessage {
@@ -192,6 +193,7 @@ export const useAsktugNotifications = (max: number = 12): SWRResponse<AsktugNoti
 
 export const useAsktugPrivateMessages = (params: GetPrivateMessagesParams, extra: string = '') => {
   const { fetchers: { asktug: fetcher } } = useContext(SiteComponentsContext)
+  params.recent = 1
   return useSWR<PrivateMessages>([`asktug.getPrivateMessages${extra}`, JSON.stringify(params)], { fetcher })
 }
 
