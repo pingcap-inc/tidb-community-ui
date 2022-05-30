@@ -169,11 +169,11 @@ export const sections: SectionData[] = [
         },
       },
       {
-        key: 'business support',
+        key: 'contact us',
         title: '联系我们',
         config: {
-          site: Site.others,
-          url: 'https://pingcap.com/zh/contact',
+          site: Site.home,
+          url: '/contact-us',
           newWindow: true,
         },
       },
