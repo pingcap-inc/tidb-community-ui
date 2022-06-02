@@ -16,60 +16,60 @@ import SiteLink from "../site-link";
 import {Site} from "../../utils/site";
 
 interface HeaderProps {
-    showSearch?: boolean
+  showSearch?: boolean
 }
 
 
 const Header = ({showSearch = true}: HeaderProps): JSX.Element => {
-    const meData = useMeData()
+  const meData = useMeData()
 
-    return (
-        <Responsive breakpoints={headerBreakpoints} defaultBreakpoint='xl'>
-            <header className="ti-site-header">
-                <div className="ti-site-header__container">
-                    <TidbCommunityLogo/>
-                    <Space size="lg"/>
+  return (
+    <Responsive breakpoints={headerBreakpoints} defaultBreakpoint='xl'>
+      <header className="ti-site-header">
+        <div className="ti-site-header__container">
+          <TidbCommunityLogo/>
+          <Space size="lg"/>
 
-                    {
-                        showSearch && (
-                            <Responsive.Breakpoint<HeaderBreakpoint> md lg xl>
-                                <Search style={{flex: 1}}/>
-                                <Space size="sm"/>
-                            </Responsive.Breakpoint>
-                        )
-                    }
+          {
+            showSearch && (
+              <Responsive.Breakpoint<HeaderBreakpoint> md lg xl>
+                <Search style={{flex: 1}}/>
+                <Space size="sm"/>
+              </Responsive.Breakpoint>
+            )
+          }
 
 
-                    <Responsive.Breakpoint<HeaderBreakpoint> xxs>
-                        <div style={{flex: 999}}/>
-                        <SwrData
-                            data={meData}
-                            initializing={<Skeleton.Button size="small"
-                                                           active/>}
-                            fallback={<LoginButton className="ant-btn-xs"/>}
-                        >
-                            <>
-                                <div  className="ti-site-header-button">
-                                    <a href="https://search.asktug.com/blog" target='_blank' rel='noreferrer'><SearchOutlined /></a>
-                                </div>
-                                <HeaderNotifications/>
-                                <HeaderPrivateMessages
-                                    username={meData?.data?.data.username || ''}/>
-                            </>
-                        </SwrData>
-                    </Responsive.Breakpoint>
-
-                    <HeaderMenu style={{flex: 2}}/>
-
-                    <Space size="sm"/>
-
-                    <Responsive.Breakpoint<HeaderBreakpoint> not xxs>
-                        <HeaderUserSlot/>
-                    </Responsive.Breakpoint>
+          <Responsive.Breakpoint<HeaderBreakpoint> xxs>
+            <div style={{flex: 999}}/>
+            <SwrData
+              data={meData}
+              initializing={<Skeleton.Button size="small"
+                                             active/>}
+              fallback={<LoginButton className="ant-btn-xs"/>}
+            >
+              <>
+                <div  className="ti-site-header-button">
+                  <a href="https://search.asktug.com/blog" target='_blank' rel='noreferrer'><SearchOutlined /></a>
                 </div>
-            </header>
-        </Responsive>
-    )
+                <HeaderNotifications/>
+                <HeaderPrivateMessages
+                  username={meData?.data?.data.username || ''}/>
+              </>
+            </SwrData>
+          </Responsive.Breakpoint>
+
+          <HeaderMenu style={{flex: 2}}/>
+
+          <Space size="sm"/>
+
+          <Responsive.Breakpoint<HeaderBreakpoint> not xxs>
+            <HeaderUserSlot/>
+          </Responsive.Breakpoint>
+        </div>
+      </header>
+    </Responsive>
+  )
 }
 
 Header.displayName = 'TiSiteHeader'
