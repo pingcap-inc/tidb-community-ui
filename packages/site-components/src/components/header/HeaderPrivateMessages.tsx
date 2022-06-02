@@ -28,7 +28,7 @@ const HeaderPrivateMessages = ({username}: {username: string}) => {
       className="ti-site-header-button"
       overlayClassName="ti-site-header-button-popover-overlay"
       //getPopupContainer={getContainer}
-      //align={{offset: [0, -20]}}
+      align={{offset: [20, 20]}}
       placement="bottomRight"
       content={
           <Tabs size="small" className="ti-site-header-tabs">
