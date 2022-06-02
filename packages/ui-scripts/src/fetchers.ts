@@ -57,10 +57,10 @@ const asktug: Fetcher = (key: string, params: any) => {
     case 'asktug.getPrivateMessages':
       // @ts-ignore
       return fetch(`${ASKTUG_BASE}/topics/private-messages/${params.username}`, { headers: { accept: 'application/json' }, credentials: 'include' }).then(processResponse)
-    case 'asktug.getPrivateMessagesSent':
+    case 'asktug.getPrivateMessagesUnread':
       // @ts-ignore
       return fetch(`${ASKTUG_BASE}/topics/private-messages-unread/${params.username}`, { headers: { accept: 'application/json' }, credentials: 'include' }).then(processResponse)
-    case 'asktug.getPrivateMessagesUnread':
+    case 'asktug.getPrivateMessagesSent':
       // @ts-ignore
       return fetch(`${ASKTUG_BASE}/topics/private-messages-sent/${params.username}`, { headers: { accept: 'application/json' }, credentials: 'include' }).then(processResponse)
     default:
