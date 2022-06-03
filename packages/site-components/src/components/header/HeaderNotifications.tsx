@@ -21,9 +21,8 @@ const HeaderNotifications = () => {
     <Popover
       className="ti-site-header-button"
       overlayClassName="ti-site-header-button-popover-overlay"
-      //getPopupContainer={getContainer}
-      align={{offset: [20, 20]}}
-      placement="bottomRight"
+      getPopupContainer={getContainer}
+      align={{offset: [0, -20]}}
       content={(
         <Tabs size="small" className="ti-site-header-tabs">
           <Tabs.TabPane key="asktug" tabKey="asktug" tab={<Badge dot={asktugCount > 0}><span>AskTUG</span></Badge>}>
