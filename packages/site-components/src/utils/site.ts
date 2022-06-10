@@ -21,22 +21,22 @@ const siteConfig: Record<Site, SiteConfig> = {
   [Site.accounts]: {
     baseUrl: {
       [Env.prod]: 'https://accounts.pingcap.com',
-      [Env.preview]: 'https://dev-accounts.pingcap.com',
-      [Env.local]: 'https://dev-accounts.pingcap.com'
+      [Env.preview]: 'https://accounts-preview.pingcap.com',
+      [Env.local]: 'https://accounts-preview.pingcap.com'
     },
   },
   [Site.home]: {
     baseUrl: {
       [Env.prod]: 'https://tidb.net',
-      [Env.preview]: 'https://community-preview.tidb.io',
+      [Env.preview]: 'https://community-preview.tidb.net',
       [Env.local]: 'http://localhost:4000',
     },
   },
   [Site.asktug]: {
     baseUrl: {
       [Env.prod]: 'https://asktug.com',
-      [Env.preview]: 'https://sso-test.asktug.com',
-      [Env.local]: 'https://sso-test.asktug.com',
+      [Env.preview]: 'https://community-preview.asktug.com',
+      [Env.local]: 'https://community-preview.asktug.com',
     },
   },
   [Site.others]: {
