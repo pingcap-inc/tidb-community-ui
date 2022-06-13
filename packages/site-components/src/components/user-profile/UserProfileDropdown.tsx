@@ -1,10 +1,12 @@
-import React, {useMemo} from 'react'
-import { MeData } from '../../datasource/accounts'
-import {Avatar, Badge, Dropdown, Menu} from 'antd'
-import { DownOutlined } from '@ant-design/icons'
-import './style.less'
-import { useUserProfileItems } from './hooks'
-import { getContainer } from '../../utils/popup-container'
+import { DownOutlined } from '@ant-design/icons';
+import { Avatar, Badge, Dropdown, Menu } from 'antd';
+import React, { useMemo } from 'react';
+import { MeData } from '../../datasource/accounts';
+import { getContainer } from '../../utils/popup-container';
+import { Site } from '../../utils/site';
+import SiteLink from '../site-link';
+import { useUserProfileItems } from './hooks';
+import './style.less';
 
 const UserProfileDropdown = ({ me }: { me: MeData['data'] }) => {
   const items = useUserProfileItems(me)
@@ -23,9 +25,9 @@ const UserProfileDropdown = ({ me }: { me: MeData['data'] }) => {
       }>
       <div className="ti-site-user-profile__trigger">
         <Badge dot={showDot}>
-          <a href={`https://tidb.net/u/${me.username}`} target="_blank">
+          <SiteLink url={`/u/${me.username}`} site={Site.home} newWindow>
             <Avatar src={me.avatar_url} size={28} />
-          </a>
+          </SiteLink>
         </Badge>
         <DownOutlined />
       </div>
