@@ -1,72 +1,518 @@
 {
   "content": [
     {
-      "createdAt": "2022-02-16T05:51:37.000+00:00",
-      "lastModifiedAt": "2022-02-16T05:51:37.000+00:00",
+      "createdAt": "2022-01-19T11:59:34.000+00:00",
+      "lastModifiedAt": "2022-03-03T07:31:36.000+00:00",
       "deletedAt": null,
-      "id": 20,
-      "type": "COMMENT",
-      "title": "blogtest_0 评论了你的文章 [TiDB 5.0 新课程发布啦！]: \"评论数量\"",
+      "id": 1,
+      "type": "LIKE",
+      "title": "你的文章 [测试] 被 root 点赞了",
+      "haveRead": true,
+      "target_url": null,
+      "recipient": {
+        "id": 3,
+        "username": "舰长2022",
+        "avatarURL": "https://asktug.com/letter_avatar_proxy/v4/letter/t/4e50e8/90.png"
+      },
+      "actor": {
+        "id": 1,
+        "username": "root",
+        "avatarURL": ""
+      },
+      "relatedPost": {
+        "createdAt": "2022-01-17T13:37:04.000+00:00",
+        "lastModifiedAt": "2022-01-18T06:33:33.000+00:00",
+        "deletedAt": null,
+        "id": 13186,
+        "slug": "4efcd2e6",
+        "title": "测试"
+      },
+      "relatedComment": null
+    },
+    {
+      "createdAt": "2022-01-19T12:07:26.000+00:00",
+      "lastModifiedAt": "2022-03-03T07:31:40.000+00:00",
+      "deletedAt": null,
+      "id": 2,
+      "type": "FAVORITE",
+      "title": "你的文章 [测试] 被 root 收藏了",
+      "haveRead": true,
+      "target_url": null,
+      "recipient": {
+        "id": 3,
+        "username": "舰长2022",
+        "avatarURL": "https://asktug.com/letter_avatar_proxy/v4/letter/t/4e50e8/90.png"
+      },
+      "actor": {
+        "id": 1,
+        "username": "root",
+        "avatarURL": ""
+      },
+      "relatedPost": {
+        "createdAt": "2022-01-17T13:37:04.000+00:00",
+        "lastModifiedAt": "2022-01-18T06:33:33.000+00:00",
+        "deletedAt": null,
+        "id": 13186,
+        "slug": "4efcd2e6",
+        "title": "测试"
+      },
+      "relatedComment": null
+    },
+    {
+      "createdAt": "2022-03-11T08:55:22.000+00:00",
+      "lastModifiedAt": "2022-03-11T08:55:22.000+00:00",
+      "deletedAt": null,
+      "id": 46,
+      "type": "POST",
+      "title": "文章 测试 审核通过，发布成功。基础分奖励 100 积分&经验值，加成分将于发布后第 31 天后发放，感谢你对 TiDB 社区的贡献~",
       "haveRead": false,
       "target_url": null,
       "recipient": {
-        "id": 10,
-        "username": "orgadmin",
-        "avatarURL": "https://asktug.com/user_avatar/asktug.com/gangshen/90/77770_2.png"
+        "id": 3,
+        "username": "舰长2022",
+        "avatarURL": "https://asktug.com/letter_avatar_proxy/v4/letter/t/4e50e8/90.png"
+      },
+      "actor": {
+        "id": 3,
+        "username": "舰长2022",
+        "avatarURL": "https://asktug.com/letter_avatar_proxy/v4/letter/t/4e50e8/90.png"
+      },
+      "relatedPost": {
+        "createdAt": "2022-03-11T08:55:21.000+00:00",
+        "lastModifiedAt": "2022-03-11T08:55:22.000+00:00",
+        "deletedAt": null,
+        "id": 13341,
+        "slug": "3482a323",
+        "title": "测试"
+      },
+      "relatedComment": null
+    },
+    {
+      "createdAt": "2022-03-11T08:55:22.000+00:00",
+      "lastModifiedAt": "2022-03-11T08:55:22.000+00:00",
+      "deletedAt": null,
+      "id": 47,
+      "type": "POST",
+      "title": "文章 测试 审核通过，发布成功。基础分奖励 100 积分&经验值，加成分将于发布后第 31 天后发放，感谢你对 TiDB 社区的贡献~",
+      "haveRead": false,
+      "target_url": null,
+      "recipient": {
+        "id": 3,
+        "username": "舰长2022",
+        "avatarURL": "https://asktug.com/letter_avatar_proxy/v4/letter/t/4e50e8/90.png"
+      },
+      "actor": {
+        "id": 3,
+        "username": "舰长2022",
+        "avatarURL": "https://asktug.com/letter_avatar_proxy/v4/letter/t/4e50e8/90.png"
+      },
+      "relatedPost": {
+        "createdAt": "2022-03-11T08:55:21.000+00:00",
+        "lastModifiedAt": "2022-03-11T08:55:22.000+00:00",
+        "deletedAt": null,
+        "id": 13342,
+        "slug": "caf5ee14",
+        "title": "测试"
+      },
+      "relatedComment": null
+    },
+    {
+      "createdAt": "2022-03-11T09:00:01.000+00:00",
+      "lastModifiedAt": "2022-03-11T09:00:01.000+00:00",
+      "deletedAt": null,
+      "id": 48,
+      "type": "POST",
+      "title": "文章 [测试] 加成分 (加成分 = 30 天内的 UV（阅读人次）*1 +收藏数*10 +点赞数*10): 22 积分&经验值已发放，请查收！感谢你对 TiDB 社区的贡献~",
+      "haveRead": false,
+      "target_url": null,
+      "recipient": {
+        "id": 3,
+        "username": "舰长2022",
+        "avatarURL": "https://asktug.com/letter_avatar_proxy/v4/letter/t/4e50e8/90.png"
+      },
+      "actor": {
+        "id": 3,
+        "username": "舰长2022",
+        "avatarURL": "https://asktug.com/letter_avatar_proxy/v4/letter/t/4e50e8/90.png"
+      },
+      "relatedPost": {
+        "createdAt": "2021-11-25T07:50:17.000+00:00",
+        "lastModifiedAt": "2021-11-25T07:51:09.000+00:00",
+        "deletedAt": null,
+        "id": 12,
+        "slug": "3c20d4bc",
+        "title": "测试"
+      },
+      "relatedComment": null
+    },
+    {
+      "createdAt": "2022-03-11T10:00:03.000+00:00",
+      "lastModifiedAt": "2022-03-11T10:00:03.000+00:00",
+      "deletedAt": null,
+      "id": 66,
+      "type": "POST",
+      "title": "文章 [测试] 加成分 (加成分 = 30 天内的 UV（阅读人次）*1 +收藏数*10 +点赞数*10): 0 积分&经验值已发放，请查收！感谢你对 TiDB 社区的贡献~",
+      "haveRead": false,
+      "target_url": null,
+      "recipient": {
+        "id": 3,
+        "username": "舰长2022",
+        "avatarURL": "https://asktug.com/letter_avatar_proxy/v4/letter/t/4e50e8/90.png"
+      },
+      "actor": {
+        "id": 3,
+        "username": "舰长2022",
+        "avatarURL": "https://asktug.com/letter_avatar_proxy/v4/letter/t/4e50e8/90.png"
+      },
+      "relatedPost": {
+        "createdAt": "2021-12-28T06:33:11.000+00:00",
+        "lastModifiedAt": "2021-12-28T06:33:17.000+00:00",
+        "deletedAt": null,
+        "id": 13154,
+        "slug": "641dec9c",
+        "title": "测试"
+      },
+      "relatedComment": null
+    },
+    {
+      "createdAt": "2022-03-11T10:00:03.000+00:00",
+      "lastModifiedAt": "2022-03-11T10:00:03.000+00:00",
+      "deletedAt": null,
+      "id": 67,
+      "type": "POST",
+      "title": "文章 [测试] 加成分 (加成分 = 30 天内的 UV（阅读人次）*1 +收藏数*10 +点赞数*10): 0 积分&经验值已发放，请查收！感谢你对 TiDB 社区的贡献~",
+      "haveRead": false,
+      "target_url": null,
+      "recipient": {
+        "id": 3,
+        "username": "舰长2022",
+        "avatarURL": "https://asktug.com/letter_avatar_proxy/v4/letter/t/4e50e8/90.png"
+      },
+      "actor": {
+        "id": 3,
+        "username": "舰长2022",
+        "avatarURL": "https://asktug.com/letter_avatar_proxy/v4/letter/t/4e50e8/90.png"
+      },
+      "relatedPost": {
+        "createdAt": "2021-12-30T04:36:35.000+00:00",
+        "lastModifiedAt": "2021-12-30T04:36:40.000+00:00",
+        "deletedAt": null,
+        "id": 13159,
+        "slug": "01169459",
+        "title": "测试"
+      },
+      "relatedComment": null
+    },
+    {
+      "createdAt": "2022-03-11T10:00:03.000+00:00",
+      "lastModifiedAt": "2022-03-11T10:00:03.000+00:00",
+      "deletedAt": null,
+      "id": 68,
+      "type": "POST",
+      "title": "文章 [测试] 加成分 (加成分 = 30 天内的 UV（阅读人次）*1 +收藏数*10 +点赞数*10): 0 积分&经验值已发放，请查收！感谢你对 TiDB 社区的贡献~",
+      "haveRead": false,
+      "target_url": null,
+      "recipient": {
+        "id": 3,
+        "username": "舰长2022",
+        "avatarURL": "https://asktug.com/letter_avatar_proxy/v4/letter/t/4e50e8/90.png"
+      },
+      "actor": {
+        "id": 3,
+        "username": "舰长2022",
+        "avatarURL": "https://asktug.com/letter_avatar_proxy/v4/letter/t/4e50e8/90.png"
+      },
+      "relatedPost": {
+        "createdAt": "2021-12-30T04:36:57.000+00:00",
+        "lastModifiedAt": "2021-12-30T04:37:18.000+00:00",
+        "deletedAt": null,
+        "id": 13160,
+        "slug": "4177ab8f",
+        "title": "测试"
+      },
+      "relatedComment": null
+    },
+    {
+      "createdAt": "2022-03-11T10:00:03.000+00:00",
+      "lastModifiedAt": "2022-03-11T10:00:03.000+00:00",
+      "deletedAt": null,
+      "id": 69,
+      "type": "POST",
+      "title": "文章 [测试] 加成分 (加成分 = 30 天内的 UV（阅读人次）*1 +收藏数*10 +点赞数*10): 20 积分&经验值已发放，请查收！感谢你对 TiDB 社区的贡献~",
+      "haveRead": false,
+      "target_url": null,
+      "recipient": {
+        "id": 3,
+        "username": "舰长2022",
+        "avatarURL": "https://asktug.com/letter_avatar_proxy/v4/letter/t/4e50e8/90.png"
+      },
+      "actor": {
+        "id": 3,
+        "username": "舰长2022",
+        "avatarURL": "https://asktug.com/letter_avatar_proxy/v4/letter/t/4e50e8/90.png"
+      },
+      "relatedPost": {
+        "createdAt": "2022-01-17T13:37:04.000+00:00",
+        "lastModifiedAt": "2022-01-18T06:33:33.000+00:00",
+        "deletedAt": null,
+        "id": 13186,
+        "slug": "4efcd2e6",
+        "title": "测试"
+      },
+      "relatedComment": null
+    },
+    {
+      "createdAt": "2022-03-12T16:04:20.000+00:00",
+      "lastModifiedAt": "2022-03-12T16:04:20.000+00:00",
+      "deletedAt": null,
+      "id": 79,
+      "type": "POST",
+      "title": "文章 文章测试 审核通过，发布成功。基础分奖励 150 积分&经验值，加成分将于发布后第 31 天后发放，感谢你对 TiDB 社区的贡献~",
+      "haveRead": false,
+      "target_url": null,
+      "recipient": {
+        "id": 3,
+        "username": "舰长2022",
+        "avatarURL": "https://asktug.com/letter_avatar_proxy/v4/letter/t/4e50e8/90.png"
+      },
+      "actor": {
+        "id": 3,
+        "username": "舰长2022",
+        "avatarURL": "https://asktug.com/letter_avatar_proxy/v4/letter/t/4e50e8/90.png"
+      },
+      "relatedPost": null,
+      "relatedComment": null
+    },
+    {
+      "createdAt": "2022-03-12T16:07:17.000+00:00",
+      "lastModifiedAt": "2022-03-12T16:07:17.000+00:00",
+      "deletedAt": null,
+      "id": 80,
+      "type": "LIKE",
+      "title": "文章 [blogtest_1] 被点赞: 文章测试",
+      "haveRead": false,
+      "target_url": null,
+      "recipient": {
+        "id": 3,
+        "username": "舰长2022",
+        "avatarURL": "https://asktug.com/letter_avatar_proxy/v4/letter/t/4e50e8/90.png"
+      },
+      "actor": {
+        "id": 5,
+        "username": "blogtest_1",
+        "avatarURL": "https://asktug.com/letter_avatar_proxy/v4/letter/t/4e50e8/90.png"
+      },
+      "relatedPost": null,
+      "relatedComment": null
+    },
+    {
+      "createdAt": "2022-03-12T16:07:17.000+00:00",
+      "lastModifiedAt": "2022-03-12T16:07:17.000+00:00",
+      "deletedAt": null,
+      "id": 81,
+      "type": "FAVORITE",
+      "title": "blogtest_1 收藏了文章 [文章测试]",
+      "haveRead": false,
+      "target_url": null,
+      "recipient": {
+        "id": 3,
+        "username": "舰长2022",
+        "avatarURL": "https://asktug.com/letter_avatar_proxy/v4/letter/t/4e50e8/90.png"
+      },
+      "actor": {
+        "id": 5,
+        "username": "blogtest_1",
+        "avatarURL": "https://asktug.com/letter_avatar_proxy/v4/letter/t/4e50e8/90.png"
+      },
+      "relatedPost": null,
+      "relatedComment": null
+    },
+    {
+      "createdAt": "2022-03-12T17:00:01.000+00:00",
+      "lastModifiedAt": "2022-03-12T17:00:01.000+00:00",
+      "deletedAt": null,
+      "id": 82,
+      "type": "POST",
+      "title": "文章 [测试] 加成分 (加成分 = 30 天内的 UV（阅读人次）*1 +收藏数*10 +点赞数*10): 1 积分&经验值已发放，请查收！感谢你对 TiDB 社区的贡献~",
+      "haveRead": false,
+      "target_url": null,
+      "recipient": {
+        "id": 3,
+        "username": "舰长2022",
+        "avatarURL": "https://asktug.com/letter_avatar_proxy/v4/letter/t/4e50e8/90.png"
+      },
+      "actor": {
+        "id": 3,
+        "username": "舰长2022",
+        "avatarURL": "https://asktug.com/letter_avatar_proxy/v4/letter/t/4e50e8/90.png"
+      },
+      "relatedPost": {
+        "createdAt": "2022-03-11T08:55:21.000+00:00",
+        "lastModifiedAt": "2022-03-11T08:55:22.000+00:00",
+        "deletedAt": null,
+        "id": 13341,
+        "slug": "3482a323",
+        "title": "测试"
+      },
+      "relatedComment": null
+    },
+    {
+      "createdAt": "2022-03-12T17:00:01.000+00:00",
+      "lastModifiedAt": "2022-03-12T17:00:01.000+00:00",
+      "deletedAt": null,
+      "id": 83,
+      "type": "POST",
+      "title": "文章 [测试] 加成分 (加成分 = 30 天内的 UV（阅读人次）*1 +收藏数*10 +点赞数*10): 12 积分&经验值已发放，请查收！感谢你对 TiDB 社区的贡献~",
+      "haveRead": false,
+      "target_url": null,
+      "recipient": {
+        "id": 3,
+        "username": "舰长2022",
+        "avatarURL": "https://asktug.com/letter_avatar_proxy/v4/letter/t/4e50e8/90.png"
+      },
+      "actor": {
+        "id": 3,
+        "username": "舰长2022",
+        "avatarURL": "https://asktug.com/letter_avatar_proxy/v4/letter/t/4e50e8/90.png"
+      },
+      "relatedPost": {
+        "createdAt": "2022-03-11T08:55:21.000+00:00",
+        "lastModifiedAt": "2022-03-11T08:55:22.000+00:00",
+        "deletedAt": null,
+        "id": 13342,
+        "slug": "caf5ee14",
+        "title": "测试"
+      },
+      "relatedComment": null
+    },
+    {
+      "createdAt": "2022-03-13T17:00:01.000+00:00",
+      "lastModifiedAt": "2022-03-13T17:00:01.000+00:00",
+      "deletedAt": null,
+      "id": 84,
+      "type": "POST",
+      "title": "文章 [文章测试] 加成分 (加成分 = 30 天内的 UV（阅读人次）*1 +收藏数*10 +点赞数*10): 22 积分&经验值已发放，请查收！感谢你对 TiDB 社区的贡献~",
+      "haveRead": false,
+      "target_url": null,
+      "recipient": {
+        "id": 3,
+        "username": "舰长2022",
+        "avatarURL": "https://asktug.com/letter_avatar_proxy/v4/letter/t/4e50e8/90.png"
+      },
+      "actor": {
+        "id": 3,
+        "username": "舰长2022",
+        "avatarURL": "https://asktug.com/letter_avatar_proxy/v4/letter/t/4e50e8/90.png"
+      },
+      "relatedPost": null,
+      "relatedComment": null
+    },
+    {
+      "createdAt": "2022-03-21T09:00:50.000+00:00",
+      "lastModifiedAt": "2022-03-21T09:00:50.000+00:00",
+      "deletedAt": null,
+      "id": 85,
+      "type": "POST",
+      "title": "文章 [文章测试] 被管理员删除，如有疑问请联系 huangmanshen@pingcap.com",
+      "haveRead": false,
+      "target_url": null,
+      "recipient": {
+        "id": 3,
+        "username": "舰长2022",
+        "avatarURL": "https://asktug.com/letter_avatar_proxy/v4/letter/t/4e50e8/90.png"
       },
       "actor": {
         "id": 4,
         "username": "blogtest_0",
         "avatarURL": "https://asktug.com/letter_avatar_proxy/v4/letter/t/4e50e8/90.png"
       },
-      "relatedPost": {
-        "createdAt": "2021-11-25T08:08:04.000+00:00",
-        "lastModifiedAt": "2021-12-25T08:11:10.000+00:00",
-        "deletedAt": "2022-02-23T11:44:00.000+00:00",
-        "id": 14,
-        "slug": "f6420906",
-        "title": "TiDB 5.0 新课程发布啦！"
-      },
-      "relatedComment": {
-        "createdAt": "2022-02-16T05:51:37.000+00:00",
-        "lastModifiedAt": "2022-02-16T05:51:37.000+00:00",
-        "deletedAt": null,
-        "id": 17,
-        "content": "评论数量",
-        "replyComment": null,
-        "commenter": {
-          "id": 4,
-          "username": "blogtest_0",
-          "avatarURL": "https://asktug.com/letter_avatar_proxy/v4/letter/t/4e50e8/90.png"
-        }
-      }
+      "relatedPost": null,
+      "relatedComment": null
     },
     {
-      "createdAt": "2022-02-18T07:23:54.000+00:00",
-      "lastModifiedAt": "2022-02-18T07:23:54.000+00:00",
+      "createdAt": "2022-06-02T03:39:05.000+00:00",
+      "lastModifiedAt": "2022-06-02T03:39:05.000+00:00",
       "deletedAt": null,
-      "id": 28,
-      "type": "LIKE",
-      "title": "你的文章 [TiDB 5.0 新课程发布啦！] 被 asktug-test 点赞了",
+      "id": 98,
+      "type": "POST",
+      "title": "文章 测试 审核通过，发布成功。基础分奖励 150 积分&经验值，加成分将于发布后第 31 天后发放，感谢你对 TiDB 社区的贡献~",
       "haveRead": false,
       "target_url": null,
       "recipient": {
-        "id": 10,
-        "username": "orgadmin",
-        "avatarURL": "https://asktug.com/user_avatar/asktug.com/gangshen/90/77770_2.png"
+        "id": 3,
+        "username": "舰长2022",
+        "avatarURL": "https://asktug.com/letter_avatar_proxy/v4/letter/t/4e50e8/90.png"
       },
       "actor": {
-        "id": 2,
-        "username": "asktug-test",
-        "avatarURL": "https://asktug.com/user_avatar/asktug.com/gangshen/90/77770_2.png"
+        "id": 3,
+        "username": "舰长2022",
+        "avatarURL": "https://asktug.com/letter_avatar_proxy/v4/letter/t/4e50e8/90.png"
       },
       "relatedPost": {
-        "createdAt": "2021-11-25T08:08:04.000+00:00",
-        "lastModifiedAt": "2021-12-25T08:11:10.000+00:00",
-        "deletedAt": "2022-02-23T11:44:00.000+00:00",
-        "id": 14,
-        "slug": "f6420906",
-        "title": "TiDB 5.0 新课程发布啦！"
+        "createdAt": "2022-06-02T03:39:00.000+00:00",
+        "lastModifiedAt": "2022-06-02T03:39:05.000+00:00",
+        "deletedAt": null,
+        "id": 13364,
+        "slug": "755e64d1",
+        "title": "测试"
+      },
+      "relatedComment": null
+    },
+    {
+      "createdAt": "2022-06-04T04:00:00.000+00:00",
+      "lastModifiedAt": "2022-06-04T04:00:00.000+00:00",
+      "deletedAt": null,
+      "id": 99,
+      "type": "POST",
+      "title": "文章 [测试] 加成分 (加成分 = 30 天内的 UV（阅读人次）*1 +收藏数*10 +点赞数*10): 1 积分&经验值已发放，请查收！感谢你对 TiDB 社区的贡献~",
+      "haveRead": false,
+      "target_url": null,
+      "recipient": {
+        "id": 3,
+        "username": "舰长2022",
+        "avatarURL": "https://asktug.com/letter_avatar_proxy/v4/letter/t/4e50e8/90.png"
+      },
+      "actor": {
+        "id": 3,
+        "username": "舰长2022",
+        "avatarURL": "https://asktug.com/letter_avatar_proxy/v4/letter/t/4e50e8/90.png"
+      },
+      "relatedPost": {
+        "createdAt": "2022-06-02T03:39:00.000+00:00",
+        "lastModifiedAt": "2022-06-02T03:39:05.000+00:00",
+        "deletedAt": null,
+        "id": 13364,
+        "slug": "755e64d1",
+        "title": "测试"
+      },
+      "relatedComment": null
+    },
+    {
+      "createdAt": "2022-06-14T08:26:36.000+00:00",
+      "lastModifiedAt": "2022-06-14T08:26:36.000+00:00",
+      "deletedAt": null,
+      "id": 101,
+      "type": "POST",
+      "title": "文章 测试 审核通过，发布成功。基础分奖励 150 积分&经验值，加成分将于发布后第 31 天后发放，感谢你对 TiDB 社区的贡献~",
+      "haveRead": false,
+      "target_url": null,
+      "recipient": {
+        "id": 3,
+        "username": "舰长2022",
+        "avatarURL": "https://asktug.com/letter_avatar_proxy/v4/letter/t/4e50e8/90.png"
+      },
+      "actor": {
+        "id": 3,
+        "username": "舰长2022",
+        "avatarURL": "https://asktug.com/letter_avatar_proxy/v4/letter/t/4e50e8/90.png"
+      },
+      "relatedPost": {
+        "createdAt": "2022-06-14T08:26:36.000+00:00",
+        "lastModifiedAt": "2022-06-14T08:26:36.000+00:00",
+        "deletedAt": null,
+        "id": 13365,
+        "slug": "a76b4609",
+        "title": "测试"
       },
       "relatedComment": null
     }
@@ -74,7 +520,7 @@
   "page": {
     "number": 1,
     "size": 20,
-    "totalElements": 2,
+    "totalElements": 19,
     "totalPages": 1
   }
 }

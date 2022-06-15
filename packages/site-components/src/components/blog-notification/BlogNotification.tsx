@@ -22,10 +22,12 @@ export interface BlogNotificationProps {
 
 const BlogNotification = ({ notification, markRead, wrap }: BlogNotificationProps) => {
   let el: JSX.Element | undefined = undefined
-  let url: string = '#'
+  let url: string | undefined = undefined
+  if (notification.relatedPost) {
+    url = `/blog/${notification.relatedPost.slug}`
+  }
   switch (notification.type) {
     case NotificationType.COMMENT:
-      url = `/blog/${notification.relatedPost.slug}`
       el = (
         <span>
           <CommentOutlined />
@@ -33,13 +35,12 @@ const BlogNotification = ({ notification, markRead, wrap }: BlogNotificationProp
           <b>{notification.actor.username}</b>
           &nbsp;
           在
-          {notification.relatedPost.title}
-          中评论了：{notification.relatedComment.content}
+          {notification.relatedPost?.title ?? '「已删除」'}
+          中评论了：{notification.relatedComment?.content ?? '“已删除”'}
         </span>
       )
       break
     case NotificationType.FAVORITE:
-      url = `/blog/${notification.relatedPost.slug}`
       el = (
         <span>
           <StarOutlined />
@@ -47,12 +48,11 @@ const BlogNotification = ({ notification, markRead, wrap }: BlogNotificationProp
           <b>{notification.actor.username}</b>
           &nbsp;
           收藏了
-          {notification.relatedPost.title}
+          {notification.relatedPost?.title ?? '「已删除」'}
         </span>
       )
       break
     case NotificationType.LIKE:
-      url = `/blog/${notification.relatedPost.slug}`
       el = (
         <span>
           <LikeOutlined />
@@ -60,7 +60,7 @@ const BlogNotification = ({ notification, markRead, wrap }: BlogNotificationProp
           <b>{notification.actor.username}</b>
           &nbsp;
           点赞了
-          {notification.relatedPost && (<>{notification.relatedPost.title}</>)}
+          {notification.relatedPost?.title ?? '「已删除」'}
         </span>
       )
       break
@@ -87,20 +87,26 @@ const BlogNotification = ({ notification, markRead, wrap }: BlogNotificationProp
       className: classnames('ti-blog-notification', { 'ti-blog-notification-read': notification.haveRead }),
       onClickCapture: onClick
     })
-    return (
-      <SiteLink
-        site={Site.home}
-        url={url}
-        newWindow={true}
-      >
-        {element}
-      </SiteLink>
-    )
+    if (url) {
+      return (
+        <SiteLink
+          site={Site.home}
+          url={url}
+          newWindow={true}
+        >
+          {element}
+        </SiteLink>
+      )
+    } else {
+      return element
+    }
   }
+
+  // This fallback should never be shown
   return (
     <SiteLink
       site={Site.home}
-      url={url}
+      url={url ?? 'javascript:void(0)'}
       newWindow={true}
     >
       <Space direction="vertical">
