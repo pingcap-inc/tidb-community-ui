@@ -31,41 +31,6 @@ export const useUserProfileItems = (me?: MeData['data']) => {
       },
     })
 
-    if (me.org) {
-      items.push({
-        key: 'my-org',
-        title: '我的团队',
-        config: {
-          site: Site.home,
-          url: `/orgs/${me.org.slug}/home`,
-          newWindow: false,
-        },
-      })
-    } else {
-      items.splice(1, 0, {
-        key: 'join-team',
-        title: '团队认证',
-        config: {
-          site: Site.home,
-          url: '/account/organization/new',
-          newWindow: true
-        },
-      });
-    }
-
-    if (me.org_invitations?.length) {
-      items.push({
-        key: 'team-invitations',
-        title: '团队邀请',
-        config: {
-          site: Site.home,
-          url: '/account/organization/invitations',
-          newWindow: false
-        },
-        badge: me.org_invitations.some((item) => item.valid),
-      });
-    }
-
     items.push({
       key: 'my-settings',
       title: '账号设置',
