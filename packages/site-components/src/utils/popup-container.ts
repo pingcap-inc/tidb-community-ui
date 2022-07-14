@@ -1,3 +1,3 @@
 export const getContainer = () => {
-  return document.getElementById('popup-container') ?? document.body
+  return document.querySelector<HTMLElement>('header.ti-site-header') ?? document.getElementById('popup-container') ?? document.body
 }
