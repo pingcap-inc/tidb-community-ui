@@ -28,7 +28,8 @@ const HeaderPrivateMessages = ({username}: {username: string}) => {
       className="ti-site-header-button"
       overlayClassName="ti-site-header-button-popover-overlay"
       getPopupContainer={getContainer}
-      align={{offset: [0, -20]}}
+      placement='bottom'
+      align={{offset: [0, 0]}}
       content={
           <Tabs size="small" className="ti-site-header-tabs">
               <Tabs.TabPane key="private" tabKey="private" tab={<Badge dot={privateMessagesUnread > 0}><span>论坛私信</span></Badge>}>
