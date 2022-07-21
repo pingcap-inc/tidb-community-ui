@@ -63,46 +63,13 @@ export const navItems: NavItem[] = [
     ],
   },
   {
-    key: 'developers',
-    title: '贡献者专区',
-    children: [
-      {
-        key: 'contribute',
-        title: '如何贡献代码',
-        config: {
-          site: Site.others,
-          url: 'https://pingcap.github.io/tidb-dev-guide',
-          newWindow: true
-        }
-      },
-      {
-        key: 'internals',
-        title: '开发者论坛',
-        config: {
-          site: Site.others,
-          url: 'https://internals.tidb.io',
-          newWindow: true
-        }
-      },
-      {
-        key: 'incubator',
-        title: '孵化器项目',
-        config: {
-          site: Site.others,
-          url: 'https://github.com/pingcap/community/tree/master/incubator',
-          newWindow: true
-        }
-      },
-      {
-        key: 'talent-plan',
-        title: 'Talent Plan',
-        config: {
-          site: Site.home,
-          url: '/talent-plan',
-          newWindow: false
-        }
-      }
-    ]
+    key: 'books',
+    title: '电子书',
+    config: {
+      site: Site.home,
+      url: '/book',
+      newWindow: false
+    }
   },
   {
     key: 'discover',
@@ -154,14 +121,47 @@ export const navItems: NavItem[] = [
         },
       },
       {
-        key: 'books',
-        title: '电子书',
-        config: {
-          site: Site.home,
-          url: '/book',
-          newWindow: false
-        }
-      }
+        key: 'developers',
+        title: '贡献者专区',
+        children: [
+          {
+            key: 'contribute',
+            title: '如何贡献代码',
+            config: {
+              site: Site.others,
+              url: 'https://pingcap.github.io/tidb-dev-guide',
+              newWindow: true
+            }
+          },
+          {
+            key: 'internals',
+            title: '开发者论坛',
+            config: {
+              site: Site.others,
+              url: 'https://internals.tidb.io',
+              newWindow: true
+            }
+          },
+          {
+            key: 'incubator',
+            title: '孵化器项目',
+            config: {
+              site: Site.others,
+              url: 'https://github.com/pingcap/community/tree/master/incubator',
+              newWindow: true
+            }
+          },
+          {
+            key: 'talent-plan',
+            title: 'Talent Plan',
+            config: {
+              site: Site.home,
+              url: '/talent-plan',
+              newWindow: false
+            }
+          }
+        ]
+      },
     ]
   }
 ]
