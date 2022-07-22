@@ -60,6 +60,15 @@ export const navItems: NavItem[] = [
           newWindow: true,
         },
       },
+      {
+        key: 'talent-plan',
+        title: 'Talent Plan',
+        config: {
+          site: Site.home,
+          url: '/talent-plan',
+          newWindow: false
+        }
+      }
     ],
   },
   {
@@ -115,15 +124,6 @@ export const navItems: NavItem[] = [
               newWindow: true
             }
           },
-          {
-            key: 'talent-plan',
-            title: 'Talent Plan',
-            config: {
-              site: Site.home,
-              url: '/talent-plan',
-              newWindow: false
-            }
-          }
         ]
       },
       {
