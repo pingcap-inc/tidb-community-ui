@@ -133,6 +133,16 @@ export const useAsktugUnreadNotifications = (): number => {
   return data?.notifications.length ?? 0
 }
 
+export const useAsktugAllNotifications = (max: number) => {
+  const { fetchers: { asktug: fetcher } } = useContext(SiteComponentsContext)
+  return useSWR<Notifications>(['asktug.getNotifications', { recent: 1, limit: max }], { fetcher })
+}
+
+export const markRead = (notificationId: number) => {
+  const { fetchers: { asktug: fetcher } } = useContext(SiteComponentsContext)
+  return fetcher('asktug.readNotification', notificationId)
+}
+
 export const useAsktugNotifications = (max: number = 12): SWRResponse<AsktugNotification[]> & { markRead: (notificationId: number) => Promise<void> } => {
   const { fetchers: { asktug: fetcher } } = useContext(SiteComponentsContext)
 

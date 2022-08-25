@@ -1,8 +1,12 @@
 import React from 'react'
 import { Badge, List, Popover, Tabs } from 'antd'
 import { Site } from '../../utils/site'
-import { BellOutlined, MailOutlined } from '@ant-design/icons';
-import { useAsktugNotifications, useAsktugUnreadNotifications } from '../../datasource/asktug'
+import { BellOutlined } from '@ant-design/icons';
+import {
+  markRead,
+  useAsktugAllNotifications,
+  useAsktugUnreadNotifications
+} from '../../datasource/asktug'
 import { getContainer } from '../../utils/popup-container'
 import DiscourseNotification from '../discourse-notification'
 import SiteLink from '../site-link/SiteLink'
@@ -59,7 +63,11 @@ const HeaderNotifications = () => {
 const wrap = (el: JSX.Element) => <List.Item>{el}</List.Item>
 
 const AsktugNotifications = ({ max = 12, footer }: { max?: number, footer: React.ReactNode }) => {
-  const { data: notifications, error, isValidating, markRead } = useAsktugNotifications(max)
+  const { data: notifications, error, isValidating, mutate } = useAsktugAllNotifications(max)
+  const markReadHandler = async (notificationId: number) => {
+    await markRead(notificationId)
+    await mutate()
+  }
   if (error) {
     console.error(error)
     return <p>服务异常</p>
@@ -68,8 +76,8 @@ const AsktugNotifications = ({ max = 12, footer }: { max?: number, footer: React
     <List
       size="small"
       loading={isValidating}
-      dataSource={notifications ?? []}
-      renderItem={(item) => <DiscourseNotification markRead={markRead} notification={item} wrap={wrap} />}
+      dataSource={notifications?.notifications ?? []}
+      renderItem={(item) => <DiscourseNotification markRead={markReadHandler} notification={item} wrap={wrap} />}
       footer={footer}
       locale={{ emptyText: '暂无消息' }}
     />
