@@ -5,6 +5,12 @@ let ACCOUNTS_BASE = '/_/sso'
 let BLOG_BASE = '/_/blog'
 let ASKTUG_BASE = ''
 
+declare global {
+  interface Window {
+    __tidb_community_ui_url_base?: string
+  }
+}
+
 export const getPreviewUrlBase = (): string | undefined => {
   if (typeof window === 'undefined') {
     if (typeof process !== 'undefined') {
