@@ -5,7 +5,18 @@ let ACCOUNTS_BASE = '/_/sso'
 let BLOG_BASE = '/_/blog'
 let ASKTUG_BASE = ''
 
+export const getPreviewUrlBase = (): string | undefined => {
+  if (typeof window === 'undefined') {
+    if (typeof process !== 'undefined') {
+      return process.env.TIDB_COMMUNITY_UI_URL_BASE
+    }
+  } else {
+    return window.__tidb_community_ui_url_base
+  }
+}
+
 export const setFetcherUrlBase = (base: string) => {
+  base = getPreviewUrlBase() ?? base
   ACCOUNTS_BASE = base + '/_/sso'
   BLOG_BASE = base + '/_/blog'
   ASKTUG_BASE = base + '/_/_asktug'
