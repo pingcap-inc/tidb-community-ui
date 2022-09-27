@@ -57,7 +57,7 @@ jobs:
           access-key-id: ${{ secrets.OSS_ACCESS_KEY }}
           access-key-secret: ${{ secrets.OSS_ACCESS_SECRET }}
           bucket: tidb-community-site
-          endpoint: oss-cn-beijing.aliyuncs.com
+          endpoint: oss-accelerate.aliyuncs.com
           local-path: packages/${{ inputs.package }}/dist
           remote-path: tidb-community-ui
           headers: '{ "Cache-Control": "no-cache" }'
