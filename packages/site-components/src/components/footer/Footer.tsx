@@ -4,18 +4,17 @@ import { sections } from './footer-data'
 import FooterSection from './FooterSection'
 import FooterIcons from './FooterIcons'
 import { headerBreakpoints } from '../header/constants'
-import Logo from '../logo'
 import Header from '../header'
 
 export interface FooterProps {
   copyright: string
-  icp: string
+  icp: React.ReactNode
   icpUrl: string
-  number: string
-  numberUrl: string
+  beianNode: React.ReactNode
+  beianUrl: string
 }
 
-const Footer = ({ copyright, icp, icpUrl, number, numberUrl }: FooterProps) => {
+const Footer = ({ copyright, icp, icpUrl, beianNode, beianUrl }: FooterProps) => {
   return (
     <Responsive breakpoints={headerBreakpoints}>
       <footer className="ti-site-footer">
@@ -35,8 +34,8 @@ const Footer = ({ copyright, icp, icpUrl, number, numberUrl }: FooterProps) => {
           <a href={icpUrl} target='_blank' rel='noreferrer'>
             { icp }
           </a>
-          <a href={numberUrl} target='_blank' rel='noreferrer'>
-            { number }
+          <a href={beianUrl} target='_blank' rel='noreferrer'>
+            { beianNode }
           </a>
         </div>
       </footer>
