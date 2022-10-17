@@ -8,10 +8,10 @@
     "serve": "serve -l 8000 dist",
     "build:production": "pnpm run build-asktug:production && pnpm run build-general:production",
     "build:preview": "pnpm run build-asktug:preview && pnpm run build-general:preview",
-    "build-asktug:production": "NODE_ENV=production target=asktug rollup -c rollup.config.js",
-    "build-asktug:preview": "NODE_ENV=development target=asktug rollup -c rollup.config.js",
-    "build-general:production": "NODE_ENV=production target=general rollup -c rollup.config.js",
-    "build-general:preview": "NODE_ENV=development target=general rollup -c rollup.config.js"
+    "build-asktug:production": "cross-env NODE_ENV=production target=asktug rollup -c rollup.config.js",
+    "build-asktug:preview": "cross-env NODE_ENV=development target=asktug rollup -c rollup.config.js",
+    "build-general:production": "cross-env NODE_ENV=production target=general rollup -c rollup.config.js",
+    "build-general:preview": "cross-env NODE_ENV=development target=general rollup -c rollup.config.js"
   },
   "author": "",
   "license": "MIT",
@@ -49,6 +49,7 @@
     "rollup-plugin-ts": "^2.0.4",
     "rollup-plugin-visualizer": "^5.5.2",
     "serve": "^13.0.2",
-    "swr": "^1.1.2"
+    "swr": "^1.1.2",
+    "typescript": "^4.5.4"
   }
 }
