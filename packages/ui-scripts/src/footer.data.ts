@@ -1,7 +1,7 @@
 import { FooterProps } from '@pingcap-inc/tidb-community-site-components'
 
 export const footerProps: FooterProps = {
-  copyright: '©2021 TiDB Community.',
+  copyright: '©2022 TiDB Community.',
   icp: '京ICP备16046278号-4',
   icpUrl: 'https://beian.miit.gov.cn/',
   number: '京公网安备11010802035239号',
