@@ -39,10 +39,21 @@ const processResponse = (res: Response) => {
   }
 }
 
+const meUrl = (() => {
+  if (typeof window === 'undefined') {
+    return '/api/me'
+  }
+  if (/asktug/.test(window.location.hostname)) {
+    return '/api/asktug-me'
+  } else {
+    return '/api/me'
+  }
+})()
+
 const accounts: Fetcher = (key: string) => {
   switch (key) {
     case 'me':
-      return fetch(`${ACCOUNTS_BASE}/api/me`, { credentials: 'include' }).then(processResponse)
+      return fetch(`${ACCOUNTS_BASE}${meUrl}`, { credentials: 'include' }).then(processResponse)
     default:
       throw new Error('not implemented')
   }
