@@ -43,7 +43,7 @@ const meUrl = (() => {
   if (typeof window === 'undefined') {
     return '/api/me'
   }
-  if (/asktug/.test(window.location.hostname)) {
+  if (/asktug/.test(window.location.hostname) && !/search/.test(window.location.hostname)) {
     return '/api/asktug-me'
   } else {
     return '/api/me'
