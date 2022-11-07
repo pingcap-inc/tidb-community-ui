@@ -94,6 +94,24 @@ export const navItems: NavItem[] = [
         }
       },
       {
+        key: 'tug',
+        title: 'TiDB User Group',
+        config: {
+          site: Site.home,
+          url: '/tug',
+          newWindow: false
+        }
+      },
+      {
+        key: 'regional-meetup',
+        title: '地区活动',
+        config: {
+          site: Site.home,
+          url: '/regional-meetup',
+          newWindow: false
+        }
+      },
+      {
         key: 'developers',
         title: '贡献者专区',
         children: [
