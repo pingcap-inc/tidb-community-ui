@@ -94,6 +94,15 @@ export const navItems: NavItem[] = [
         }
       },
       {
+        key: 'regional-meetup',
+        title: '地区活动',
+        config: {
+          site: Site.home,
+          url: '/regional-meetup',
+          newWindow: false
+        }
+      },
+      {
         key: 'developers',
         title: '贡献者专区',
         children: [
