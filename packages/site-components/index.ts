@@ -9,6 +9,7 @@ export { SiteLink, Header, Footer, DiscourseNotification, BlogNotification, Site
 export { DiscourseNotificationProps } from './src/components/discourse-notification'
 export { BlogNotificationProps } from './src/components/blog-notification'
 export { FooterProps } from './src/components/footer'
+export { default as CategoryList } from './src/components/asktug/home/CategoryList'
 export { defineSiteComponentsConfig } from './src/app-config'
 export { Site } from './src/utils/site'
 export { Env } from './src/utils/env'

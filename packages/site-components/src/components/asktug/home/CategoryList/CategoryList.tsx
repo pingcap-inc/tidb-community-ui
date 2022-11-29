@@ -1,15 +1,18 @@
-import React from "react"
+import React, {useEffect, useState} from "react"
 import classNames from "classnames"
 
-import styles from './CategoryList.module.less'
+import styles from './CategoryList.less'
+import axios from "axios";
 
 export interface IProps extends React.HTMLAttributes<HTMLDivElement> {
-  items: ICategoryItem[]
+  //items: ICategoryItem[]
 }
 
 export interface ICategoryItem {
-  name: string
-  description: string
+  id: number // 30022,
+  name: string // "🪐 TiDB",
+  color: string // "25AAE2",
+  description: string // TiDB、TiKV、TiFlash、PD 等核心组件和监控组件如 Dashboard、Grafana、Prometheus、Alert Manager 等问题
 }
 
 export interface ICategoryItemColor {
@@ -25,12 +28,23 @@ const colors: ICategoryItemColor[] = [
   {backgroundColor: '#FBF6FF', borderColor: 'linear-gradient(96.8deg, rgba(5, 0, 255, 0.5) -0.96%, rgba(255, 92, 0, 0.5) 101.3%)'},
 ]
 
+const getCategories = async (): Promise<ICategoryItem[]> => {
+  const url = 'https://asktug.com/site.json'
+  const response = await axios.get(url)
+  const categories = response.data.categories
+  return categories
+}
+
 const CategoryList: React.FC<IProps> = (props) => {
 //function CategoryList(props: IProps) {
-  const {children, className, items, ...rest} = props
+  const {children, className, ...rest} = props
+  const [categories, setCategories] = useState<ICategoryItem[]>([]);
+  useEffect(() => {
+    getCategories().then(setCategories)
+  }, [])
   return (
     <div className={classNames(className, styles.container)} {...rest}>
-      {items.map((value, index) => (
+      {categories.map((value, index) => (
         <div key={value.name} className={styles.item} style={{...colors[index % colors.length]}}>
           <div className={styles.item_header}>
             <div className={styles.item_header_name}>{value.name}</div>
@@ -39,7 +53,7 @@ const CategoryList: React.FC<IProps> = (props) => {
             <div className={styles.item_body_description}>{value.description}</div>
           </div>
         </div>
-      )}
+      ))}
     </div>
   )
 }
