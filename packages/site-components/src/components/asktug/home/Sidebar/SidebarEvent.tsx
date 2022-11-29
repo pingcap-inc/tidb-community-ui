@@ -1,6 +1,4 @@
 import React, {useEffect, useState} from "react"
-import {Button, Col, Row, Space, Tooltip} from "antd";
-import {GiftOutlined} from "@ant-design/icons";
 import axios from "axios";
 
 import './SidebarEvent.less'
