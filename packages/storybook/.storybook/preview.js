@@ -2,6 +2,9 @@ import '@pingcap-inc/tidb-community-ui/theme/index.less'
 import '@pingcap-inc/tidb-community-ui/src/index.less'
 import { defineSiteComponentsConfig, Env, Site } from '@pingcap-inc/tidb-community-site-components'
 
+if (module.hot) {
+  module.hot.accept();
+}
 
 defineSiteComponentsConfig({
   site: Site.others,
