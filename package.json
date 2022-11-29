@@ -5,13 +5,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build:ui": "pnpm run build --filter @pingcap-inc/tidb-community-ui",
-    "build:site-components": "pnpm run build --filter @pingcap-inc/tidb-community-site-components",
-    "build:storybook": "pnpm run build --filter @pingcap-inc/tidb-community-ui-storybook",
-    "build:ui-scripts:preview": "pnpm run build:preview --filter @pingcap-inc/tidb-community-ui-scripts",
-    "build:ui-scripts:production": "pnpm run build:production --filter @pingcap-inc/tidb-community-ui-scripts",
-    "storybook": "pnpm run storybook --filter @pingcap-inc/tidb-community-ui-storybook",
-    "dev": "pnpm run dev --filter @pingcap-inc/tidb-community-ui"
+    "build:ui": "pnpm --filter @pingcap-inc/tidb-community-ui run build",
+    "build:site-components": "pnpm --filter @pingcap-inc/tidb-community-site-components run build",
+    "build:storybook": "pnpm --filter @pingcap-inc/tidb-community-ui-storybook run build",
+    "build:ui-scripts:preview": "pnpm --filter @pingcap-inc/tidb-community-ui-scripts run build:preview",
+    "build:ui-scripts:production": "pnpm --filter @pingcap-inc/tidb-community-ui-scripts run build:production",
+    "storybook": "pnpm --filter @pingcap-inc/tidb-community-ui-storybook run storybook",
+    "dev": "pnpm --filter @pingcap-inc/tidb-community-ui run dev"
   },
   "keywords": [],
   "author": "",
