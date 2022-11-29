@@ -10,7 +10,7 @@ export { DiscourseNotificationProps } from './src/components/discourse-notificat
 export { BlogNotificationProps } from './src/components/blog-notification'
 export { FooterProps } from './src/components/footer'
 export { default as CategoryList } from './src/components/asktug/home/CategoryList'
-export { SidebarCard, SidebarProfile } from './src/components/asktug/home/Sidebar'
+export { SidebarCard, SidebarProfile, SidebarBlog } from './src/components/asktug/home/Sidebar'
 export { defineSiteComponentsConfig } from './src/app-config'
 export { Site } from './src/utils/site'
 export { Env } from './src/utils/env'
