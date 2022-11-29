@@ -33,11 +33,11 @@ const SidebarEvent: React.FC<IProps> = (props) => {
   }, [])
   return (
     <div className={'asktug-sidebar-event'}>
-      <SidebarCard header={{start: '活动日历', end: (<SiteLink site={Site.home} newWindow url={'https://tidb.net/event'}>更多 {'>'}</SiteLink>)}}>
+      <SidebarCard header={{start: '活动日历', end: (<SiteLink site={Site.home} newWindow url={'/event'}>更多 {'>'}</SiteLink>)}}>
         <ul>
           {blogs.map((value) => (
             <li key={value.id}>
-              <SiteLink site={Site.home} newWindow url={`https://tidb.net/event`}>{value.title}</SiteLink>
+              <SiteLink site={Site.home} newWindow url={`/event`}>{value.title}</SiteLink>
             </li>
           ))}
         </ul>

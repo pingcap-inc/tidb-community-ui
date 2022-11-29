@@ -33,11 +33,11 @@ const SidebarBlog: React.FC<IProps> = (props) => {
   }, [])
   return (
     <div className={'asktug-sidebar-blog'}>
-      <SidebarCard header={{start: '精选专栏', end: (<SiteLink site={Site.home} newWindow url={'https://tidb.net/blog'}>更多 {'>'}</SiteLink>)}}>
+      <SidebarCard header={{start: '精选专栏', end: (<SiteLink site={Site.home} newWindow url={'/blog'}>更多 {'>'}</SiteLink>)}}>
         <ul>
           {blogs.map((value) => (
             <li key={value.id}>
-              <SiteLink site={Site.home} newWindow url={`https://tidb.net/blog/${value.slug}`}>{value.title}</SiteLink>
+              <SiteLink site={Site.home} newWindow url={`/blog/${value.slug}`}>{value.title}</SiteLink>
             </li>
           ))}
         </ul>

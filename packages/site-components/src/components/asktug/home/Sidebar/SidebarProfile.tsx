@@ -5,6 +5,8 @@ import axios from "axios";
 
 import './SidebarProfile.less'
 import SidebarCard from "./SidebarCard";
+import SiteLink from "../../../site-link";
+import {Site} from "../../../../utils/site";
 
 export interface IProps extends React.HTMLAttributes<HTMLDivElement> {
   count: {
@@ -120,14 +122,14 @@ const SidebarProfile: React.FC<IProps> = (props) => {
 
         <Row className={'asktug-sidebar-profile-action'} gutter={16}>
           <Col span={12}>
-            <a href={`https://asktug.com/u/${username}`}>
+            <SiteLink site={Site.asktug} newWindow url={`/u/${username}`}>
               <Button block ghost type={'primary'} size={'small'}>个人主页</Button>
-            </a>
+            </SiteLink>
           </Col>
           <Col span={12}>
-            <a href={`https://tidb.net/member`}>
+            <SiteLink site={Site.home} newWindow url={`/member`}>
               <Button block ghost type={'primary'} size={'small'} icon={<GiftOutlined />}>会员中心</Button>
-            </a>
+            </SiteLink>
           </Col>
         </Row>
       </SidebarCard>
