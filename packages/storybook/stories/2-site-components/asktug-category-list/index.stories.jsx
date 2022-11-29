@@ -3,9 +3,7 @@ import React from 'react'
 
 const AsktugCategoryListPreview = ({}) => {
   return (
-    <SiteComponentsContext.Provider value={{ fetchers: { accounts, asktug, blog } }}>
-      <CategoryList />
-    </SiteComponentsContext.Provider>
+    <CategoryList />
   )
 }
 
