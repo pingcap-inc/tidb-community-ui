@@ -3,6 +3,7 @@ import classNames from "classnames"
 
 import './CategoryList.less'
 import axios from "axios";
+import {Space} from "antd";
 
 export interface IProps extends React.HTMLAttributes<HTMLDivElement> {
   //items: ICategoryItem[]
@@ -29,7 +30,8 @@ const colors: ICategoryItemColor[] = [
 ]
 
 const getCategories = async (): Promise<ICategoryItem[]> => {
-  const url = 'https://asktug.com/site.json'
+  //const url = 'https://asktug.com/site.json'
+  const url = 'http://localhost:3100/site.json'
   const response = await axios.get(url)
   const categories = response.data.categories
   return categories
@@ -40,24 +42,23 @@ const CategoryList: React.FC<IProps> = (props) => {
   const {children, className, ...rest} = props
   const [categories, setCategories] = useState<ICategoryItem[]>([]);
   useEffect(() => {
-    getCategories().then((value) => {
-      setCategories(value)
-      console.log({value})
-    })
+    getCategories().then(setCategories)
   }, [])
   return (
-    <div className={classNames(className, 'asktug-category-list')} {...rest}>
+    <Space className={classNames(className, 'asktug-category-list')} {...rest}>
       {categories.map((value, index) => (
-        <div key={value.name} className={'asktug-category-list-item'} style={{...colors[index % colors.length]}}>
-          <div className={'asktug-category-list-item-header'}>
-            <div className={'asktug-category-list-item-header-name'}>{value.name}</div>
-          </div>
-          <div className={'asktug-category-list-item-body'}>
-            <div className={'asktug-category-list-item-header-description'}>{value.description}</div>
+        <div key={value.name} className={'asktug-category-list-item-wrap'} style={{background: colors[index % colors.length].borderColor}}>
+          <div className={'asktug-category-list-item'} style={{background: colors[index % colors.length].backgroundColor}}>
+            <div className={'asktug-category-list-item-header'}>
+              <div className={'asktug-category-list-item-header-name'}>{value.name}</div>
+            </div>
+            <div className={'asktug-category-list-item-body'}>
+              <div className={'asktug-category-list-item-body-description'} dangerouslySetInnerHTML={{__html: value.description}} />
+            </div>
           </div>
         </div>
       ))}
-    </div>
+    </Space>
   )
 }
 
