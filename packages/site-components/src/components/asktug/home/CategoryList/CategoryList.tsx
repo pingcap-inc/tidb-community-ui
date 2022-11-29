@@ -40,7 +40,10 @@ const CategoryList: React.FC<IProps> = (props) => {
   const {children, className, ...rest} = props
   const [categories, setCategories] = useState<ICategoryItem[]>([]);
   useEffect(() => {
-    getCategories().then(setCategories)
+    getCategories().then((value) => {
+      setCategories(value)
+      console.log({value})
+    })
   }, [])
   return (
     <div className={classNames(className, 'asktug-category-list')} {...rest}>
