@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react"
 import classNames from "classnames"
 
-import styles from './CategoryList.less'
+import './CategoryList.less'
 import axios from "axios";
 
 export interface IProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -43,14 +43,14 @@ const CategoryList: React.FC<IProps> = (props) => {
     getCategories().then(setCategories)
   }, [])
   return (
-    <div className={classNames(className, styles.container)} {...rest}>
+    <div className={classNames(className, 'asktug-category-list')} {...rest}>
       {categories.map((value, index) => (
-        <div key={value.name} className={styles.item} style={{...colors[index % colors.length]}}>
-          <div className={styles.item_header}>
-            <div className={styles.item_header_name}>{value.name}</div>
+        <div key={value.name} className={'asktug-category-list-item'} style={{...colors[index % colors.length]}}>
+          <div className={'asktug-category-list-item-header'}>
+            <div className={'asktug-category-list-item-header-name'}>{value.name}</div>
           </div>
-          <div className={styles.item_body}>
-            <div className={styles.item_body_description}>{value.description}</div>
+          <div className={'asktug-category-list-item-body'}>
+            <div className={'asktug-category-list-item-header-description'}>{value.description}</div>
           </div>
         </div>
       ))}
