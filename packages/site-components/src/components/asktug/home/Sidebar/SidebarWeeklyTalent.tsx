@@ -19,7 +19,7 @@ export interface IBlog {
 }
 
 const getBlogs = async (): Promise<IBlog[]> => {
-  const url = 'http://localhost:3200/blog/api/posts/recommend'
+  const url = 'http://localhost:3300/blog/api/posts/recommend'
   const response = await axios.get(url)
   return response.data.content
 }

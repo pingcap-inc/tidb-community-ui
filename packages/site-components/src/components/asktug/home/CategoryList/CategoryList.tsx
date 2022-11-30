@@ -31,7 +31,7 @@ const colors: ICategoryItemColor[] = [
 
 const getCategories = async (): Promise<ICategoryItem[]> => {
   //const url = 'https://asktug.com/site.json'
-  const url = 'http://localhost:3100/site.json'
+  const url = 'http://localhost:3300/site.json'
   const response = await axios.get(url)
   const categories = response.data.categories
   return categories

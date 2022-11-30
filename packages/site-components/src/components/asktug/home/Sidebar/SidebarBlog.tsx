@@ -19,7 +19,7 @@ export interface IBlog {
 }
 
 const getBlogs = async (): Promise<IBlog[]> => {
-  const url = 'http://localhost:3200/blog/api/posts/recommend'
+  const url = 'http://localhost:3300/blog/api/posts/recommend'
   const response = await axios.get(url)
   return response.data.content
 }
@@ -35,7 +35,7 @@ const SidebarBlog: React.FC<IProps> = (props) => {
     <div className={'asktug-sidebar-blog'}>
       <SidebarCard header={{start: '精选专栏', end: (<SiteLink site={Site.home} newWindow url={'/blog'}>更多 {'>'}</SiteLink>)}}>
         <ul>
-          {blogs.map((value) => (
+          {blogs.slice(0, 10).map((value) => (
             <li key={value.id}>
               <SiteLink site={Site.home} newWindow url={`/blog/${value.slug}`}>{value.title}</SiteLink>
             </li>
