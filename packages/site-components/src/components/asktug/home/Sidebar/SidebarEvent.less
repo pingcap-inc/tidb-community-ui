@@ -1,7 +1,73 @@
 
 .asktug {
   &-sidebar {
-    &-blog {
+    &-event {
+      &-container {
+        display: flex;
+        cursor: pointer;
+        padding: 1rem 0;
+        border-bottom: 1px solid #e9eaee;
+        &:hover {
+          border-color: #be1d32;
+          svg {
+            visibility: visible;
+          }
+        }
+        &-head {
+          font-size: 14px;
+          color: #ffffff;
+          background: #b6b9c3;
+        }
+        &-body {
+          display: flex;
+          justify-content: center;
+          height: 25px;
+          font-size: 18px;
+          font-weight: bold;
+          color: #2d3758;
+          background: #ffffff;
+          position: relative;
+          &-arrow {
+            position: absolute;
+            bottom: -2px;
+            right: -1px;
+            color: #b6b9c3;
+            transform: rotate(-45deg);
+            z-index: 2;
+            width: 13px;
+            height: 13px;
+            &-oppsite {
+              color: #f7f8f9;
+              transform: rotate(135deg);
+              bottom: -5px;
+              right: -5px;
+              z-index: 1;
+            }
+          }
+        }
+      }
+      &-content {
+        flex: 1;
+
+        h3 {
+          font-size: 16px;
+          font-weight: normal;
+          margin-bottom: 0;
+        }
+
+        .ant-badge {
+          margin-left: 2rem;
+
+          &-status-text {
+            font-size: 12px;
+            color: rgba(#2c2c2c, 0.6);
+          }
+
+          &:first-child {
+            margin-left: 0;
+          }
+        }
+      }
       ul {
         list-style: none;
         a {

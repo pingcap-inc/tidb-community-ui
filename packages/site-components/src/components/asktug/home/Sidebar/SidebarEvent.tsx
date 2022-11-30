@@ -1,10 +1,13 @@
 import React, {useEffect, useState} from "react"
 import axios from "axios";
+import dayjs from "dayjs";
+import {Badge} from "antd";
 
 import './SidebarEvent.less'
 import SidebarCard from "./SidebarCard";
 import SiteLink from "../../../site-link";
 import {Site} from "../../../../utils/site";
+import {CaretUpOutlined} from "@ant-design/icons";
 
 export interface IProps extends React.HTMLAttributes<HTMLDivElement> {
 }
@@ -23,9 +26,10 @@ export interface IEvent {
 }
 
 const getEvents = async () => {
-  const url = 'http://localhost:3300/api/cms/tidbio-homepage-main-activities'
-  const response = await axios.get<IEvent[]>(url)
-  return response.data
+  //const url = 'http://localhost:3300/next-api/cms/tidbio-homepage-main-activities'
+  //const response = await axios.get<IEvent[]>(url)
+  //return response.data
+  return []
 }
 
 const SidebarEvent: React.FC<IProps> = (props) => {
@@ -35,17 +39,39 @@ const SidebarEvent: React.FC<IProps> = (props) => {
   useEffect(() => {
     getEvents().then(setEvents)
   }, [])
+
   return (
     <div className={'asktug-sidebar-event'}>
       <SidebarCard header={{start: '活动日历', end: (<SiteLink site={Site.home} newWindow url={'/event'}>更多 {'>'}</SiteLink>)}}>
         <ul>
-          {events.map((value) => (
-            <li key={value.id}>
-              <SiteLink site={Site.home} newWindow url={`/event`}>
-
-              </SiteLink>
-            </li>
-          ))}
+          {events.map((value) => {
+            const dayObj = dayjs(value.date);
+            const month = dayObj.format('MMM');
+            const day = dayObj.format('D');
+            return (
+              <li key={value.id}>
+                <SiteLink site={Site.home} newWindow url={`/event`}>
+                  <div className={'asktug-sidebar-event-container'}>
+                    <div className={'asktug-sidebar-event-container-calendar'}>
+                      <div className={'asktug-sidebar-event-container-calendar-head'}>{month}</div>
+                      <div className={'asktug-sidebar-event-container-calendar-body'}>
+                        {day}
+                        <CaretUpOutlined className="asktug-sidebar-event-container-calendar-body-arrow" />
+                        <CaretUpOutlined className="asktug-sidebar-event-container-calendar-body-arrow-oppsite" />
+                      </div>
+                    </div>
+                    <div className={'asktug-sidebar-event-container-content'}>
+                      <h3>{value.title}</h3>
+                      <div>
+                        {/*{value.status && <Badge color={'#ee6d85'} text={value.status} />}*/}
+                        {value.type && <Badge color={'#69c384'} text={value.type} />}
+                      </div>
+                    </div>
+                  </div>
+                </SiteLink>
+              </li>
+            )
+          })}
         </ul>
       </SidebarCard>
     </div>
