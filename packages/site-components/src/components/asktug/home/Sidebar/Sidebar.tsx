@@ -5,7 +5,7 @@ import './Sidebar.less'
 import SidebarProfile from "./SidebarProfile";
 import SidebarBlog from "./SidebarBlog";
 import SidebarEvent from "./SidebarEvent";
-import SidebarRanking from "./SidebarWeeklyTalent";
+import SidebarRanking from "./SidebarRanking";
 
 export interface IProps extends React.HTMLAttributes<HTMLDivElement> {
 }
