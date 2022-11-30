@@ -2,7 +2,6 @@ import React, {useEffect, useState} from "react"
 import axios from "axios";
 
 import './SidebarRanking.less'
-//import icon from './ranking-icon.png'
 import SidebarCard from "./SidebarCard";
 import SiteLink from "../../../site-link";
 import {Site} from "../../../../utils/site";
@@ -28,7 +27,6 @@ export interface ITop {
 const getData = async (): Promise<ITop> => {
   const url = 'http://localhost:3300/api/points/top'
   const response = await axios.get<ITop>(url)
-  console.log('response.data', response.data)
   return response.data
 }
 

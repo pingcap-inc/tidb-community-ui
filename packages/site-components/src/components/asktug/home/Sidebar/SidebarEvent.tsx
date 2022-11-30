@@ -3,6 +3,7 @@ import dayjs from "dayjs";
 import {Badge} from "antd";
 
 import './SidebarEvent.less'
+import IconSvg from './event-icon.svg'
 import SidebarCard from "./SidebarCard";
 import SiteLink from "../../../site-link";
 import {Site} from "../../../../utils/site";
@@ -41,7 +42,7 @@ const SidebarEvent: React.FC<IProps> = (props) => {
 
   return (
     <div className={'asktug-sidebar-event'}>
-      <SidebarCard header={{start: '活动日历', end: (<SiteLink site={Site.home} newWindow url={'/event'}>更多 {'>'}</SiteLink>)}}>
+      <SidebarCard header={{start: (<>活动日历 <IconSvg /></>), end: (<SiteLink site={Site.home} newWindow url={'/event'}>更多 {'>'}</SiteLink>)}}>
         <ul>
           {events.map((value) => {
             const dayObj = dayjs(value.date);

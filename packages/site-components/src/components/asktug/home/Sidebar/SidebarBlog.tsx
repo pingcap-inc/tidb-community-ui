@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react"
 import axios from "axios";
 
 import './SidebarBlog.less'
+import IconSvg from './blog-icon.svg'
 import SidebarCard from "./SidebarCard";
 import SiteLink from "../../../site-link";
 import {Site} from "../../../../utils/site";
@@ -33,7 +34,7 @@ const SidebarBlog: React.FC<IProps> = (props) => {
   }, [])
   return (
     <div className={'asktug-sidebar-blog'}>
-      <SidebarCard header={{start: '精选专栏', end: (<SiteLink site={Site.home} newWindow url={'/blog'}>更多 {'>'}</SiteLink>)}}>
+      <SidebarCard header={{start: (<>精选专栏 <IconSvg /></>), end: (<SiteLink site={Site.home} newWindow url={'/blog'}>更多 {'>'}</SiteLink>)}}>
         <ul>
           {blogs.slice(0, 10).map((value) => (
             <li key={value.id}>
