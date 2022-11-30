@@ -5,7 +5,7 @@ import './Sidebar.less'
 import SidebarProfile from "./SidebarProfile";
 import SidebarBlog from "./SidebarBlog";
 import SidebarEvent from "./SidebarEvent";
-import SidebarWeeklyTalent from "./SidebarWeeklyTalent";
+import SidebarRanking from "./SidebarWeeklyTalent";
 
 export interface IProps extends React.HTMLAttributes<HTMLDivElement> {
 }
@@ -21,7 +21,7 @@ const Sidebar: React.FC<IProps> = (props) => {
       }} username={'ShawnYan'} />
       <SidebarBlog />
       <SidebarEvent />
-      <SidebarWeeklyTalent />
+      <SidebarRanking />
     </Space>
   )
 }
