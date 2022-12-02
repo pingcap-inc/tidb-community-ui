@@ -54,6 +54,8 @@ const accounts: Fetcher = (key: string) => {
   switch (key) {
     case 'me':
       return fetch(`${ACCOUNTS_BASE}${meUrl}`, { credentials: 'include' }).then(processResponse)
+    case 'accounts.points.top':
+      return fetch(`${ACCOUNTS_BASE}/api/points/top`, { credentials: 'include' }).then(processResponse)
     default:
       throw new Error('not implemented')
   }
@@ -113,6 +115,8 @@ const blog: Fetcher = (key: string, params: any) => {
       return fetch(`${BLOG_BASE}/api/notifications/summary`, { headers: { accept: 'application/json' }, credentials: 'include' }).then(processResponse)
     case 'blog.readNotification':
       return fetch(`${BLOG_BASE}/api/notifications/${params}/read`, { method: 'PATCH', credentials: 'include' })
+    case 'blog.getRecommend':
+      return fetch(`${BLOG_BASE}/api/posts/recommend`, {})
     default:
       throw new Error('not implemented')
   }

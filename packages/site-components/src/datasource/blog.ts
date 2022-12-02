@@ -126,3 +126,18 @@ export function useBlogNotificationsSummary (): SWRResponse<BlogNotificationsSum
 
   return useSWR(['blog.getNotificationsSummary'], { fetcher })
 }
+
+export interface IBlog {
+  id: number // 929,
+  slug: string // "eb3cb609",
+  status: string // "PUBLISHED",
+  origin: string // "ORIGINAL",
+  title: string // "什么是分布式数据库？我不信，看完这篇你还不懂!",
+  summary: string // "自从互联网进入了 web2.0 时代以来，数据库作为核心的底层基础设施软件也经历了蓬勃的发展期，从早期的单机关系型数据库到NoSQL 再到如今的 NewSQL，数据库领域不管是技术还是场景都发生...",
+}
+
+export function useBlogRecommend (): SWRResponse<SpringPage<IBlog>> {
+  const { fetchers: { blog: fetcher } } = useContext(SiteComponentsContext)
+
+  return useSWR(['blog.getRecommend'], { fetcher })
+}

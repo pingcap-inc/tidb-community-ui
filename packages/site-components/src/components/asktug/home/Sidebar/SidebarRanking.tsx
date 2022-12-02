@@ -1,42 +1,19 @@
-import React, {useEffect, useState} from "react"
-import axios from "axios";
+import React from "react"
 
 import './SidebarRanking.less'
 import SidebarCard from "./SidebarCard";
 import SiteLink from "../../../site-link";
 import {Site} from "../../../../utils/site";
+import {usePointTop} from "../../../../datasource/accounts";
 
 export interface IProps extends React.HTMLAttributes<HTMLDivElement> {
-}
-
-export interface ITopItem {
-  ranking: number // 1,
-  user: {
-    username: string // "h5n1",
-    avatar_url: string // "https://asktug.com/user_avatar/asktug.com/h5n1/50/154936_2.png"
-  },
-  exps: number // 41333
-}
-
-export interface ITop {
-  limit: number // 50,
-  period: string // "all"
-  data: ITopItem[]
-}
-
-const getData = async (): Promise<ITop> => {
-  const url = 'http://localhost:3300/api/points/top'
-  const response = await axios.get<ITop>(url)
-  return response.data
 }
 
 const SidebarRanking: React.FC<IProps> = (props) => {
 //function CategoryList(props: IProps) {
   const {children, className, ...rest} = props
-  const [data, setData] = useState<ITopItem[]>([])
-  useEffect(() => {
-    getData().then((value) => setData(value.data))
-  }, [])
+  const {data, error, isValidating} = usePointTop()
+  const list = data?.data ?? []
   return (
     <div className={'asktug-sidebar-ranking'}>
       <SidebarCard header={{start: '本周达人', end: (<SiteLink site={Site.asktug} newWindow url={'/x/ranking'}>更多 {'>'}</SiteLink>)}}>
@@ -49,7 +26,7 @@ const SidebarRanking: React.FC<IProps> = (props) => {
             </tr>
           </thead>
           <tbody>
-            {data.slice(0, 10).map((value) => (
+            {list.slice(0, 10).map((value) => (
               <tr key={value.user.username}>
                 <td style={{color: value.ranking === 1 ? '#FFB800' : value.ranking === 2 ? '#969696' : value.ranking === 3 ? '#B7B004' : '#2C2C2C'}}>{value.ranking}</td>
                 <td> <SiteLink site={Site.asktug} newWindow url={`/u/${value.user.username}`}>{value.user.username}</SiteLink></td>

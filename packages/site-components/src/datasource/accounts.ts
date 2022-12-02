@@ -44,3 +44,23 @@ export const useMeData = (): SWRResponse<ApiResponse<MeData, void>> => {
   const { fetchers: { accounts: fetcher } } = useContext(SiteComponentsContext)
   return useSWR<ApiResponse<MeData, void>>(['me'], { fetcher })
 }
+
+export interface ITopItem {
+  ranking: number // 1,
+  user: {
+    username: string // "h5n1",
+    avatar_url: string // "https://asktug.com/user_avatar/asktug.com/h5n1/50/154936_2.png"
+  },
+  exps: number // 41333
+}
+
+export interface ITop {
+  limit: number // 50,
+  period: string // "all"
+  data: ITopItem[]
+}
+
+export const usePointTop = (): SWRResponse<ApiResponse<ITop, void>> => {
+  const { fetchers: { accounts: fetcher } } = useContext(SiteComponentsContext)
+  return useSWR<ApiResponse<ITop, void>>(['accounts.points.top'], { fetcher })
+}

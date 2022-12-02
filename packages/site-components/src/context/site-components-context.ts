@@ -13,6 +13,9 @@ export interface SiteComponentsContextProps {
 
     // fetcher for tidb.io/blog/*
     blog: Fetcher<any, FetcherKey>
+
+    // fetcher for tidb.io/next-api/*
+    home: Fetcher<any, FetcherKey>
   }
 }
 
@@ -26,7 +29,10 @@ const SiteComponentsContext = createContext<SiteComponentsContextProps>({
     },
     blog: () => {
       throw new Error('fetchers.blog not provided')
-    }
+    },
+    home: () => {
+      throw new Error('fetchers.home not provided')
+    },
   },
 })
 
