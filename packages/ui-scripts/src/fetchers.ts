@@ -94,6 +94,9 @@ const asktug: Fetcher = (key: string, params: any) => {
     case 'asktug.getPrivateMessagesSent':
       // @ts-ignore
       return fetch(`${ASKTUG_BASE}/topics/private-messages-sent/${params.username}`, { headers: { accept: 'application/json' }, credentials: 'include' }).then(processResponse)
+    case 'asktug.site':
+      // @ts-ignore
+      return fetch(`${ASKTUG_BASE}/site.json`, { headers: { accept: 'application/json' }, credentials: 'include' }).then(processResponse)
     default:
       throw new Error('not implemented')
   }

@@ -2,18 +2,11 @@ import React, {useEffect, useState} from "react"
 import classNames from "classnames"
 
 import './CategoryList.less'
-import axios from "axios";
 import {Space} from "antd";
+import {ICategoryItem, useAsktugSite} from "../../../../datasource/asktug";
 
 export interface IProps extends React.HTMLAttributes<HTMLDivElement> {
   //items: ICategoryItem[]
-}
-
-export interface ICategoryItem {
-  id: number // 30022,
-  name: string // "🪐 TiDB",
-  color: string // "25AAE2",
-  description: string // TiDB、TiKV、TiFlash、PD 等核心组件和监控组件如 Dashboard、Grafana、Prometheus、Alert Manager 等问题
 }
 
 export interface ICategoryItemColor {
@@ -29,21 +22,12 @@ const colors: ICategoryItemColor[] = [
   {backgroundColor: '#FBF6FF', borderColor: 'linear-gradient(96.8deg, rgba(5, 0, 255, 0.5) -0.96%, rgba(255, 92, 0, 0.5) 101.3%)'},
 ]
 
-const getCategories = async (): Promise<ICategoryItem[]> => {
-  //const url = 'https://asktug.com/site.json'
-  const url = 'http://localhost:3300/site.json'
-  const response = await axios.get(url)
-  const categories = response.data.categories
-  return categories
-}
-
 const CategoryList: React.FC<IProps> = (props) => {
 //function CategoryList(props: IProps) {
   const {children, className, ...rest} = props
-  const [categories, setCategories] = useState<ICategoryItem[]>([]);
-  useEffect(() => {
-    getCategories().then(setCategories)
-  }, [])
+  const {data, error, isValidating} = useAsktugSite();
+  console.log({data, error, isValidating})
+  const categories: ICategoryItem[] = data?.categories ?? []
   return (
     <Space className={classNames(className, 'asktug-category-list')} {...rest}>
       {categories.map((value, index) => (

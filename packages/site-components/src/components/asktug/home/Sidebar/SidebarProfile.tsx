@@ -18,50 +18,6 @@ export interface IProps extends React.HTMLAttributes<HTMLDivElement> {
   username: string
 }
 
-export interface IBadge {
-  id: number // 116,
-  name: string // "PCTP - DBA",
-  description: string // "PCTP - DBA（PingCAP Certified TiDB Administration Professional）",
-  grant_count: number // 519,
-  allow_title: false,
-  multiple_grant: false,
-  icon: string // "fa-certificate",
-  image_url: string // "/uploads/default/original/4X/c/7/2/c7295e250f66569b17c3166312ff33c07c6bcce7.png",
-  listable: true,
-  enabled: true,
-  badge_grouping_id: number // 30013,
-  system: false,
-  slug: string // "-",
-  manually_grantable: true,
-  badge_type_id: number // 1
-}
-
-export interface IUser {
-  badges: IBadge[]
-  user: {
-    id: number // 116,
-    name: string // "PCTP - DBA",
-    badge_count: number // 26
-  }
-}
-
-export interface IBadges {
-  badges: IBadge[]
-}
-
-const getUser = async (username: string): Promise<IUser> => {
-  //const url = 'https://asktug.com/site.json'
-  const url = `http://localhost:3100/u/${username}.json`
-  const response = await axios.get(url)
-  return  response.data
-}
-
-const getBadges = async (): Promise<IBadges> => {
-  const url = 'http://localhost:3100/badges.json'
-  const response = await axios.get(url)
-  return response.data
-}
-
 const SidebarProfile: React.FC<IProps> = (props) => {
 //function CategoryList(props: IProps) {
   const {children, className, count, username, ...rest} = props

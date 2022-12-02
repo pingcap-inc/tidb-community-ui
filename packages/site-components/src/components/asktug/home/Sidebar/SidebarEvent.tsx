@@ -27,7 +27,7 @@ export interface IEvent {
 }
 
 const getEvents = async () => {
-  const url = 'http://localhost:3000/next-api/cms/tidbio-homepage-main-activities'
+  const url = 'https://tidb.net/next-api/cms/tidbio-homepage-main-activities'
   let response
   try {
     response = await axios.get<IEvent[]>(url)
@@ -51,7 +51,7 @@ const SidebarEvent: React.FC<IProps> = (props) => {
     <div className={'asktug-sidebar-event'}>
       <SidebarCard header={{start: (<>活动日历 <IconSvg /></>), end: (<SiteLink site={Site.home} newWindow url={'/event'}>更多 {'>'}</SiteLink>)}}>
         <Space direction={'vertical'} size={16} split={<Divider style={{margin: 0}} />}>
-          {events.map((value) => {
+          {events.slice(0, 2).map((value) => {
             const dayObj = dayjs(value.date);
             const month = dayObj.format('MMM');
             const day = dayObj.format('D');
