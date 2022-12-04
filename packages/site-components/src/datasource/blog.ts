@@ -138,6 +138,10 @@ export interface IBlog {
 
 export function useBlogRecommend (): SWRResponse<SpringPage<IBlog>> {
   const { fetchers: { blog: fetcher } } = useContext(SiteComponentsContext)
-
   return useSWR(['blog.getRecommend'], { fetcher })
+}
+
+export function useBlogUsersPosts (username: string): SWRResponse<SpringPage<IBlog>> {
+  const { fetchers: { blog: fetcher } } = useContext(SiteComponentsContext)
+  return useSWR(['blog.users.posts'], { fetcher })
 }

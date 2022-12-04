@@ -15,6 +15,7 @@ const SidebarBlog: React.FC<IProps> = (props) => {
   const {children, className, ...rest} = props
   const {data, error, isValidating} = useBlogRecommend()
   const blogs = data?.content ?? []
+  console.log({data})
   return (
     <div className={'asktug-sidebar-blog'}>
       <SidebarCard header={{start: (<>精选专栏 <IconSvg /></>), end: (<SiteLink site={Site.home} newWindow url={'/blog'}>更多 {'>'}</SiteLink>)}}>

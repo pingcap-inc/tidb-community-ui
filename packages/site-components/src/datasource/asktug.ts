@@ -292,3 +292,13 @@ export const useAsktugSite = () => {
   const { fetchers: { asktug: fetcher } } = useContext(SiteComponentsContext)
   return useSWR([`asktug.site`], { fetcher })
 }
+
+export const useAsktugBadges = () => {
+  const {fetchers: {asktug: fetcher}} = useContext(SiteComponentsContext)
+  return useSWR([`asktug.badges`], {fetcher})
+}
+
+export const useAsktugUserSummary = (username: string) => {
+  const { fetchers: { asktug: fetcher } } = useContext(SiteComponentsContext)
+  return useSWR([`asktug.user.summary`], { fetcher })
+}

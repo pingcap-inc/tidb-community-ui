@@ -1,25 +1,8 @@
-import {SidebarBlog, SiteComponentsContext} from '@pingcap-inc/tidb-community-site-components'
-import React, {useCallback} from 'react'
-import mockData from "./blogRecommend.json";
-import {sleep} from "../../../../utils";
+import React from 'react'
+import {SidebarBlog} from '@pingcap-inc/tidb-community-site-components'
 
 const SidebarBlogPreview = (props) => {
-  const blog = useCallback(async (key, ...params) => {
-    console.log('blog: ', {key}, {params})
-    await sleep()
-    return new Promise((resolve, reject) => {
-      if (key === 'blog.getRecommend') {
-        resolve(mockData)
-      } else {
-        reject()
-      }
-    })
-  }, [])
-  return (
-    <SiteComponentsContext.Provider value={{ fetchers: { blog } }}>
-      <SidebarBlog {...props}/>
-    </SiteComponentsContext.Provider>
-  )
+  return <SidebarBlog {...props}/>
 }
 
 export default {

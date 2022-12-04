@@ -1,11 +1,8 @@
-import {SidebarProfile} from '@pingcap-inc/tidb-community-site-components'
 import React from 'react'
+import {SidebarProfile} from '@pingcap-inc/tidb-community-site-components'
 
 const SidebarProfilePreview = (props) => {
-  // const myProps = {header: {start: 'title', end: 'more'}, body: 'body'}
-  return (
-    <SidebarProfile {...props}/>
-  )
+  return <SidebarProfile {...props}/>
 }
 
 export default {
@@ -18,12 +15,6 @@ const Template = (args) => <SidebarProfilePreview {...args} />
 export const Preview = Template.bind({})
 
 Preview.args = {
-  count: {
-    post: 756,
-    like: 756,
-    article: 34,
-    exp: 65739,
-  },
   username: 'ShawnYan'
 }
 

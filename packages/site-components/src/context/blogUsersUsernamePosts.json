@@ -1,0 +1,60 @@
+{
+  "content": [
+    {
+      "id": 493,
+      "slug": "d7fdcaf0",
+      "status": "DRAFT",
+      "origin": "ORIGINAL",
+      "title": "fdsa",
+      "summary": null,
+      "publishedAt": null,
+      "recommended": null,
+      "recommendAt": null,
+      "createdAt": "2022-02-15T16:57:57.000+00:00",
+      "lastModifiedAt": "2022-02-15T16:57:57.000+00:00",
+      "deletedAt": null,
+      "likes": 0,
+      "comments": 0,
+      "visits": 0,
+      "score": 0,
+      "author": {
+        "id": 2,
+        "username": "cw1997",
+        "avatarURL": "https://asktug.com/letter_avatar_proxy/v4/letter/c/e5b9ba/50.png"
+      },
+      "category": null,
+      "tags": []
+    },
+    {
+      "id": 491,
+      "slug": "4b13e2c2",
+      "status": "DRAFT",
+      "origin": "ORIGINAL",
+      "title": "test",
+      "summary": "test",
+      "publishedAt": null,
+      "recommended": null,
+      "recommendAt": null,
+      "createdAt": "2022-02-15T04:44:42.000+00:00",
+      "lastModifiedAt": "2022-02-15T04:44:42.000+00:00",
+      "deletedAt": null,
+      "likes": 0,
+      "comments": 0,
+      "visits": 0,
+      "score": 0,
+      "author": {
+        "id": 2,
+        "username": "cw1997",
+        "avatarURL": "https://asktug.com/letter_avatar_proxy/v4/letter/c/e5b9ba/50.png"
+      },
+      "category": null,
+      "tags": []
+    }
+  ],
+  "page": {
+    "number": 1,
+    "size": 20,
+    "totalElements": 2,
+    "totalPages": 1
+  }
+}

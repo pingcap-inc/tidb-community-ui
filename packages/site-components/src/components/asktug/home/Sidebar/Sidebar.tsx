@@ -8,17 +8,13 @@ import SidebarEvent from "./SidebarEvent";
 import SidebarRanking from "./SidebarRanking";
 
 export interface IProps extends React.HTMLAttributes<HTMLDivElement> {
+  username: string
 }
 
 const Sidebar: React.FC<IProps> = (props) => {
   return (
     <Space className={'asktug-sidebar'} direction={'vertical'} size={12}>
-      <SidebarProfile count={{
-        post: 756,
-        like: 756,
-        article: 34,
-        exp: 65739,
-      }} username={'ShawnYan'} />
+      <SidebarProfile username={props.username} />
       <SidebarBlog />
       <SidebarEvent />
       <SidebarRanking />

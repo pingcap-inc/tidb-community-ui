@@ -1,33 +1,29 @@
 import React, {useEffect, useState} from "react"
 import {Button, Col, Row, Space, Tooltip} from "antd";
 import {GiftOutlined} from "@ant-design/icons";
-import axios from "axios";
 
 import './SidebarProfile.less'
 import SidebarCard from "./SidebarCard";
 import SiteLink from "../../../site-link";
 import {Site} from "../../../../utils/site";
+import {useAsktugBadges, useAsktugUserSummary} from "../../../../datasource/asktug";
+import {useBlogUsersPosts} from "../../../../datasource/blog";
+import {usePointMe} from "../../../../datasource/accounts";
 
 export interface IProps extends React.HTMLAttributes<HTMLDivElement> {
-  count: {
-    post: number
-    like: number
-    article: number
-    exp: number
-  }
   username: string
 }
 
 const SidebarProfile: React.FC<IProps> = (props) => {
 //function CategoryList(props: IProps) {
-  const {children, className, count, username, ...rest} = props
+  const {children, className, username, ...rest} = props
   //console.log({props})
-  const [user, setUser] = useState<IUser>()
-  const [badges, setBadges] = useState<IBadges>()
-  useEffect(() => {
-    getUser(username).then(setUser)
-    getBadges().then(setBadges)
-  }, [])
+  const {data: dataPointMe, error: errorPointMe} = usePointMe()
+  const {data: dataBadges, error: errorBadges} = useAsktugBadges()
+  const {data: dataUserSummary, error: errorUserSummary} = useAsktugUserSummary(props.username)
+  const {data: dataBlogUsersPosts, error: errorBlogUsersPosts} = useBlogUsersPosts(props.username)
+  console.log({dataPointMe, dataBadges, dataUserSummary, dataBlogUsersPosts})
+  console.error({errorPointMe, errorBadges, errorUserSummary, errorBlogUsersPosts})
   return (
     <div className={'asktug-sidebar-profile'}>
       <SidebarCard header={{start: '我的社区旅程'}}>
@@ -35,25 +31,25 @@ const SidebarProfile: React.FC<IProps> = (props) => {
         <Row className={'asktug-sidebar-profile-count'} gutter={16}>
           <Col span={6}>
             <div className={'asktug-sidebar-profile-count-item'}>
-              <div className={'asktug-sidebar-profile-count-item-value'}>{count.post}</div>
+              <div className={'asktug-sidebar-profile-count-item-value'}>{dataUserSummary?.user_summary.post_count ?? 'N/A'}</div>
               <div className={'asktug-sidebar-profile-count-item-key'}>帖子</div>
             </div>
           </Col>
           <Col span={6}>
             <div className={'asktug-sidebar-profile-count-item'}>
-              <div className={'asktug-sidebar-profile-count-item-value'}>{count.like}</div>
+              <div className={'asktug-sidebar-profile-count-item-value'}>{dataUserSummary?.user_summary.likes_received ?? 'N/A'}</div>
               <div className={'asktug-sidebar-profile-count-item-key'}>获赞</div>
             </div>
           </Col>
           <Col span={6}>
             <div className={'asktug-sidebar-profile-count-item'}>
-              <div className={'asktug-sidebar-profile-count-item-value'}>{count.article}</div>
+              <div className={'asktug-sidebar-profile-count-item-value'}>{dataBlogUsersPosts?.page.totalElements ?? 'N/A'}</div>
               <div className={'asktug-sidebar-profile-count-item-key'}>文章</div>
             </div>
           </Col>
           <Col span={6}>
             <div className={'asktug-sidebar-profile-count-item'}>
-              <div className={'asktug-sidebar-profile-count-item-value'}>{count.exp}</div>
+              <div className={'asktug-sidebar-profile-count-item-value'}>{dataPointMe?.data.current_exps ?? 'N/A'}</div>
               <div className={'asktug-sidebar-profile-count-item-key'}>经验值</div>
             </div>
           </Col>
@@ -63,7 +59,7 @@ const SidebarProfile: React.FC<IProps> = (props) => {
 
         <div className={'asktug-sidebar-profile-badges'}>
           <Space className={'asktug-sidebar-profile-badges-list'}>
-            {user?.badges.slice(0, 5).map((value) => (
+            {(dataUserSummary?.badges ?? []).slice(0, 5).map((value: any) => (
               <div key={value.id} className={'asktug-sidebar-profile-badges-list-item'}>
                 <Tooltip title={value.description}>
                   <img src={`https://asktug.com/${value.image_url}`} alt={value.name} />
@@ -72,7 +68,7 @@ const SidebarProfile: React.FC<IProps> = (props) => {
             ))}
           </Space>
           <div className={'asktug-sidebar-profile-badges-count'}>
-            <span style={{color: '#000'}}>{user?.user.badge_count ?? 'N/A'}</span><span style={{color: '#BFBFBF'}}>{' / '}{badges?.badges.length ?? 'N/A'}</span>
+            <span style={{color: '#000'}}>{dataUserSummary?.badges.length ?? 'N/A'}</span><span style={{color: '#BFBFBF'}}>{' / '}{dataBadges?.badges?.length ?? 'N/A'}</span>
           </div>
         </div>
 

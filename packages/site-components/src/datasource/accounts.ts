@@ -60,7 +60,28 @@ export interface ITop {
   data: ITopItem[]
 }
 
+export interface IPointsMe {
+  "detail": string // "success",
+  "data": {
+    "current_level": number // 4,
+    "current_points": number // 375,
+    "current_exps": number // 245,
+    "current_rank": number // 3029,
+    "is_today_checked": boolean // false,
+    "level_desc": {
+      "min_exps": number // 200,
+      "max_exps": number // 499,
+      "progress": number // 0.1505
+    }
+  }
+}
+
 export const usePointTop = (): SWRResponse<ApiResponse<ITop, void>> => {
   const { fetchers: { accounts: fetcher } } = useContext(SiteComponentsContext)
   return useSWR<ApiResponse<ITop, void>>(['accounts.points.top'], { fetcher })
+}
+
+export const usePointMe = (): SWRResponse<ApiResponse<IPointsMe, void>> => {
+  const { fetchers: { accounts: fetcher } } = useContext(SiteComponentsContext)
+  return useSWR<ApiResponse<IPointsMe, void>>(['accounts.points.me'], { fetcher })
 }

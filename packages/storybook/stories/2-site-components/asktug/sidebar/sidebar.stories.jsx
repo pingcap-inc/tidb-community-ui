@@ -1,5 +1,5 @@
-import {Sidebar} from '@pingcap-inc/tidb-community-site-components'
 import React from 'react'
+import {Sidebar} from '@pingcap-inc/tidb-community-site-components'
 
 const SidebarPreview = (props) => {
   return (
@@ -17,5 +17,6 @@ const Template = (args) => <SidebarPreview {...args} />
 export const Preview = Template.bind({})
 
 Preview.args = {
+  username: 'cw1997',
 }
 

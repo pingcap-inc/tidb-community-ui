@@ -1,11 +1,9 @@
-import {SidebarCard} from '@pingcap-inc/tidb-community-site-components'
 import React from 'react'
+import {SidebarCard} from '@pingcap-inc/tidb-community-site-components'
 
 const SidebarCardPreview = (props) => {
   // const myProps = {header: {start: 'title', end: 'more'}, body: 'body'}
-  return (
-    <SidebarCard {...props}/>
-  )
+  return <SidebarCard {...props}/>
 }
 
 export default {
