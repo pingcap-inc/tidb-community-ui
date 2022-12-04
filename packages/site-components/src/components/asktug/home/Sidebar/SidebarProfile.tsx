@@ -74,7 +74,7 @@ const SidebarProfile: React.FC<IProps> = (props) => {
 
         <Row className={'asktug-sidebar-profile-action'} gutter={16}>
           <Col span={12}>
-            <SiteLink site={Site.asktug} newWindow url={`/u/${username}`}>
+            <SiteLink site={Site.home} newWindow url={`/u/${username}`}>
               <Button block ghost type={'primary'} size={'small'}>个人主页</Button>
             </SiteLink>
           </Col>
