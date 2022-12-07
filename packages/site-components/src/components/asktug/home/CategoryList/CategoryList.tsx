@@ -30,7 +30,7 @@ const CategoryList: React.FC<IProps> = (props) => {
   const categories: ICategoryItem[] = data?.categories ?? []
   return (
     <Space className={classNames(className, 'asktug-category-list')} {...rest}>
-      {categories.map((value, index) => (
+      {categories.filter((value) => value.has_children === true).map((value, index) => (
         <div key={value.name} className={'asktug-category-list-item-wrap'} style={{background: colors[index % colors.length].borderColor}}>
           <div className={'asktug-category-list-item'} style={{background: colors[index % colors.length].backgroundColor}}>
             <div className={'asktug-category-list-item-header'}>

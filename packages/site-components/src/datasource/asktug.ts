@@ -286,6 +286,7 @@ export interface ICategoryItem {
   name: string // "🪐 TiDB",
   color: string // "25AAE2",
   description: string // TiDB、TiKV、TiFlash、PD 等核心组件和监控组件如 Dashboard、Grafana、Prometheus、Alert Manager 等问题
+  has_children: boolean
 }
 
 export const useAsktugSite = () => {
