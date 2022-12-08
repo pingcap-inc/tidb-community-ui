@@ -33,6 +33,7 @@ importers:
       antd: 4.15.6
       buildtool: '*'
       classnames: ^2.3.1
+      dayjs: ^1.11.6
       less: ^4.1.2
       less-plugin-npm-import: ^2.1.0
       postcss: ^8.4.5
@@ -48,6 +49,8 @@ importers:
       rollup-plugin-ts: ^2.0.4
       swr: ^1.1.2
       typescript: ~4.5.4
+    dependencies:
+      dayjs: 1.11.7
     devDependencies:
       '@ant-design/icons': 4.8.0_react-dom@17.0.2+react@17.0.2
       '@pingcap-inc/tidb-community-ui': link:../ui
@@ -5996,7 +5999,6 @@ packages:
 
   /dayjs/1.11.7:
     resolution: {integrity: sha512-+Yw9U6YO5TQohxLcIkrXBeY73WP3ejHWVvx8XCk3gxvQDCTEmS48ZrSZCKciI7Bhl/uCMyxYtE9UqRILmFphkQ==}
-    dev: true
 
   /debug/2.6.9:
     resolution: {integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==}
