@@ -38,7 +38,7 @@
     "rollup-plugin-postcss": "^4.0.2",
     "rollup-plugin-ts": "^2.0.4",
     "swr": "^1.1.2",
-    "typescript": "^4.5.4"
+    "typescript": "~4.5.4"
   },
   "peerDependencies": {
     "@ant-design/icons": "^4.7.0",
