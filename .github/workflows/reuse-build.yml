@@ -12,18 +12,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v2.4.0
 
-      - name: Set up Node.js v18.12.0
-        uses: actions/setup-node@v3
+      - name: Set up Node.js v16
+        uses: actions/setup-node@v2
         with:
-          node-version: 18.12.0
+          node-version: 16
 
       - uses: pnpm/action-setup@v2
         name: Install pnpm
         id: pnpm-install
         with:
-          version: 7.14.0
+          version: 6.23.6
           run_install: false
 
       - name: Get pnpm store directory
