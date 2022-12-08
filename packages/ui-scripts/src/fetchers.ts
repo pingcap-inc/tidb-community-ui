@@ -4,6 +4,7 @@ import {stringify} from 'qs'
 let ACCOUNTS_BASE = '/_/sso'
 let BLOG_BASE = '/_/blog'
 let ASKTUG_BASE = ''
+let HOME_BASE = 'https://tidb.net'
 
 declare global {
   interface Window {
@@ -54,6 +55,8 @@ const accounts: Fetcher = (key: string) => {
   switch (key) {
     case 'me':
       return fetch(`${ACCOUNTS_BASE}${meUrl}`, { credentials: 'include' }).then(processResponse)
+    case 'accounts.points.me':
+      return fetch(`${ACCOUNTS_BASE}/api/points/me`, { credentials: 'include' }).then(processResponse)
     case 'accounts.points.top':
       return fetch(`${ACCOUNTS_BASE}/api/points/top`, { credentials: 'include' }).then(processResponse)
     default:
@@ -99,6 +102,12 @@ const asktug: Fetcher = (key: string, params: any) => {
     case 'asktug.site':
       // @ts-ignore
       return fetch(`${ASKTUG_BASE}/site.json`, { headers: { accept: 'application/json' }, credentials: 'include' }).then(processResponse)
+    case 'asktug.badges':
+      // @ts-ignore
+      return fetch(`${ASKTUG_BASE}/badges.json`, { headers: { accept: 'application/json' }, credentials: 'include' }).then(processResponse)
+    case 'asktug.user.summary':
+      // @ts-ignore
+      return fetch(`${ASKTUG_BASE}/u/${params.username}/summary`, { headers: { accept: 'application/json' }, credentials: 'include' }).then(processResponse)
     default:
       throw new Error('not implemented')
   }
@@ -117,6 +126,20 @@ const blog: Fetcher = (key: string, params: any) => {
       return fetch(`${BLOG_BASE}/api/notifications/${params}/read`, { method: 'PATCH', credentials: 'include' })
     case 'blog.getRecommend':
       return fetch(`${BLOG_BASE}/api/posts/recommend`, {})
+    case 'blog.users.posts':
+      return fetch(`${BLOG_BASE}/blog/api/users/username/${params.username}/posts`, {})
+    default:
+      throw new Error('not implemented')
+  }
+}
+
+const home: Fetcher = (key: string, params: any) => {
+  if (typeof params === 'string') {
+    params = tryJson(params)
+  }
+  switch (key) {
+    case 'home.events':
+      return fetch(`${HOME_BASE}/next-api/cms/tidbio-homepage-main-activities`, {})
     default:
       throw new Error('not implemented')
   }
@@ -132,5 +155,5 @@ const getAsktugCsrf = () => {
 }
 
 export default {
-  accounts, asktug, blog
+  accounts, asktug, blog, home
 }

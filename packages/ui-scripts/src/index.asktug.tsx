@@ -5,6 +5,7 @@ import {
     Env,
     Footer,
     Header,
+    Sidebar,
     Site,
     SiteComponentsContext
 } from '@pingcap-inc/tidb-community-site-components'
@@ -44,6 +45,14 @@ defineSiteComponentsConfig({
 
 const context = {
     fetchers,
+}
+
+const AsktugSidebar = () => {
+    const element = document.getElementById('asktug-sidebar')
+    if (!element) {
+        return null
+    }
+    return ReactDOM.createPortal(<Sidebar/>, element)
 }
 
 const AsktugHeader = () => {
@@ -95,6 +104,7 @@ const AsktugSite = () => {
         <SiteComponentsContext.Provider value={context}>
             <AsktugHeader/>
             <AsktugFooter/>
+            <AsktugSidebar/>
         </SiteComponentsContext.Provider>
     )
 }
