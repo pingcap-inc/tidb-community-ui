@@ -1,5 +1,6 @@
 import React from "react"
 import {Space} from "antd";
+import useSWR from "swr";
 
 import './Sidebar.less'
 import SidebarProfile from "./SidebarProfile";
@@ -8,13 +9,19 @@ import SidebarEvent from "./SidebarEvent";
 import SidebarRanking from "./SidebarRanking";
 
 export interface IProps extends React.HTMLAttributes<HTMLDivElement> {
-  username: string
 }
 
 const Sidebar: React.FC<IProps> = (props) => {
+  const {data, error, isValidating} = useSWR('/_/sso/api/asktug-me', async () => {
+    const data = await fetch('/_/sso/api/asktug-me')
+    return data.json()
+  })
+  if (error) console.error(error)
   return (
     <Space className={'asktug-sidebar'} direction={'vertical'} size={12}>
-      <SidebarProfile username={props.username} />
+      {data && (
+        <SidebarProfile username={data.data.username} />
+      )}
       <SidebarBlog />
       <SidebarEvent />
       <SidebarRanking />
