@@ -3,6 +3,7 @@ import { defineConfig } from 'rollup'
 import postcss from 'rollup-plugin-postcss'
 import ts from 'rollup-plugin-ts'
 import svgr from '@svgr/rollup'
+import json from '@rollup/plugin-json'
 import { peerDependencies } from './package.json'
 
 
@@ -17,6 +18,7 @@ export default defineConfig({
   },
   plugins: [
     svgr(),
+    json(),
     postcss({
       to: 'index.css',
       extract: true,
