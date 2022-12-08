@@ -4,7 +4,7 @@ import postcss from 'rollup-plugin-postcss'
 import ts from 'rollup-plugin-ts'
 import svgr from '@svgr/rollup'
 import { peerDependencies } from './package.json'
-import { antd } from 'buildtool/plugins/rollup/antd'
+
 
 export default defineConfig({
   input: './index.ts',
