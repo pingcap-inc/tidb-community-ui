@@ -11,31 +11,40 @@ jobs:
       packages: read
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
-      - uses: pnpm/action-setup@646cdf48217256a3d0b80361c5a50727664284f2
+      - uses: pnpm/action-setup@v2
         with:
-          version: 6.23.6
+          version: 7.14.0
 
-      - name: Set up Node.js v16
-        uses: actions/setup-node@v2
+      - name: Set up Node.js 18.12.0
+        uses: actions/setup-node@v3
         with:
-          node-version: 16
-          cache: pnpm
+          node-version: 18.12.0
 
-      - name: Resolve build dependencies
-        id: dep-caches
-        uses: actions/cache@v2
+      - uses: pnpm/action-setup@v2
+        name: Install pnpm
+        id: pnpm-install
         with:
-          path: |
-            node_modules
-            packages/*/node_modules
-          key: ${{ runner.os }}-build-${{ hashFiles('package-lock.json', 'packages/*/package-lock.json') }}
-          restore-keys: ${{ runner.os }}-build
+          version: 7.14.0
+          run_install: false
 
-      - name: Install
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+      - uses: actions/cache@v3
+        name: Setup pnpm cache
+        with:
+          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Install dependencies
         run: pnpm install --frozen-lockfile
-        if: steps.dep-caches.outputs.cache-hit != 'true'
 
       - name: Lint
         run: npm run lint --if-present
