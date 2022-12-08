@@ -14,25 +14,34 @@ jobs:
     steps:
       - uses: actions/checkout@v2.4.0
 
-      - uses: pnpm/action-setup@646cdf48217256a3d0b80361c5a50727664284f2
-        with:
-          version: 6.23.6
-
-      - name: Set up Node.js v16
+      - name: Set up Node.js 18.12.0
         uses: actions/setup-node@v2
         with:
-          node-version: 16
-          cache: pnpm
+          node-version: 18.12.0
 
-      - name: Cache dependencies
-        id: dep-caches
-        uses: actions/cache@v2
+      - uses: pnpm/action-setup@v2
+        name: Install pnpm
+        id: pnpm-install
         with:
-          path: |
-            node_modules
-            packages/*/node_modules
-          key: ${{ runner.os }}-build-${{ hashFiles('package-lock.json', 'packages/*/package-lock.json') }}
-          restore-keys: ${{ runner.os }}-build
+          version: 6.23.6
+          run_install: false
+
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+      - uses: actions/cache@v3
+        name: Setup pnpm cache
+        with:
+          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
 
       - name: Build ui
         run: npm run build:ui
@@ -55,7 +64,7 @@ jobs:
         run: tar -zcf ui-scripts-${{ inputs.build-env }}.tar packages/ui-scripts/dist
 
       - name: Upload ui artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: ui
           path: ui.tar
@@ -63,7 +72,7 @@ jobs:
         if: ${{ inputs.build-env == 'production' }}
 
       - name: Upload site-components artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: site-components
           path: site-components.tar
@@ -71,7 +80,7 @@ jobs:
         if: ${{ inputs.build-env == 'production' }}
 
       - name: Upload ui-scripts artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: ui-scripts-${{ inputs.build-env }}
           path: ui-scripts-${{ inputs.build-env }}.tar
