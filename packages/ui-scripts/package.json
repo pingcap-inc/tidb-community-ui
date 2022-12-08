@@ -8,10 +8,10 @@
     "serve": "serve -l 8000 dist",
     "build:production": "pnpm run build-asktug:production && pnpm run build-general:production",
     "build:preview": "pnpm run build-asktug:preview && pnpm run build-general:preview",
-    "build-asktug:production": "NODE_ENV=production target=asktug rollup -c rollup.config.js",
-    "build-asktug:preview": "NODE_ENV=development target=asktug rollup -c rollup.config.js",
-    "build-general:production": "NODE_ENV=production target=general rollup -c rollup.config.js",
-    "build-general:preview": "NODE_ENV=development target=general rollup -c rollup.config.js"
+    "build-asktug:production": "cross-env NODE_ENV=production target=asktug rollup -c rollup.config.js",
+    "build-asktug:preview": "cross-env NODE_ENV=development target=asktug rollup -c rollup.config.js",
+    "build-general:production": "cross-env NODE_ENV=production target=general rollup -c rollup.config.js",
+    "build-general:preview": "cross-env NODE_ENV=development target=general rollup -c rollup.config.js"
   },
   "author": "",
   "license": "MIT",
@@ -28,6 +28,7 @@
     "@types/react-dom": "^17.0.11",
     "antd": "4.15.6",
     "buildtool": "*",
+    "cross-env": "^7.0.3",
     "less": "^4.1.2",
     "less-plugin-npm-import": "^2.1.0",
     "postcss": "^8.4.5",
