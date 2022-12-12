@@ -51,31 +51,6 @@ const context = {
 
 const AsktugSidebar = () => {
     const elementId = 'asktug-sidebar'
-    const [key, setKey] = useState(0)
-
-    useEffect(() => {
-        const MutationObserver = window.MutationObserver || (window as any).WebkitMutationObserver
-
-        const observer = new MutationObserver((mutations) => {
-            console.log({mutations})
-            mutations.forEach(function (mutation) {
-                mutation.addedNodes.forEach(function (node) {
-                    if ((node as Element).id === elementId) {
-                        setKey(key => key + 1)
-                    }
-                })
-            })
-        })
-
-        observer.observe(document.body, {
-            childList: true,
-            subtree: true,
-        })
-
-        return () => {
-            observer.disconnect()
-        }
-    }, [])
 
     const element = document.getElementById(elementId)
     if (!element) {
@@ -142,4 +117,20 @@ const container = document.createElement('div')
 container.className = '__ti-site-holder'
 document.body.append(container)
 
-ReactDOM.render(<AsktugSite/>, container)
+const MutationObserver = window.MutationObserver || (window as any).WebkitMutationObserver
+
+const observer = new MutationObserver((mutations) => {
+    console.log({mutations})
+    mutations.forEach(function (mutation) {
+        mutation.addedNodes.forEach((node) => {
+            if ((node as Element).id === 'asktug-sidebar') {
+                ReactDOM.render(<AsktugSite/>, container)
+            }
+        })
+    })
+})
+
+observer.observe(document.body, {
+    childList: true,
+    subtree: true,
+})
