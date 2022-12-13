@@ -1,7 +1,5 @@
 // this must import before any components
 import './index.less'
-import '~@pingcap-inc/tidb-community-ui/theme/index-commons.less'
-import '~@pingcap-inc/tidb-community-ui/theme/index-overrides.less'
 import {
     defineSiteComponentsConfig,
     Env,
