@@ -19,7 +19,7 @@ const Sidebar: React.FC<IProps> = (props) => {
   if (error) console.error(error)
   return (
     <Space className={'asktug-sidebar'} direction={'vertical'} size={12}>
-      {data && (
+      {error == null && data?.data && (
         <SidebarProfile username={data.data.username} />
       )}
       <SidebarBlog />
