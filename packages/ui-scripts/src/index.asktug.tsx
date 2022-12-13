@@ -48,6 +48,31 @@ const context = {
 }
 
 const AsktugSidebar = () => {
+    const [key, setKey] = useState(0)
+
+    useEffect(() => {
+        const MutationObserver = window.MutationObserver || (window as any).WebkitMutationObserver
+
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach(function (mutation) {
+                mutation.addedNodes.forEach(function (node) {
+                    if ((node as Element).id === elementId) {
+                        setKey(key => key + 1)
+                    }
+                })
+            })
+        })
+
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true,
+        })
+
+        return () => {
+            observer.disconnect()
+        }
+    }, [])
+
     const elementId = 'asktug-sidebar'
 
     const element = document.getElementById(elementId)
@@ -74,7 +99,7 @@ const AsktugFooter = () => {
         const observer = new MutationObserver((mutations) => {
             mutations.forEach(function (mutation) {
                 mutation.addedNodes.forEach(function (node) {
-                    if ((node as Element).id === footerId) {
+                    if ((node as Element).id === elementId) {
                         setKey(key => key + 1)
                     }
                 })
@@ -91,14 +116,14 @@ const AsktugFooter = () => {
         }
     }, [])
 
-    const footerId = 'asktug-footer'
-    const footerElem = document.getElementById(footerId)
+    const elementId = 'asktug-footer'
+    const element = document.getElementById(elementId)
 
-    if (!footerElem) {
+    if (!element) {
         return null
     }
 
-    return ReactDOM.createPortal(<Footer { ...footerProps } />, footerElem)
+    return ReactDOM.createPortal(<Footer { ...footerProps } />, element)
 }
 
 const AsktugSite = () => {
@@ -115,20 +140,4 @@ const container = document.createElement('div')
 container.className = '__ti-site-holder'
 document.body.append(container)
 
-const MutationObserver = window.MutationObserver || (window as any).WebkitMutationObserver
-
-const observer = new MutationObserver((mutations) => {
-    console.log({mutations})
-    mutations.forEach(function (mutation) {
-        mutation.addedNodes.forEach((node) => {
-            if ((node as Element).id === 'asktug-sidebar') {
-                ReactDOM.render(<AsktugSite/>, container)
-            }
-        })
-    })
-})
-
-observer.observe(document.body, {
-    childList: true,
-    subtree: true,
-})
+ReactDOM.render(<AsktugSite/>, container)
