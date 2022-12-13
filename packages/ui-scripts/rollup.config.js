@@ -3,7 +3,7 @@ import json from '@rollup/plugin-json'
 import { nodeResolve } from '@rollup/plugin-node-resolve'
 import replace from '@rollup/plugin-replace'
 import svgr from '@svgr/rollup'
-// import { antd } from 'buildtool/plugins/rollup/antd'
+import { antd } from 'buildtool/plugins/rollup/antd'
 import LessPluginNpmImport from 'less-plugin-npm-import'
 import postcssMinify from 'postcss-minify'
 import postcssWrapSelector from 'postcss-wrap-selector'
@@ -38,14 +38,25 @@ export default defineConfig({
       'process.env.BUILD_REF': JSON.stringify(process.env.BUILD_REF),
       preventAssignment: true
     }),
-    // antd({
-    //   template: component => `
-    //       @use postcss-wrap-selector(selector = '.ti-site-${process.env.target}');
-    //       @import "~@pingcap-inc/tidb-community-ui/theme/index-commons.less";
-    //       @import "~antd/lib/${component}/style";
-    //       @import "~@pingcap-inc/tidb-community-ui/theme/index-overrides.less";
-    //     `
-    // }),
+    antd({
+      template: component => {
+        // The Col and Row components contains no styles/index.less file. Using grid/styles/index.less instead
+        if (['col', 'row'].includes(component)) {
+          return `
+            @use postcss-wrap-selector(selector = '.ti-site-${process.env.target}');
+            @import "~@pingcap-inc/tidb-community-ui/theme/index-commons.less";
+            @import "~antd/lib/grid/style";
+            @import "~@pingcap-inc/tidb-community-ui/theme/index-overrides.less";
+        `
+        }
+        return `
+          @use postcss-wrap-selector(selector = '.ti-site-${process.env.target}');
+          @import "~@pingcap-inc/tidb-community-ui/theme/index-commons.less";
+          @import "~antd/lib/${component}/style";
+          @import "~@pingcap-inc/tidb-community-ui/theme/index-overrides.less";
+        `
+      }
+    }),
     svgr({
       include: ['**/*.svg', '../**/*.svg']
     }),
