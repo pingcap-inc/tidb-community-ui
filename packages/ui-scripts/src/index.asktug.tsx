@@ -54,6 +54,7 @@ const AsktugSidebar = () => {
         const MutationObserver = window.MutationObserver || (window as any).WebkitMutationObserver
 
         const observer = new MutationObserver((mutations) => {
+            console.debug({mutations})
             mutations.forEach(function (mutation) {
                 mutation.addedNodes.forEach(function (node) {
                     if ((node as Element).id === elementId) {
