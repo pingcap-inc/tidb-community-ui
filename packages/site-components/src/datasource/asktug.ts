@@ -301,5 +301,6 @@ export const useAsktugBadges = () => {
 
 export const useAsktugUserSummary = (username: string) => {
   const { fetchers: { asktug: fetcher } } = useContext(SiteComponentsContext)
-  return useSWR([`asktug.user.summary`], { fetcher })
+  const params = {username}
+  return useSWR([`asktug.user.summary`, JSON.stringify(params)], { fetcher })
 }
