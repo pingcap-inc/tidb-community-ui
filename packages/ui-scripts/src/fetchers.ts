@@ -125,9 +125,9 @@ const blog: Fetcher = (key: string, params: any) => {
     case 'blog.readNotification':
       return fetch(`${BLOG_BASE}/api/notifications/${params}/read`, { method: 'PATCH', credentials: 'include' })
     case 'blog.getRecommend':
-      return fetch(`${BLOG_BASE}/api/posts/recommend`, {})
+      return fetch(`${BLOG_BASE}/api/posts/recommend`, {}).then(processResponse)
     case 'blog.users.posts':
-      return fetch(`${BLOG_BASE}/blog/api/users/username/${params.username}/posts`, {})
+      return fetch(`${BLOG_BASE}/blog/api/users/username/${params.username}/posts`, {}).then(processResponse)
     default:
       throw new Error('not implemented')
   }
@@ -139,7 +139,7 @@ const home: Fetcher = (key: string, params: any) => {
   }
   switch (key) {
     case 'home.events':
-      return fetch(`${HOME_BASE}/next-api/cms/tidbio-homepage-main-activities`, {})
+      return fetch(`${HOME_BASE}/next-api/cms/tidbio-homepage-main-activities`, {}).then(processResponse)
     default:
       throw new Error('not implemented')
   }
