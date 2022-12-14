@@ -143,5 +143,6 @@ export function useBlogRecommend (): SWRResponse<SpringPage<IBlog>> {
 
 export function useBlogUsersPosts (username: string): SWRResponse<SpringPage<IBlog>> {
   const { fetchers: { blog: fetcher } } = useContext(SiteComponentsContext)
-  return useSWR(['blog.users.posts'], { fetcher })
+  const params = {username}
+  return useSWR(['blog.users.posts', JSON.stringify(params)], { fetcher })
 }
