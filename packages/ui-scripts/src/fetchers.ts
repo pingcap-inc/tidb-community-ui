@@ -127,7 +127,7 @@ const blog: Fetcher = (key: string, params: any) => {
     case 'blog.getRecommend':
       return fetch(`${BLOG_BASE}/api/posts/recommend`, {}).then(processResponse)
     case 'blog.users.posts':
-      return fetch(`${BLOG_BASE}/blog/api/users/username/${params.username}/posts`, {}).then(processResponse)
+      return fetch(`${BLOG_BASE}/api/users/username/${params.username}/posts`, {}).then(processResponse)
     default:
       throw new Error('not implemented')
   }
