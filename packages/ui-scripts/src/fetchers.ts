@@ -4,7 +4,7 @@ import {stringify} from 'qs'
 let ACCOUNTS_BASE = '/_/sso'
 let BLOG_BASE = '/_/blog'
 let ASKTUG_BASE = ''
-let HOME_BASE = 'https://tidb.net'
+const HOME_BASE = process.env.NODE_ENV === 'production' ? 'https://tidb.net' : 'https://community-preview.tidb.net'
 
 declare global {
   interface Window {
