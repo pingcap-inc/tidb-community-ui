@@ -4,16 +4,18 @@ import './SidebarRanking.less'
 import SidebarCard from "./SidebarCard";
 import SiteLink from "../../../site-link";
 import {Site} from "../../../../utils/site";
-import {usePointTop} from "../../../../datasource/accounts";
+import {usePointMe, usePointTop} from "../../../../datasource/accounts";
 
 export interface IProps extends React.HTMLAttributes<HTMLDivElement> {
+  username?: string
 }
 
 const SidebarRanking: React.FC<IProps> = (props) => {
 //function CategoryList(props: IProps) {
-  const {children, className, ...rest} = props
-  const {data, error, isValidating} = usePointTop()
-  const list = data?.data ?? []
+  const {children, className, username, ...rest} = props
+  const {data: dataPointTop, error: errorPointTop, isValidating: isValidatingPointTop} = usePointTop()
+  const {data: dataPointMe, error: errorPointMe, isValidating: isValidatingPointMe} = usePointMe()
+  const list = dataPointTop?.data ?? []
   return (
     <div className={'asktug-sidebar-ranking'}>
       <SidebarCard header={{start: '本周达人', end: (<SiteLink site={Site.asktug} newWindow url={'/x/ranking'}>更多 {'>'}</SiteLink>)}}>
@@ -33,6 +35,13 @@ const SidebarRanking: React.FC<IProps> = (props) => {
                 <td>{value.exps}</td>
               </tr>
             ))}
+            {username && dataPointMe && (
+              <tr>
+                <td style={{color: '#FF5C00'}}>{dataPointMe?.data.current_rank}</td>
+                <td style={{color: '#FF5C00'}}> <SiteLink site={Site.asktug} newWindow url={`/u/${username}`}>{username}</SiteLink></td>
+                <td style={{color: '#FF5C00'}}>{dataPointMe?.data.current_exps}</td>
+              </tr>
+            )}
           </tbody>
         </table>
       </SidebarCard>
