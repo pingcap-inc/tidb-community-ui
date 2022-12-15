@@ -15,6 +15,7 @@ const SidebarRanking: React.FC<IProps> = (props) => {
   const {children, className, username, ...rest} = props
   const {data: dataPointTop, error: errorPointTop, isValidating: isValidatingPointTop} = usePointTop()
   const {data: dataPointMe, error: errorPointMe, isValidating: isValidatingPointMe} = usePointMe()
+  console.error({errorPointTop, errorPointMe})
   const list = dataPointTop?.data ?? []
   return (
     <div className={'asktug-sidebar-ranking'}>
@@ -35,11 +36,11 @@ const SidebarRanking: React.FC<IProps> = (props) => {
                 <td>{value.exps}</td>
               </tr>
             ))}
-            {username && dataPointMe && (
+            {username !== undefined && dataPointMe?.data !== undefined && (
               <tr>
-                <td style={{color: '#FF5C00'}}>{dataPointMe?.data.current_rank}</td>
-                <td style={{color: '#FF5C00'}}> <SiteLink site={Site.asktug} newWindow url={`/u/${username}`}>{username}</SiteLink></td>
-                <td style={{color: '#FF5C00'}}>{dataPointMe?.data.current_exps}</td>
+                <td style={{color: '#FF5C00'}}>{dataPointMe.data.current_rank}</td>
+                <td style={{color: '#FF5C00'}}><SiteLink site={Site.asktug} newWindow url={`/u/${username}`}>{username}</SiteLink></td>
+                <td style={{color: '#FF5C00'}}>{dataPointMe.data.current_exps}</td>
               </tr>
             )}
           </tbody>
