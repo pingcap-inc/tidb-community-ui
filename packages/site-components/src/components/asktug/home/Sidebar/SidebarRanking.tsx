@@ -31,14 +31,14 @@ const SidebarRanking: React.FC<IProps> = (props) => {
             {list.slice(0, 10).map((value) => (
               <tr key={value.user.username}>
                 <td style={{color: value.ranking === 1 ? '#FFB800' : value.ranking === 2 ? '#969696' : value.ranking === 3 ? '#B7B004' : '#2C2C2C'}}>{value.ranking}</td>
-                <td style={{color: username === value.user.username ? '#FF5C00' : undefined}}> <SiteLink site={Site.asktug} newWindow url={`/u/${value.user.username}`}>{value.user.username}</SiteLink></td>
+                <td> <SiteLink site={Site.asktug} newWindow url={`/u/${value.user.username}`} style={{color: username === value.user.username ? '#FF5C00' : undefined}}>{value.user.username}</SiteLink></td>
                 <td style={{color: username === value.user.username ? '#FF5C00' : undefined}}>{value.exps}</td>
               </tr>
             ))}
             {username && dataPointMe?.data && dataPointMe.data.current_rank >= 10 && (
-              <tr>
+              <tr className={'asktug-sidebar-ranking-me'}>
                 <td style={{color: '#FF5C00'}}>{dataPointMe.data.current_rank}</td>
-                <td style={{color: '#FF5C00'}}><SiteLink site={Site.asktug} newWindow url={`/u/${username}`}>{username}</SiteLink></td>
+                <td><SiteLink site={Site.asktug} newWindow url={`/u/${username}`} style={{color: '#FF5C00'}}>{username}</SiteLink></td>
                 <td style={{color: '#FF5C00'}}>{dataPointMe.data.current_exps}</td>
               </tr>
             )}
