@@ -15,7 +15,6 @@ const SidebarRanking: React.FC<IProps> = (props) => {
   const {children, className, username, ...rest} = props
   const {data: dataPointTop, error: errorPointTop, isValidating: isValidatingPointTop} = usePointTop()
   const {data: dataPointMe, error: errorPointMe, isValidating: isValidatingPointMe} = usePointMe()
-  console.error({errorPointTop, errorPointMe})
   const list = dataPointTop?.data ?? []
   return (
     <div className={'asktug-sidebar-ranking'}>

@@ -24,7 +24,7 @@ const Sidebar: React.FC<IProps> = (props) => {
       )}
       <SidebarBlog />
       <SidebarEvent />
-      <SidebarRanking username={data.data.username} />
+      <SidebarRanking username={data?.data?.username} />
     </Space>
   )
 }
