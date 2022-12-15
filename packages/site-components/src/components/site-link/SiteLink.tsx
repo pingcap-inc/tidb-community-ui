@@ -36,9 +36,9 @@ const SiteLink: FC<PropsWithChildren<RouteToConfig> & HTMLAttributes<HTMLElement
       el = wrapRouteLink(undefined, url, children)
     } else {
       if (newWindow) {
-        el = <a href={url} rel='noreferrer' target='_blank'>{children}</a>
+        el = <a href={url} rel='noreferrer' target='_blank' {...attrs}>{children}</a>
       } else {
-        el = <a href={url}>{children}</a>
+        el = <a href={url} {...attrs}>{children}</a>
       }
     }
 
