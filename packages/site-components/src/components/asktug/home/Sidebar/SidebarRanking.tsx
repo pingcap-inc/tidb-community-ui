@@ -31,11 +31,11 @@ const SidebarRanking: React.FC<IProps> = (props) => {
             {list.slice(0, 10).map((value) => (
               <tr key={value.user.username}>
                 <td style={{color: value.ranking === 1 ? '#FFB800' : value.ranking === 2 ? '#969696' : value.ranking === 3 ? '#B7B004' : '#2C2C2C'}}>{value.ranking}</td>
-                <td> <SiteLink site={Site.asktug} newWindow url={`/u/${value.user.username}`}>{value.user.username}</SiteLink></td>
-                <td>{value.exps}</td>
+                <td style={{color: username === value.user.username ? '#FF5C00' : undefined}}> <SiteLink site={Site.asktug} newWindow url={`/u/${value.user.username}`}>{value.user.username}</SiteLink></td>
+                <td style={{color: username === value.user.username ? '#FF5C00' : undefined}}>{value.exps}</td>
               </tr>
             ))}
-            {username !== undefined && dataPointMe?.data !== undefined && (
+            {username && dataPointMe?.data && dataPointMe.data.current_rank >= 10 && (
               <tr>
                 <td style={{color: '#FF5C00'}}>{dataPointMe.data.current_rank}</td>
                 <td style={{color: '#FF5C00'}}><SiteLink site={Site.asktug} newWindow url={`/u/${username}`}>{username}</SiteLink></td>
