@@ -11,3 +11,8 @@
 div.custom-search-banner {
   padding-top: 0 ;
 }
+
+body.has-sidebar-page #main-outlet-wrapper {
+  grid-template-columns: unset !important; // var(--d-sidebar-width) minmax(0, 1fr);
+  gap: unset !important; // 0 2em;
+}
