@@ -35,8 +35,8 @@ const siteConfig: Record<Site, SiteConfig> = {
   [Site.asktug]: {
     baseUrl: {
       [Env.prod]: 'https://asktug.com',
-      [Env.preview]: 'https://community-preview.asktug.com',
-      [Env.local]: 'https://community-preview.asktug.com',
+      [Env.preview]: 'https://new.asktug.com',
+      [Env.local]: 'https://new.asktug.com',
     },
   },
   [Site.others]: {
