@@ -98,6 +98,10 @@ export interface GetPrivateMessagesParams {
   recent?: 1;
 }
 
+export interface GetArchiveMessagesParams {
+  username: string;
+}
+
 export interface AsktugPrivateMessage {
   id: number
   slug: string
@@ -207,11 +211,40 @@ export const useAsktugPrivateMessages = (params: GetPrivateMessagesParams, extra
   return useSWR<PrivateMessages>([`asktug.getPrivateMessages${extra}`, JSON.stringify(params)], { fetcher })
 }
 
+export const useAsktugArchiveMessages = (params: GetArchiveMessagesParams) => {
+  const { fetchers: { asktug: fetcher } } = useContext(SiteComponentsContext)
+  return useSWR<PrivateMessages>([`asktug.getArchiveMessages`, JSON.stringify(params)], { fetcher })
+}
+
 export interface PrivateMessage {
   sender: string[]
   title: string
   slug: string
   id: number
+}
+
+export const useArchiveMessages = (params: GetArchiveMessagesParams): PrivateMessage[] => {
+  const { data } = useAsktugArchiveMessages(params)
+  const mappedUsers = useRef<Map<number, AsktugUser>>()
+
+  return useMemo(() => {
+    if (!mappedUsers.current) {
+      mappedUsers.current = new Map()
+    }
+
+    for (const user of data?.users ?? []) {
+      mappedUsers.current!.set(user.id, user)
+    }
+
+    return data?.topic_list.topics.map(topic => {
+      return {
+        sender: topic.posters.map(poster => mappedUsers.current!.get(poster.user_id)?.username ?? 'unknown'),
+        title: topic.fancy_title,
+        slug: topic.slug,
+        id: topic.id
+      }
+    }) ?? []
+  }, [data])
 }
 
 export const usePrivateMessages = (params: GetPrivateMessagesParams): PrivateMessage[] => {

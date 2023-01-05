@@ -1,7 +1,7 @@
 import React from 'react'
 import {Badge, List, Popover, Tabs} from 'antd'
 import { Site } from '../../utils/site'
-import {PrivateMessage, usePrivateMessages, usePrivateMessagesUnread} from '../../datasource/asktug'
+import {PrivateMessage, useArchiveMessages, usePrivateMessages, usePrivateMessagesUnread} from '../../datasource/asktug'
 import { getContainer } from '../../utils/popup-container'
 import { MailOutlined } from '@ant-design/icons'
 import SiteLink from '../site-link/SiteLink'
@@ -22,6 +22,7 @@ const PrivateMessageLink = ({ privateMessage }: { privateMessage: PrivateMessage
 const HeaderPrivateMessages = ({username}: {username: string}) => {
   const privateMessagesUnread = usePrivateMessagesUnread({username})
   const privateMessages = usePrivateMessages({username})
+  const archiveMessages = useArchiveMessages({username})
 
   return (
     <Popover
@@ -48,6 +49,28 @@ const HeaderPrivateMessages = ({username}: {username: string}) => {
                             >
                               <List.Item>
                                 <b>{privateMessage.sender.join(', ')}</b>: {privateMessage.title}
+                              </List.Item>
+                            </SiteLink>
+                          )
+                      }}
+                  />
+              </Tabs.TabPane>
+              <Tabs.TabPane key="archive" tabKey="archive" tab={'归档信息'}>
+                  <List
+                      size="small"
+                      dataSource={archiveMessages}
+                      className="ti-site-header-private-messages-list"
+                      locale={{ emptyText: '暂无消息' }}
+                      renderItem={(message) => {
+                          return (
+                            <SiteLink
+                              className="ti-header-privateMessage"
+                              site={Site.asktug}
+                              url={`/t/${message.slug}/${message.id}`}
+                              newWindow={true}
+                            >
+                              <List.Item>
+                                <b>{message.sender.join(', ')}</b>: {message.title}
                               </List.Item>
                             </SiteLink>
                           )

@@ -6,6 +6,7 @@ import asktugNotificationsJson from '../asktug-notification.json'
 import blogNotificationsJson from '../blog-notification.json'
 import blogUnreadNotificationsJson from '../blog-notification-unread.json'
 import privateMessagesJson from './private-messages.json'
+import archiveMessagesJson from './archive-messages.json'
 
 const sleep = (ms = 2000) => new Promise(resolve => {
   setTimeout(() => {
@@ -48,6 +49,8 @@ const HeaderPreview = ({ loggedIn }) => {
       }
     } else if (key === 'asktug.getPrivateMessages') {
       return Promise.resolve(privateMessagesJson)
+    } else if (key === 'asktug.getArchiveMessages') {
+      return Promise.resolve(archiveMessagesJson)
     } else {
       return Promise.reject()
     }
