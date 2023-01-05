@@ -82,6 +82,9 @@ const asktug: Fetcher = (key: string, params: any) => {
       return fetch(`${ASKTUG_BASE}/notifications?${stringify(params)}`, { headers: { accept: 'application/json' }, credentials: 'include' }).then(processResponse)
     case 'asktug.readNotification':
       return fetch(`${ASKTUG_BASE}/notifications/mark-read?${stringify({ id: params, ...getAsktugCsrf() })}`, { method: 'put', headers: { accept: 'application/json' }, credentials: 'include' }).then(processResponse)
+    case 'asktug.getArchiveMessages':
+      // @ts-ignore
+      return fetch(`${ASKTUG_BASE}/topics/private-messages-group/${params.username}/%E6%89%80%E6%9C%89%E4%BA%BA/archive.json`, { headers: { accept: 'application/json' }, credentials: 'include' }).then(processResponse)
     case 'asktug.getPrivateMessages':
       // @ts-ignore
       return fetch(`${ASKTUG_BASE}/topics/private-messages/${params.username}`, { headers: { accept: 'application/json' }, credentials: 'include' }).then(processResponse)
