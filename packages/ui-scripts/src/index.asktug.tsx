@@ -85,7 +85,8 @@ const AsktugSidebar = () => {
 }
 
 const AsktugCategories = () => {
-    const element = document.getElementById('asktug-categories')
+    const elementId = 'asktug-categories'
+    const element = document.getElementById(elementId)
     if (!element) {
         return null
     }

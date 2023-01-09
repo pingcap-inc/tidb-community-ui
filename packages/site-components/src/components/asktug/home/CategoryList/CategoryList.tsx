@@ -1,8 +1,7 @@
-import React, {useEffect, useState} from "react"
+import React from "react"
 import classNames from "classnames"
 
 import './CategoryList.less'
-import {Space} from "antd";
 import {ICategoryItem, useAsktugSite} from "../../../../datasource/asktug";
 
 export interface IProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -29,7 +28,7 @@ const CategoryList: React.FC<IProps> = (props) => {
   console.log({data, error, isValidating})
   const categories: ICategoryItem[] = data?.categories ?? []
   return (
-    <Space className={classNames(className, 'asktug-category-list')} {...rest}>
+    <div className={classNames(className, 'asktug-category-list')} {...rest}>
       {categories.filter((value) => value.has_children === true).map((value, index) => (
         <div key={value.name} className={'asktug-category-list-item-wrap'} style={{background: colors[index % colors.length].borderColor}}>
           <div className={'asktug-category-list-item'} style={{background: colors[index % colors.length].backgroundColor}}>
@@ -42,7 +41,7 @@ const CategoryList: React.FC<IProps> = (props) => {
           </div>
         </div>
       ))}
-    </Space>
+    </div>
   )
 }
 
