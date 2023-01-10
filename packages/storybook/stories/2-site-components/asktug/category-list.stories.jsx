@@ -2,7 +2,11 @@ import React from 'react'
 import {CategoryList} from '@pingcap-inc/tidb-community-site-components'
 
 const AsktugCategoryListPreview = ({}) => {
-  return <CategoryList />
+  return (
+    <div style={{maxWidth: 640}}>
+      <CategoryList />
+    </div>
+  )
 }
 
 export default {
