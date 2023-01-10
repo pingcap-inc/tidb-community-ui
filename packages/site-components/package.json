@@ -61,6 +61,7 @@
     "registry": "https://npm.pkg.github.com"
   },
   "dependencies": {
-    "dayjs": "^1.11.6"
+    "dayjs": "^1.11.6",
+    "swiper": "^8.4.5"
   }
 }
