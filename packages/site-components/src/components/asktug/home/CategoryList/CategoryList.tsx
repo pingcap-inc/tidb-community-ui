@@ -11,6 +11,7 @@ import "swiper/css/scrollbar";
 
 import './CategoryList.less'
 import {ICategoryItem, useAsktugSite} from "../../../../datasource/asktug";
+import {Site, SiteLink} from "../../../../../index";
 
 export interface IProps extends React.HTMLAttributes<HTMLDivElement> {
   //items: ICategoryItem[]
@@ -117,9 +118,11 @@ const CategoryList: React.FC<IProps> = (props) => {
             {/*<div className={'asktug-category-list-item-wrap-box'}>*/}
               <div key={value.name} className={'asktug-category-list-item-wrap'} style={{background: colors[index % colors.length].borderColor}}>
                 <div className={'asktug-category-list-item'} style={{background: colors[index % colors.length].backgroundColor}}>
-                  <div className={'asktug-category-list-item-header'}>
-                    <div className={'asktug-category-list-item-header-name'}>{value.name}</div>
-                  </div>
+                  <SiteLink site={Site.asktug} url={`/c/${value.id}`} newWindow={false}>
+                    <div className={'asktug-category-list-item-header'}>
+                      <div className={'asktug-category-list-item-header-name'}>{value.name}</div>
+                    </div>
+                  </SiteLink>
                   <div className={'asktug-category-list-item-body'}>
                     <div className={'asktug-category-list-item-body-description'} dangerouslySetInnerHTML={{__html: value.description}} />
                   </div>
