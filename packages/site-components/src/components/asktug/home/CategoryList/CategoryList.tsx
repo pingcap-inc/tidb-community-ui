@@ -118,7 +118,7 @@ const CategoryList: React.FC<IProps> = (props) => {
             {/*<div className={'asktug-category-list-item-wrap-box'}>*/}
               <div key={value.name} className={'asktug-category-list-item-wrap'} style={{background: colors[index % colors.length].borderColor}}>
                 <div className={'asktug-category-list-item'} style={{background: colors[index % colors.length].backgroundColor}}>
-                  <SiteLink site={Site.asktug} url={`/c/${value.id}`} newWindow={false}>
+                  <SiteLink site={Site.asktug} url={`/c/${value.id}`} newWindow={false} style={{cursor: 'pointer'}}>
                     <div className={'asktug-category-list-item-header'}>
                       <div className={'asktug-category-list-item-header-name'}>{value.name}</div>
                     </div>
