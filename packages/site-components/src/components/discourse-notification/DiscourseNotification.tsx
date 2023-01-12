@@ -82,12 +82,15 @@ const DiscourseNotification = ({ notification, wrap, markRead }: DiscourseNotifi
     case NotificationType.post_approved:
       result = renderPostApproved(notification)
       break
-    case NotificationType.code_review_commit_approved:
+    case NotificationType.watching_category_or_tag:
+      result = renderTopicNotification(notification as AsktugNotification<TopicData>)
       break
+    default:
+      console.warn('unsupported notifications: ', JSON.stringify(notification, undefined, 2))
   }
- 
+
   let el, url = result?.url ?? '#'
-  
+
   const onClick = useCallback((event) => {
     if (!notification.read) {
       markRead?.(notification.id)
@@ -102,7 +105,7 @@ const DiscourseNotification = ({ notification, wrap, markRead }: DiscourseNotifi
     })
     return getLink(url, element)
   }
-  
+
   const node = (
     <Space direction="vertical">
       <Typography.Text type="danger">{notification.notification_type} - ${NotificationType[notification.notification_type]}</Typography.Text>
