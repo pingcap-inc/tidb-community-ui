@@ -79,7 +79,8 @@ export default defineConfig({
       react: 'React',
       'react-dom': 'ReactDOM',
       antd: 'antd',
-      'react-transition-group': 'ReactTransitionGroup'
+      'react-transition-group': 'ReactTransitionGroup',
+      'dom7': '$',
     }),
     visualizer(),
     terser({
