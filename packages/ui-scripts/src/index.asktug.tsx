@@ -142,7 +142,7 @@ const AsktugSite = () => {
             <AsktugHeader/>
             <AsktugFooter/>
             <AsktugSidebar/>
-            {/*<AsktugCategories/>*/}
+            <AsktugCategories/>
         </SiteComponentsContext.Provider>
     )
 }
