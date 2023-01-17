@@ -80,7 +80,7 @@ export default defineConfig({
       'react-dom': 'ReactDOM',
       antd: 'antd',
       'react-transition-group': 'ReactTransitionGroup',
-      'dom7': '$',
+      // 'dom7': '$',
     }),
     visualizer(),
     terser({
