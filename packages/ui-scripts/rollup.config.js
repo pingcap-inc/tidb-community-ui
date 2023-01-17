@@ -22,7 +22,7 @@ export default defineConfig({
   output: {
     sourcemap: process.env.NODE_ENV === 'development',
     file: `dist/ti-site-${process.env.target}.${process.env.NODE_ENV}.js`,
-    format: 'es'
+    format: 'iife'
   },
   plugins: [
     ts(),
