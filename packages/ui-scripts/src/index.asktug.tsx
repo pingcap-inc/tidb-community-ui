@@ -1,7 +1,7 @@
 // this must import before any components
 import './index.less'
 import {
-    CategoryList,
+    // CategoryList,
     defineSiteComponentsConfig,
     Env,
     Footer,
@@ -83,14 +83,14 @@ const AsktugSidebar = () => {
     return ReactDOM.createPortal(<Sidebar/>, element)
 }
 
-const AsktugCategories = () => {
-    const elementId = 'asktug-categories'
-    const element = document.getElementById(elementId)
-    if (!element) {
-        return null
-    }
-    return ReactDOM.createPortal(<CategoryList/>, element)
-}
+// const AsktugCategories = () => {
+//     const elementId = 'asktug-categories'
+//     const element = document.getElementById(elementId)
+//     if (!element) {
+//         return null
+//     }
+//     return ReactDOM.createPortal(<CategoryList/>, element)
+// }
 
 const AsktugHeader = () => {
     const headerElem = document.getElementById('asktug-header')
@@ -142,7 +142,7 @@ const AsktugSite = () => {
             <AsktugHeader/>
             <AsktugFooter/>
             <AsktugSidebar/>
-            <AsktugCategories/>
+            {/*<AsktugCategories/>*/}
         </SiteComponentsContext.Provider>
     )
 }
