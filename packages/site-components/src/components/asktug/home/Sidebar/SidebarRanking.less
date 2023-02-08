@@ -1,7 +1,14 @@
+@width-cell-rank: 64px;
+@width-cell-name: 128px;
+@width-cell-exp: calc(100% - @width-cell-rank - @width-cell-rank);
 
 .asktug {
   &-sidebar {
     &-ranking {
+      table {
+        width: 100%;
+      }
+
       th, td {
         padding: 4px 16px;
         font-size: 14px;
@@ -27,6 +34,19 @@
         }
         td, & a {
           color: #FF5C00 !important;
+        }
+      }
+
+      &-cell {
+        &-rank {
+          width: @width-cell-rank;
+        }
+        &-name {
+          width: @width-cell-name;
+        }
+        &-exp {
+          text-align: right !important;
+          width: @width-cell-exp;
         }
       }
     }

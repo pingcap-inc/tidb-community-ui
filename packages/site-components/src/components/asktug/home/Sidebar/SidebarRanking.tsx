@@ -22,24 +22,24 @@ const SidebarRanking: React.FC<IProps> = (props) => {
         <table>
           <thead>
             <tr>
-              <th>排名</th>
-              <th>昵称</th>
-              <th>经验值</th>
+              <th className={"asktug-sidebar-ranking-cell-rank"}>排名</th>
+              <th className={"asktug-sidebar-ranking-cell-name"}>昵称</th>
+              <th className={"asktug-sidebar-ranking-cell-exp"}>经验值</th>
             </tr>
           </thead>
           <tbody>
             {list.slice(0, 10).map((value) => (
               <tr key={value.user.username}>
-                <td style={{color: value.ranking === 1 ? '#FFB800' : value.ranking === 2 ? '#969696' : value.ranking === 3 ? '#B7B004' : '#2C2C2C'}}>{value.ranking}</td>
-                <td> <SiteLink site={Site.asktug} newWindow url={`/u/${value.user.username}`} style={{color: username === value.user.username ? '#FF5C00' : undefined}}>{value.user.username}</SiteLink></td>
-                <td style={{color: username === value.user.username ? '#FF5C00' : undefined}}>{value.exps}</td>
+                <td className={"asktug-sidebar-ranking-cell-rank"} style={{color: value.ranking === 1 ? '#FFB800' : value.ranking === 2 ? '#969696' : value.ranking === 3 ? '#B7B004' : '#2C2C2C'}}>{value.ranking}</td>
+                <td className={"asktug-sidebar-ranking-cell-name"}> <SiteLink site={Site.asktug} newWindow url={`/u/${value.user.username}`} style={{color: username === value.user.username ? '#FF5C00' : undefined}}>{value.user.username}</SiteLink></td>
+                <td className={"asktug-sidebar-ranking-cell-exp"} style={{color: username === value.user.username ? '#FF5C00' : '#7C7C7C'}}>{value.exps}</td>
               </tr>
             ))}
             {username && dataPointMe?.data && dataPointMe.data.current_rank >= 10 && (
               <tr className={'asktug-sidebar-ranking-me'}>
-                <td style={{color: '#FF5C00'}}>{dataPointMe.data.current_rank}</td>
-                <td><SiteLink site={Site.asktug} newWindow url={`/u/${username}`} style={{color: '#FF5C00'}}>{username}</SiteLink></td>
-                <td style={{color: '#FF5C00'}}>{dataPointMe.data.current_exps}</td>
+                <td className={"asktug-sidebar-ranking-cell-rank"} style={{color: '#FF5C00'}}>{dataPointMe.data.current_rank}</td>
+                <td className={"asktug-sidebar-ranking-cell-name"}><SiteLink site={Site.asktug} newWindow url={`/u/${username}`} style={{color: '#FF5C00'}}>{username}</SiteLink></td>
+                <td className={"asktug-sidebar-ranking-cell-exp"} style={{color: '#FF5C00'}}>{dataPointMe.data.current_exps}</td>
               </tr>
             )}
           </tbody>
