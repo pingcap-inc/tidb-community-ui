@@ -6,6 +6,7 @@ import svgr from '@svgr/rollup'
 import json from '@rollup/plugin-json'
 import { peerDependencies } from './package.json'
 import { antd } from 'buildtool/plugins/rollup/antd'
+import image from "@rollup/plugin-image";
 
 export default defineConfig({
   input: './index.ts',
@@ -33,6 +34,7 @@ export default defineConfig({
         }
       }
     }),
-    ts()
+    ts(),
+    image(),
   ]
 })
