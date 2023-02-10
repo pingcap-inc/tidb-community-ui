@@ -43,6 +43,14 @@ module.exports = {
       test: /\.svg$/,
       use: ['@svgr/webpack'],
       include: [root]
+    }, {
+      test: /\.png$/,
+      use: [{
+        loader: "url-loader",
+        options: {
+          mimetype: "image/png",
+        }
+      }],
     })
     return config
   }
