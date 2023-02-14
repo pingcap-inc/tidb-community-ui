@@ -1,4 +1,4 @@
-import ts from "rollup-plugin-typescript2";
+import ts from "@rollup/plugin-typescript";
 import { defineConfig } from 'rollup'
 import copy from 'rollup-plugin-copy'
 import postcss from 'rollup-plugin-postcss'
