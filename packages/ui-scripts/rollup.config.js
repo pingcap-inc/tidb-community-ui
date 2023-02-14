@@ -11,7 +11,7 @@ import { defineConfig } from 'rollup'
 import externalGlobals from 'rollup-plugin-external-globals'
 import postcss from 'rollup-plugin-postcss'
 import { terser } from 'rollup-plugin-terser'
-import ts from '@rollup/plugin-typescript'
+import ts from 'rollup-plugin-typescript2'
 import { visualizer } from 'rollup-plugin-visualizer'
 
 const src = `index.${process.env.target}.tsx`
