@@ -11,5 +11,6 @@
     "jsx": "react",
     "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true
-  }
+  },
+  "include": ["src/**/*", "env.d.ts"]
 }
