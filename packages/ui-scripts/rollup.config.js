@@ -3,6 +3,7 @@ import json from '@rollup/plugin-json'
 import { nodeResolve } from '@rollup/plugin-node-resolve'
 import replace from '@rollup/plugin-replace'
 import svgr from '@svgr/rollup'
+import image from '@rollup/plugin-image'
 import { antd } from 'buildtool/plugins/rollup/antd'
 import LessPluginNpmImport from 'less-plugin-npm-import'
 import postcssMinify from 'postcss-minify'
@@ -26,6 +27,7 @@ export default defineConfig({
   },
   plugins: [
     ts(),
+    image(),
     nodeResolve({
       jsnext: true,
       preferBuiltins: true,
