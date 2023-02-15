@@ -27,7 +27,7 @@ export default defineConfig({
   },
   plugins: [
     ts(),
-    image(),
+    image({exclude: ['**/*.svg', '../**/*.svg']}),
     nodeResolve({
       jsnext: true,
       preferBuiltins: true,
