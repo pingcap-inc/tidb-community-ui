@@ -116,6 +116,8 @@ const DiscourseNotification = ({ notification, wrap, markRead }: DiscourseNotifi
 
     return getLink(url, node)
   }
+
+  console.warn('unknown notification type: ', notification)
 }
 
 DiscourseNotification.displayName = 'TiSiteDiscourseNotification'
