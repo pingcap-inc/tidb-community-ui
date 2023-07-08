@@ -3,3 +3,5 @@ declare module "*.svg" {
   const Icon: FC
   export default Icon
 }
+
+declare module "*.png"

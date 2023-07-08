@@ -1,0 +1,57 @@
+@width-cell-rank: 64px;
+@width-cell-name: 128px;
+@width-cell-exp: calc(100% - @width-cell-rank - @width-cell-rank);
+
+.asktug {
+  &-sidebar {
+    &-ranking {
+      table {
+        width: 100%;
+      }
+
+      th, td {
+        padding: 4px 16px;
+        font-size: 14px;
+        line-height: 20px;
+        text-align: left;
+        border: none !important;
+      }
+      td {
+        a {
+          color: #000 !important;
+        }
+      }
+      &-rank {
+        font-weight: 500;
+      }
+      &-exp {
+        color: #7C7C7C;
+      }
+      &-me {
+        tr {
+          border-top: 1px dashed #7C7C7C;
+          padding: 8px 0;
+          &:last-child {
+            border-bottom: none;
+          }
+        }
+        td, & a {
+          color: #FF5C00 !important;
+        }
+      }
+
+      &-cell {
+        &-rank {
+          width: @width-cell-rank;
+        }
+        &-name {
+          width: @width-cell-name;
+        }
+        &-exp {
+          text-align: right !important;
+          width: @width-cell-exp;
+        }
+      }
+    }
+  }
+}

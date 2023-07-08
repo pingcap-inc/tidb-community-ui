@@ -1,0 +1,406 @@
+{
+  "data": [
+    {
+      "ranking": 1,
+      "user": {
+        "username": "h5n1",
+        "avatar_url": "https://asktug.com/user_avatar/asktug.com/h5n1/50/154936_2.png"
+      },
+      "exps": 41873
+    },
+    {
+      "ranking": 2,
+      "user": {
+        "username": "xfworld",
+        "avatar_url": "https://asktug.com/user_avatar/asktug.com/xfworld/50/66137_2.png"
+      },
+      "exps": 40465
+    },
+    {
+      "ranking": 3,
+      "user": {
+        "username": "Kongdom",
+        "avatar_url": "https://asktug.com/user_avatar/asktug.com/kongdom/50/36387_2.png"
+      },
+      "exps": 35758
+    },
+    {
+      "ranking": 4,
+      "user": {
+        "username": "啦啦啦啦啦",
+        "avatar_url": "https://asktug.com/letter_avatar_proxy/v4/letter/%E5%95%A6/8baadc/50.png"
+      },
+      "exps": 30214
+    },
+    {
+      "ranking": 5,
+      "user": {
+        "username": "hey-hoho",
+        "avatar_url": "https://asktug.com/user_avatar/asktug.com/hey-hoho/50/99003_2.png"
+      },
+      "exps": 28736
+    },
+    {
+      "ranking": 6,
+      "user": {
+        "username": "yilong",
+        "avatar_url": "https://asktug.com/letter_avatar_proxy/v4/letter/y/9de053/50.png"
+      },
+      "exps": 24495
+    },
+    {
+      "ranking": 7,
+      "user": {
+        "username": "Billmay",
+        "avatar_url": "https://asktug.com/user_avatar/asktug.com/billmay/50/124932_2.png"
+      },
+      "exps": 21633
+    },
+    {
+      "ranking": 8,
+      "user": {
+        "username": "ShawnYan",
+        "avatar_url": "https://asktug.com/user_avatar/asktug.com/shawnyan/50/702678_2.png"
+      },
+      "exps": 19494
+    },
+    {
+      "ranking": 9,
+      "user": {
+        "username": "数据小黑",
+        "avatar_url": "https://asktug.com/user_avatar/asktug.com/数据小黑/50/703325_2.png"
+      },
+      "exps": 19041
+    },
+    {
+      "ranking": 10,
+      "user": {
+        "username": "db_user",
+        "avatar_url": "https://asktug.com/letter_avatar_proxy/v4/letter/d/3ab097/50.png"
+      },
+      "exps": 18518
+    },
+    {
+      "ranking": 11,
+      "user": {
+        "username": "东北大胖子",
+        "avatar_url": "https://asktug.com/user_avatar/asktug.com/东北大胖子/50/34674_2.png"
+      },
+      "exps": 17672
+    },
+    {
+      "ranking": 12,
+      "user": {
+        "username": "边城元元",
+        "avatar_url": "https://asktug.com/letter_avatar_proxy/v4/letter/%E8%BE%B9/e0b2c6/50.png"
+      },
+      "exps": 17564
+    },
+    {
+      "ranking": 13,
+      "user": {
+        "username": "Lucien",
+        "avatar_url": "https://asktug.com/user_avatar/asktug.com/lucien/50/75_2.png"
+      },
+      "exps": 16435
+    },
+    {
+      "ranking": 14,
+      "user": {
+        "username": "caiyfc",
+        "avatar_url": "https://asktug.com/letter_avatar_proxy/v4/letter/c/bcef8e/50.png"
+      },
+      "exps": 15857
+    },
+    {
+      "ranking": 15,
+      "user": {
+        "username": "songxuecheng",
+        "avatar_url": "https://asktug.com/letter_avatar_proxy/v4/letter/s/45deac/50.png"
+      },
+      "exps": 14519
+    },
+    {
+      "ranking": 16,
+      "user": {
+        "username": "TiDB社区小助手",
+        "avatar_url": "https://asktug.com/user_avatar/asktug.com/tidb社区小助手/50/704255_2.png"
+      },
+      "exps": 14243
+    },
+    {
+      "ranking": 17,
+      "user": {
+        "username": "HHHHHHULK",
+        "avatar_url": "https://asktug.com/user_avatar/asktug.com/hhhhhhulk/50/81043_2.png"
+      },
+      "exps": 12184
+    },
+    {
+      "ranking": 18,
+      "user": {
+        "username": "小王同学Plus",
+        "avatar_url": "https://asktug.com/user_avatar/asktug.com/小王同学plus/50/185343_2.png"
+      },
+      "exps": 12045
+    },
+    {
+      "ranking": 19,
+      "user": {
+        "username": "Meditator",
+        "avatar_url": "https://asktug.com/letter_avatar_proxy/v4/letter/m/f05b48/50.png"
+      },
+      "exps": 11627
+    },
+    {
+      "ranking": 20,
+      "user": {
+        "username": "Hacker_hnSEntrA",
+        "avatar_url": "https://asktug.com/letter_avatar_proxy/v4/letter/h/ed8c4c/50.png"
+      },
+      "exps": 11156
+    },
+    {
+      "ranking": 21,
+      "user": {
+        "username": "spc_monkey",
+        "avatar_url": "https://asktug.com/user_avatar/asktug.com/spc_monkey/50/78720_2.png"
+      },
+      "exps": 10541
+    },
+    {
+      "ranking": 22,
+      "user": {
+        "username": "CuteRay",
+        "avatar_url": "https://asktug.com/user_avatar/asktug.com/cuteray/50/67165_2.png"
+      },
+      "exps": 10464
+    },
+    {
+      "ranking": 23,
+      "user": {
+        "username": "MyronWang",
+        "avatar_url": "https://asktug.com/user_avatar/asktug.com/myronwang/50/79765_2.png"
+      },
+      "exps": 10373
+    },
+    {
+      "ranking": 24,
+      "user": {
+        "username": "GangShen",
+        "avatar_url": "https://asktug.com/user_avatar/asktug.com/gangshen/50/77770_2.png"
+      },
+      "exps": 10218
+    },
+    {
+      "ranking": 25,
+      "user": {
+        "username": "HACK",
+        "avatar_url": "https://asktug.com/user_avatar/asktug.com/hack/50/81026_2.png"
+      },
+      "exps": 10130
+    },
+    {
+      "ranking": 26,
+      "user": {
+        "username": "半瓶醋仙",
+        "avatar_url": "https://asktug.com/letter_avatar_proxy/v4/letter/%E5%8D%8A/d9b06d/50.png"
+      },
+      "exps": 9935
+    },
+    {
+      "ranking": 27,
+      "user": {
+        "username": "代晓磊_Mars",
+        "avatar_url": "https://asktug.com/user_avatar/asktug.com/代晓磊_mars/50/568_2.png"
+      },
+      "exps": 9802
+    },
+    {
+      "ranking": 28,
+      "user": {
+        "username": "banana_jian",
+        "avatar_url": "https://asktug.com/user_avatar/asktug.com/banana_jian/50/732971_2.png"
+      },
+      "exps": 9321
+    },
+    {
+      "ranking": 29,
+      "user": {
+        "username": "ddhe9527",
+        "avatar_url": "https://asktug.com/user_avatar/asktug.com/ddhe9527/50/824253_2.png"
+      },
+      "exps": 9284
+    },
+    {
+      "ranking": 30,
+      "user": {
+        "username": "qizheng",
+        "avatar_url": "https://asktug.com/letter_avatar_proxy/v4/letter/q/858c86/50.png"
+      },
+      "exps": 9264
+    },
+    {
+      "ranking": 31,
+      "user": {
+        "username": "dba_gc",
+        "avatar_url": "https://asktug.com/letter_avatar_proxy/v4/letter/d/58956e/50.png"
+      },
+      "exps": 9071
+    },
+    {
+      "ranking": 32,
+      "user": {
+        "username": "这道题我不会",
+        "avatar_url": "https://asktug.com/user_avatar/asktug.com/这道题我不会/50/40267_2.png"
+      },
+      "exps": 8854
+    },
+    {
+      "ranking": 33,
+      "user": {
+        "username": "Harbin70KG",
+        "avatar_url": "https://asktug.com/user_avatar/asktug.com/harbin70kg/50/702820_2.png"
+      },
+      "exps": 8660
+    },
+    {
+      "ranking": 34,
+      "user": {
+        "username": "ti-tiger",
+        "avatar_url": "https://asktug.com/letter_avatar_proxy/v4/letter/t/9f8e36/50.png"
+      },
+      "exps": 8418
+    },
+    {
+      "ranking": 35,
+      "user": {
+        "username": "zhenjiaogao",
+        "avatar_url": "https://asktug.com/letter_avatar_proxy/v4/letter/z/9fc29f/50.png"
+      },
+      "exps": 8313
+    },
+    {
+      "ranking": 36,
+      "user": {
+        "username": "xiaohetao",
+        "avatar_url": "https://asktug.com/user_avatar/asktug.com/xiaohetao/50/65038_2.png"
+      },
+      "exps": 7848
+    },
+    {
+      "ranking": 37,
+      "user": {
+        "username": "jiyf",
+        "avatar_url": "https://asktug.com/letter_avatar_proxy/v4/letter/j/3bc359/50.png"
+      },
+      "exps": 7841
+    },
+    {
+      "ranking": 38,
+      "user": {
+        "username": "jansu-dev",
+        "avatar_url": "https://asktug.com/user_avatar/asktug.com/jansu-dev/50/78868_2.png"
+      },
+      "exps": 7622
+    },
+    {
+      "ranking": 39,
+      "user": {
+        "username": "mydb",
+        "avatar_url": "https://asktug.com/letter_avatar_proxy/v4/letter/m/a88e57/50.png"
+      },
+      "exps": 7449
+    },
+    {
+      "ranking": 40,
+      "user": {
+        "username": "索隆爱喝酒",
+        "avatar_url": "https://asktug.com/user_avatar/asktug.com/索隆爱喝酒/50/304760_2.png"
+      },
+      "exps": 7420
+    },
+    {
+      "ranking": 41,
+      "user": {
+        "username": "Christophe",
+        "avatar_url": "https://asktug.com/letter_avatar_proxy/v4/letter/c/848f3c/50.png"
+      },
+      "exps": 7403
+    },
+    {
+      "ranking": 42,
+      "user": {
+        "username": "张雨齐0720",
+        "avatar_url": "https://asktug.com/letter_avatar_proxy/v4/letter/%E5%BC%A0/278dde/50.png"
+      },
+      "exps": 7338
+    },
+    {
+      "ranking": 43,
+      "user": {
+        "username": "BraveChen",
+        "avatar_url": "https://asktug.com/user_avatar/asktug.com/bravechen/50/912648_2.png"
+      },
+      "exps": 7297
+    },
+    {
+      "ranking": 44,
+      "user": {
+        "username": "Hacker_loCdZ5zu",
+        "avatar_url": "https://asktug.com/letter_avatar_proxy/v4/letter/h/ea666f/50.png"
+      },
+      "exps": 7168
+    },
+    {
+      "ranking": 45,
+      "user": {
+        "username": "seiang",
+        "avatar_url": "https://asktug.com/letter_avatar_proxy/v4/letter/s/c89c15/50.png"
+      },
+      "exps": 7149
+    },
+    {
+      "ranking": 46,
+      "user": {
+        "username": "Hacker007",
+        "avatar_url": "https://asktug.com/letter_avatar_proxy/v4/letter/h/ad7895/50.png"
+      },
+      "exps": 7046
+    },
+    {
+      "ranking": 47,
+      "user": {
+        "username": "OnTheRoad",
+        "avatar_url": "https://asktug.com/user_avatar/asktug.com/ontheroad/50/1002713_2.png"
+      },
+      "exps": 6934
+    },
+    {
+      "ranking": 48,
+      "user": {
+        "username": "forever",
+        "avatar_url": "https://asktug.com/letter_avatar_proxy/v4/letter/f/67e7ee/50.png"
+      },
+      "exps": 6817
+    },
+    {
+      "ranking": 49,
+      "user": {
+        "username": "YuchongXU",
+        "avatar_url": "https://asktug.com/letter_avatar_proxy/v4/letter/y/b5a626/50.png"
+      },
+      "exps": 6733
+    },
+    {
+      "ranking": 50,
+      "user": {
+        "username": "Mickyun",
+        "avatar_url": "https://asktug.com/letter_avatar_proxy/v4/letter/m/ea666f/50.png"
+      },
+      "exps": 6721
+    }
+  ],
+  "limit": 50,
+  "period": "all"
+}
