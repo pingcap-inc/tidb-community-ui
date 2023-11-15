@@ -109,7 +109,7 @@ const DiscourseNotification = ({ notification, wrap, markRead }: DiscourseNotifi
   if (Object.keys(notification.data).length !== 0) {
     const node = (
       <Space direction="vertical">
-        <Typography.Text type="danger">{notification.notification_type} - ${NotificationType[notification.notification_type]}</Typography.Text>
+        <Typography.Text type="danger" onClick={onClick}>{notification.notification_type} - ${NotificationType[notification.notification_type]}</Typography.Text>
         <pre>{JSON.stringify(notification, undefined, 2)}</pre>
       </Space>
     )
