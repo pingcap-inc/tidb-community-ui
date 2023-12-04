@@ -10,9 +10,11 @@ export interface NavItem {
   config?: RouteToConfig
   children?: NavItem[]
   badge?: boolean
+  level?: number
 }
 
-export function createMenuItem ({ key, title, config, children, badge }: NavItem): JSX.Element {
+export function createMenuItem ({ key, title, config, children, badge, level }: NavItem): JSX.Element {
+  const intLevel = level ?? 0
   let wrapped: React.ReactNode = title
   if (badge) {
     wrapped = <Badge dot>{title}</Badge>
@@ -27,8 +29,8 @@ export function createMenuItem ({ key, title, config, children, badge }: NavItem
     )
   } else if (children && children.length > 0) {
     return (
-      <Menu.SubMenu key={key} title={<Space>{wrapped}<DownOutlined style={{color: '#A0A0A0'}} /></Space>} popupOffset={[0, 20]}>
-        {children.map(createMenuItem)}
+      <Menu.SubMenu key={key} title={<Space>{wrapped}{intLevel === 0 && <DownOutlined style={{color: '#A0A0A0'}} />}</Space>} popupOffset={[0, 20]}>
+        {children.map((value) => createMenuItem({...value, level: intLevel + 1}))}
       </Menu.SubMenu>
     )
   }
