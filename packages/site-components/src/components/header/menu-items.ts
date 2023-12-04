@@ -72,11 +72,11 @@ export const navItems: NavItem[] = [
     ],
   },
   {
-    key: 'books',
-    title: '电子书',
+    key: 'asktug-ranking',
+    title: '排行榜',
     config: {
-      site: Site.home,
-      url: '/book',
+      site: Site.asktug,
+      url: '/x/ranking',
       newWindow: false
     }
   },
@@ -133,16 +133,16 @@ export const navItems: NavItem[] = [
               newWindow: true
             }
           },
+          {
+            key: 'books',
+            title: '电子书',
+            config: {
+              site: Site.home,
+              url: '/book',
+              newWindow: false
+            }
+          },
         ]
-      },
-      {
-        key: 'asktug-ranking',
-        title: '问答之星',
-        config: {
-          site: Site.asktug,
-          url: '/x/ranking',
-          newWindow: false
-        }
       },
       {
         key: 'jobs',
