@@ -1,7 +1,8 @@
 import { RouteToConfig } from './site'
-import {Badge, Menu} from 'antd'
+import {Badge, Menu, Space} from 'antd'
 import React from 'react'
 import SiteLink from '../components/site-link/SiteLink'
+import {DownOutlined} from "@ant-design/icons";
 
 export interface NavItem {
   key: string
@@ -24,9 +25,9 @@ export function createMenuItem ({ key, title, config, children, badge }: NavItem
         </SiteLink>
       </Menu.Item>
     )
-  } else if (children) {
+  } else if (children && children.length > 0) {
     return (
-      <Menu.SubMenu key={key} title={wrapped} popupOffset={[0, 20]}>
+      <Menu.SubMenu key={key} title={<Space>{wrapped}<DownOutlined style={{color: '#A0A0A0'}} /></Space>} popupOffset={[0, 20]}>
         {children.map(createMenuItem)}
       </Menu.SubMenu>
     )
