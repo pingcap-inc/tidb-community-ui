@@ -29,7 +29,7 @@ export function createMenuItem ({ key, title, config, children, badge, level }: 
     )
   } else if (children && children.length > 0) {
     return (
-      <Menu.SubMenu key={key} title={<Space>{wrapped}{intLevel === 0 && <DownOutlined style={{color: '#A0A0A0'}} />}</Space>} popupOffset={[0, 20]}>
+      <Menu.SubMenu key={key} title={<Space>{wrapped}{intLevel === 0 && <DownOutlined style={{color: '#A0A0A0', marginRight: -6}} />}</Space>} popupOffset={[0, 20]}>
         {children.map((value) => createMenuItem({...value, level: intLevel + 1}))}
       </Menu.SubMenu>
     )
