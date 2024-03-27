@@ -95,7 +95,7 @@ export const sections: SectionData[] = [
         title: '视频课程',
         config: {
           site: Site.others,
-          url: 'https://learn.pingcap.com/learner/course',
+          url: 'https://learn.pingcap.cn/learner/course',
           newWindow: true,
         },
       },
@@ -104,7 +104,7 @@ export const sections: SectionData[] = [
         title: '考试认证',
         config: {
           site: Site.others,
-          url: 'https://learn.pingcap.com/learner/certification-center',
+          url: 'https://learn.pingcap.cn/learner/certification-center',
           newWindow: true,
         },
       },
