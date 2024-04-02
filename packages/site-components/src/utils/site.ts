@@ -20,7 +20,7 @@ interface SiteConfig {
 const siteConfig: Record<Site, SiteConfig> = {
   [Site.accounts]: {
     baseUrl: {
-      [Env.prod]: 'https://accounts.pingcap.com',
+      [Env.prod]: 'https://accounts.pingcap.cn',
       [Env.preview]: 'https://accounts-preview.pingcap.cn',
       [Env.local]: 'https://accounts-preview.pingcap.cn'
     },
