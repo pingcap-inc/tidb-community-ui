@@ -5,7 +5,7 @@ type FetcherKey = [key: string, ...args: any[]]
 
 export interface SiteComponentsContextProps {
   fetchers: {
-    // fetcher for accounts.pingcap.com/*
+    // fetcher for accounts.pingcap.cn/*
     accounts: Fetcher<any, FetcherKey>
 
     // fetcher for asktug.com/*
