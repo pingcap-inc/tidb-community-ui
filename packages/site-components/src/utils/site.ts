@@ -21,8 +21,8 @@ const siteConfig: Record<Site, SiteConfig> = {
   [Site.accounts]: {
     baseUrl: {
       [Env.prod]: 'https://accounts.pingcap.com',
-      [Env.preview]: 'https://accounts-preview.pingcap.com',
-      [Env.local]: 'https://accounts-preview.pingcap.com'
+      [Env.preview]: 'https://accounts-preview.pingcap.cn',
+      [Env.local]: 'https://accounts-preview.pingcap.cn'
     },
   },
   [Site.home]: {
