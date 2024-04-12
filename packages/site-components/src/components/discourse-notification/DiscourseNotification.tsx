@@ -89,7 +89,19 @@ const DiscourseNotification = ({ notification, wrap, markRead }: DiscourseNotifi
       console.warn('unsupported notifications: ', JSON.stringify(notification, undefined, 2))
   }
 
-  let el, url = result?.url ?? '#'
+
+  if (Object.keys(notification.data).length !== 0) {
+    if (notification.post_number) {
+      result = renderTopicNotification(notification as AsktugNotification<TopicData>);
+    } else {
+      result = {
+        el: <span>{notification.fancy_title}</span>,
+        url: undefined,
+      }
+    }
+  }
+
+  let el, url = result?.url ?? '#';
 
   const onClick = useCallback((event) => {
     if (!notification.read) {
@@ -104,17 +116,6 @@ const DiscourseNotification = ({ notification, wrap, markRead }: DiscourseNotifi
       onClickCapture: onClick
     })
     return getLink(url, element)
-  }
-
-  if (Object.keys(notification.data).length !== 0) {
-    const node = (
-      <Space direction="vertical">
-        <Typography.Text type="danger" onClick={onClick}>{notification.notification_type} - ${NotificationType[notification.notification_type]}</Typography.Text>
-        <pre>{JSON.stringify(notification, undefined, 2)}</pre>
-      </Space>
-    )
-
-    return getLink(url, node)
   }
 
   console.warn('unknown notification type: ', notification)
