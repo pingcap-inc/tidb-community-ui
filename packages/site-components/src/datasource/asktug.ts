@@ -133,7 +133,7 @@ export interface GetPrivateMessagesParams {
 export const useAsktugUnreadNotifications = (): number => {
   const { fetchers: { asktug: fetcher } } = useContext(SiteComponentsContext)
 
-  const { data } = useSWR<Notifications>(['asktug.getNotifications', { unread: 1, recent: 1, limit: 1 }], { fetcher })
+  const { data } = useSWR<Notifications>(['asktug.getNotifications', { filter: "unread", limit: 1 }], { fetcher })
 
   return data?.notifications.length ?? 0
 }
