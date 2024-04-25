@@ -101,7 +101,8 @@ const DiscourseNotification = ({ notification, wrap, markRead }: DiscourseNotifi
     }
   }
 
-  let el, url = result?.url ?? '#';
+  let el = result?.el
+  const url = result?.url ?? '#';
 
   const onClick = useCallback((event) => {
     if (!notification.read) {
@@ -109,17 +110,21 @@ const DiscourseNotification = ({ notification, wrap, markRead }: DiscourseNotifi
     }
   }, [notification.read, notification.id, markRead])
 
-  if (result?.el) {
-    el = <span>{result?.el}&nbsp;&nbsp;<LuxonDuration className='ti-asktug-notification__time' from={notification.created_at} suffix='前'/></span>
-    const element = React.cloneElement(wrap ? wrap(el) : el, {
-      className: classnames('ti-asktug-notification', { 'ti-asktug-notification-read': notification.read }),
-      onClickCapture: onClick
-    })
-    return getLink(url, element)
+  if (!el) {
+    el = <>{notification.fancy_title ?? `未知通知类型(${notification.notification_type})`}</>
   }
 
-  console.warn('unknown notification type: ', notification)
-  return null
+  el = <span>{el}&nbsp;&nbsp;<LuxonDuration className='ti-asktug-notification__time' from={notification.created_at} suffix='前'/></span>
+  el = React.cloneElement(wrap ? wrap(el) : el, {
+    className: classnames('ti-asktug-notification', { 'ti-asktug-notification-read': notification.read }),
+    onClickCapture: onClick
+  })
+
+  if (url) {
+    return getLink(url, el)
+  } else {
+    return el;
+  }
 }
 
 DiscourseNotification.displayName = 'TiSiteDiscourseNotification'
