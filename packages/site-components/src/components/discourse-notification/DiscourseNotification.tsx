@@ -90,29 +90,29 @@ const DiscourseNotification = ({ notification, wrap, markRead }: DiscourseNotifi
   }
 
 
-  if (Object.keys(notification.data).length !== 0) {
-    if (notification.post_number) {
-      result = renderTopicNotification(notification as AsktugNotification<TopicData>);
-    } else {
-      result = {
-        el: <span>{notification.fancy_title}</span>,
-        url: undefined,
+  if (!result) {
+    if (Object.keys(notification.data).length !== 0) {
+      if (notification.post_number) {
+        result = renderTopicNotification(notification as AsktugNotification<TopicData>);
       }
     }
   }
 
-  let el = result?.el
-  const url = result?.url ?? '#';
+  if (!result) {
+    result = {
+      el: <span>{notification.fancy_title ?? `未知通知类型(${notification.notification_type})`}</span>,
+      url: undefined,
+    }
+  }
+
+  let el = result.el
+  const url = result.url ?? '#';
 
   const onClick = useCallback((event) => {
     if (!notification.read) {
       markRead?.(notification.id)
     }
   }, [notification.read, notification.id, markRead])
-
-  if (!el) {
-    el = <>{notification.fancy_title ?? `未知通知类型(${notification.notification_type})`}</>
-  }
 
   el = <span>{el}&nbsp;&nbsp;<LuxonDuration className='ti-asktug-notification__time' from={notification.created_at} suffix='前'/></span>
   el = React.cloneElement(wrap ? wrap(el) : el, {
