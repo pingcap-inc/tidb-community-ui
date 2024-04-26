@@ -1,6 +1,6 @@
 {
   "name": "@pingcap-inc/tidb-community-site-components",
-  "version": "1.8.18",
+  "version": "1.8.19",
   "description": "",
   "scripts": {
     "dev": "rollup -w -c rollup.config.js",
