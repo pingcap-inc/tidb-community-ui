@@ -50,7 +50,7 @@ const Header = ({showSearch = true}: HeaderProps): JSX.Element => {
                         >
                             <>
                                 <div  className="ti-site-header-button">
-                                    <a href="https://search.asktug.com/blog" target='_blank' rel='noreferrer'><SearchOutlined /></a>
+                                    <a href="https://search.asktug.com/" target='_blank' rel='noreferrer'><SearchOutlined /></a>
                                 </div>
                                 <HeaderNotifications/>
                                 <HeaderPrivateMessages
