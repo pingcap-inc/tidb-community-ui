@@ -73,10 +73,10 @@ export const navItems: NavItem[] = [
   },
   {
     key: 'asktug-ranking',
-    title: '排行榜',
+    title: '商业咨询',
     config: {
-      site: Site.asktug,
-      url: '/x/ranking',
+      site: Site.home,
+      url: '/support',
       newWindow: false
     }
   },
@@ -84,6 +84,15 @@ export const navItems: NavItem[] = [
     key: 'discover',
     title: '发现',
     children: [
+      {
+        key: 'asktug-ranking',
+        title: '排行榜',
+        config: {
+          site: Site.asktug,
+          url: '/x/ranking',
+          newWindow: false
+        }
+      },
       {
         key: 'tug',
         title: 'TiDB User Group',
