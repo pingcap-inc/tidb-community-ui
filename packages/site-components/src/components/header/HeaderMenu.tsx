@@ -1,8 +1,8 @@
 import React from 'react'
-import { Menu } from 'antd'
+import { Menu, Space } from 'antd';
 import { navItems } from './menu-items'
 import { createMenuItem } from '../../utils/nav-item'
-import { LoadingOutlined, MenuOutlined } from '@ant-design/icons'
+import { CaretDownFilled, LoadingOutlined, MenuOutlined } from '@ant-design/icons';
 import { AntWrapper, Responsive, SwrData } from '@pingcap-inc/tidb-community-ui'
 import { useMeData } from '../../datasource/accounts'
 import { HeaderBreakpoint } from './constants'
@@ -20,7 +20,7 @@ const HeaderMenu = ({ style }: { style?: React.CSSProperties }): JSX.Element => 
       mode="horizontal"
       getPopupContainer={getContainer}
       overflowedIndicator={
-        <MenuOutlined />
+        <Space size={2}>其他<CaretDownFilled style={{fontSize: 8, color: '#A0A0A0', marginRight: -6}} /></Space>
       }>
       <AntWrapper>
         {props => (

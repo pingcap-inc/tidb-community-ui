@@ -28,7 +28,7 @@ const Header = ({showSearch = true}: HeaderProps): JSX.Element => {
             <header className="ti-site-header">
                 <div className="ti-site-header__container">
                     <TidbCommunityLogo/>
-                    <Space size="lg"/>
+                    <Space size="md"/>
 
                     {
                         showSearch && (

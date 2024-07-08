@@ -3,6 +3,15 @@ import {NavItem} from '../../utils/nav-item'
 
 export const navItems: NavItem[] = [
   {
+    key: 'asktug-ranking',
+    title: '商业咨询',
+    config: {
+      site: Site.home,
+      url: '/support',
+      newWindow: true,
+    }
+  },
+  {
     key: 'doc',
     title: '文档',
     config: {
@@ -26,15 +35,6 @@ export const navItems: NavItem[] = [
     config: {
       site: Site.home,
       url: '/blog',
-      newWindow: false,
-    },
-  },
-  {
-    key: 'events',
-    title: '活动',
-    config: {
-      site: Site.home,
-      url: '/events',
       newWindow: false,
     },
   },
@@ -72,114 +72,108 @@ export const navItems: NavItem[] = [
     ],
   },
   {
-    key: 'asktug-ranking',
-    title: '商业咨询',
+    key: 'events',
+    title: '活动',
     config: {
       site: Site.home,
-      url: '/support',
+      url: '/events',
+      newWindow: false,
+    },
+  },
+  {
+    key: 'asktug-ranking',
+    title: '排行榜',
+    config: {
+      site: Site.asktug,
+      url: '/x/ranking',
       newWindow: false
     }
   },
   {
-    key: 'discover',
-    title: '发现',
+    key: 'tug',
+    title: 'TiDB User Group',
+    config: {
+      site: Site.home,
+      url: '/tug',
+      newWindow: false
+    }
+  },
+  {
+    key: 'regional-meetup',
+    title: '地区活动',
+    config: {
+      site: Site.home,
+      url: '/regional-meetup',
+      newWindow: false
+    }
+  },
+  {
+    key: 'developers',
+    title: '贡献者专区',
     children: [
       {
-        key: 'asktug-ranking',
-        title: '排行榜',
-        config: {
-          site: Site.asktug,
-          url: '/x/ranking',
-          newWindow: false
-        }
-      },
-      {
-        key: 'tug',
-        title: 'TiDB User Group',
-        config: {
-          site: Site.home,
-          url: '/tug',
-          newWindow: false
-        }
-      },
-      {
-        key: 'regional-meetup',
-        title: '地区活动',
-        config: {
-          site: Site.home,
-          url: '/regional-meetup',
-          newWindow: false
-        }
-      },
-      {
-        key: 'developers',
-        title: '贡献者专区',
-        children: [
-          {
-            key: 'contribute',
-            title: '如何贡献代码',
-            config: {
-              site: Site.others,
-              url: 'https://pingcap.github.io/tidb-dev-guide',
-              newWindow: true
-            }
-          },
-          {
-            key: 'internals',
-            title: '开发者论坛',
-            config: {
-              site: Site.others,
-              url: 'https://internals.tidb.io',
-              newWindow: true
-            }
-          },
-          {
-            key: 'incubator',
-            title: '孵化器项目',
-            config: {
-              site: Site.others,
-              url: 'https://github.com/pingcap/community/tree/master/incubator',
-              newWindow: true
-            }
-          },
-          {
-            key: 'books',
-            title: '电子书',
-            config: {
-              site: Site.home,
-              url: '/book',
-              newWindow: false
-            }
-          },
-        ]
-      },
-      {
-        key: 'jobs',
-        title: '工作机会',
+        key: 'contribute',
+        title: '如何贡献代码',
         config: {
           site: Site.others,
-          url: 'https://tidb-jobs.pingcap.com/',
+          url: 'https://pingcap.github.io/tidb-dev-guide',
           newWindow: true
         }
       },
       {
-        key: 'principal',
-        title: '社区准则',
+        key: 'internals',
+        title: '开发者论坛',
         config: {
           site: Site.others,
-          url: 'https://github.com/pingcap/community/blob/master/CODE_OF_CONDUCT.md',
+          url: 'https://internals.tidb.io',
           newWindow: true
         }
       },
       {
-        key: 'contact us',
-        title: '联系我们',
+        key: 'incubator',
+        title: '孵化器项目',
+        config: {
+          site: Site.others,
+          url: 'https://github.com/pingcap/community/tree/master/incubator',
+          newWindow: true
+        }
+      },
+      {
+        key: 'books',
+        title: '电子书',
         config: {
           site: Site.home,
-          url: '/contact-us',
-          newWindow: true,
-        },
+          url: '/book',
+          newWindow: false
+        }
       },
     ]
-  }
+  },
+  {
+    key: 'jobs',
+    title: '工作机会',
+    config: {
+      site: Site.others,
+      url: 'https://tidb-jobs.pingcap.com/',
+      newWindow: true
+    }
+  },
+  {
+    key: 'principal',
+    title: '社区准则',
+    config: {
+      site: Site.others,
+      url: 'https://github.com/pingcap/community/blob/master/CODE_OF_CONDUCT.md',
+      newWindow: true
+    }
+  },
+  {
+    key: 'contact us',
+    title: '联系我们',
+    config: {
+      site: Site.home,
+      url: '/contact-us',
+      newWindow: true,
+    },
+  },
 ]
