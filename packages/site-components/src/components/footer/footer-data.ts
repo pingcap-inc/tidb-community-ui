@@ -151,15 +151,6 @@ export const sections: SectionData[] = [
         },
       },
       {
-        key: 'jobs',
-        title: '工作机会',
-        config: {
-          site: Site.others,
-          url: 'https://tidb-jobs.pingcap.com',
-          newWindow: true,
-        },
-      },
-      {
         key: 'code of conduct',
         title: '社区准则',
         config: {

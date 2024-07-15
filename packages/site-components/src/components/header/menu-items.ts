@@ -150,15 +150,6 @@ export const navItems: NavItem[] = [
     ]
   },
   {
-    key: 'jobs',
-    title: '工作机会',
-    config: {
-      site: Site.others,
-      url: 'https://tidb-jobs.pingcap.com/',
-      newWindow: true
-    }
-  },
-  {
     key: 'principal',
     title: '社区准则',
     config: {
@@ -166,14 +157,5 @@ export const navItems: NavItem[] = [
       url: 'https://github.com/pingcap/community/blob/master/CODE_OF_CONDUCT.md',
       newWindow: true
     }
-  },
-  {
-    key: 'contact us',
-    title: '联系我们',
-    config: {
-      site: Site.home,
-      url: '/contact-us',
-      newWindow: true,
-    },
   },
 ]
