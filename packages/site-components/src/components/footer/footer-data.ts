@@ -113,7 +113,7 @@ export const sections: SectionData[] = [
         title: '典型案例',
         config: {
           site: Site.others,
-          url: 'https://cn.pingcap.com/case/',
+          url: 'https://www.pingcap.cn/case',
           newWindow: true,
         },
       },
