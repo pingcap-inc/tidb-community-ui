@@ -164,7 +164,7 @@ export const sections: SectionData[] = [
         title: '联系我们',
         config: {
           site: Site.home,
-          url: '/contact-us',
+          url: '/support',
           newWindow: true,
         },
       },
