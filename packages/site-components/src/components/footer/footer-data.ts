@@ -40,15 +40,6 @@ export const sections: SectionData[] = [
         },
       },
       {
-        key: 'developers',
-        title: '开发者论坛',
-        config: {
-          site: Site.others,
-          url: 'https://internals.tidb.io',
-          newWindow: true,
-        },
-      },
-      {
         key: 'tikv community',
         title: 'TiKV 社区',
         config: {

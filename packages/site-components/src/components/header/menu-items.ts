@@ -121,15 +121,6 @@ export const navItems: NavItem[] = [
         }
       },
       {
-        key: 'internals',
-        title: '开发者论坛',
-        config: {
-          site: Site.others,
-          url: 'https://internals.tidb.io',
-          newWindow: true
-        }
-      },
-      {
         key: 'incubator',
         title: '孵化器项目',
         config: {
