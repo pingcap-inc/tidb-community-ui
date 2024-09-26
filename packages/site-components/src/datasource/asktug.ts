@@ -1,6 +1,7 @@
 import { useCallback, useContext, useMemo, useRef } from 'react'
 import SiteComponentsContext from '../context/site-components-context'
 import useSWR, { SWRResponse } from 'swr'
+import axios from "axios";
 
 export enum NotificationType {
   mentioned = 1,
@@ -278,4 +279,28 @@ export const usePrivateMessagesUnread = (params: GetPrivateMessagesParams): numb
   return useMemo(() => {
     return data?.topic_list?.topics?.length ?? 0
   }, [data])
+}
+
+export interface ICategoryItem {
+  id: number // 30022,
+  name: string // "🪐 TiDB",
+  color: string // "25AAE2",
+  description: string // TiDB、TiKV、TiFlash、PD 等核心组件和监控组件如 Dashboard、Grafana、Prometheus、Alert Manager 等问题
+  has_children: boolean
+}
+
+export const useAsktugSite = () => {
+  const { fetchers: { asktug: fetcher } } = useContext(SiteComponentsContext)
+  return useSWR([`asktug.site`], { fetcher })
+}
+
+export const useAsktugBadges = () => {
+  const {fetchers: {asktug: fetcher}} = useContext(SiteComponentsContext)
+  return useSWR([`asktug.badges`], {fetcher})
+}
+
+export const useAsktugUserSummary = (username: string) => {
+  const { fetchers: { asktug: fetcher } } = useContext(SiteComponentsContext)
+  const params = {username}
+  return useSWR([`asktug.user.summary`, JSON.stringify(params)], { fetcher })
 }

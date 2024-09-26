@@ -1,10 +1,12 @@
 // this must import before any components
 import './index.less'
 import {
+    CategoryList,
     defineSiteComponentsConfig,
     Env,
     Footer,
     Header,
+    Sidebar,
     Site,
     SiteComponentsContext
 } from '@pingcap-inc/tidb-community-site-components'
@@ -46,6 +48,50 @@ const context = {
     fetchers,
 }
 
+const AsktugSidebar = () => {
+    const [key, setKey] = useState(0)
+
+    useEffect(() => {
+        const MutationObserver = window.MutationObserver || (window as any).WebkitMutationObserver
+
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach(function (mutation) {
+                mutation.addedNodes.forEach(function (node) {
+                    if ((node as Element).id === elementId) {
+                        setKey(key => key + 1)
+                    }
+                })
+            })
+        })
+
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true,
+        })
+
+        return () => {
+            observer.disconnect()
+        }
+    }, [])
+
+    const elementId = 'asktug-sidebar'
+
+    const element = document.getElementById(elementId)
+    if (!element) {
+        return null
+    }
+    return ReactDOM.createPortal(<Sidebar/>, element)
+}
+
+const AsktugCategories = () => {
+    const elementId = 'asktug-categories'
+    const element = document.getElementById(elementId)
+    if (!element) {
+        return null
+    }
+    return ReactDOM.createPortal(<CategoryList/>, element)
+}
+
 const AsktugHeader = () => {
     const headerElem = document.getElementById('asktug-header')
     if (!headerElem) {
@@ -63,7 +109,7 @@ const AsktugFooter = () => {
         const observer = new MutationObserver((mutations) => {
             mutations.forEach(function (mutation) {
                 mutation.addedNodes.forEach(function (node) {
-                    if ((node as Element).id === footerId) {
+                    if ((node as Element).id === elementId) {
                         setKey(key => key + 1)
                     }
                 })
@@ -80,14 +126,14 @@ const AsktugFooter = () => {
         }
     }, [])
 
-    const footerId = 'asktug-footer'
-    const footerElem = document.getElementById(footerId)
+    const elementId = 'asktug-footer'
+    const element = document.getElementById(elementId)
 
-    if (!footerElem) {
+    if (!element) {
         return null
     }
 
-    return ReactDOM.createPortal(<Footer { ...footerProps } />, footerElem)
+    return ReactDOM.createPortal(<Footer { ...footerProps } />, element)
 }
 
 const AsktugSite = () => {
@@ -95,6 +141,8 @@ const AsktugSite = () => {
         <SiteComponentsContext.Provider value={context}>
             <AsktugHeader/>
             <AsktugFooter/>
+            <AsktugSidebar/>
+            <AsktugCategories/>
         </SiteComponentsContext.Provider>
     )
 }
