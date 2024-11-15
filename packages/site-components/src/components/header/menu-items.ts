@@ -3,7 +3,7 @@ import {NavItem} from '../../utils/nav-item'
 
 export const navItems: NavItem[] = [
   {
-    key: 'asktug-ranking',
+    key: 'business-consulting',
     title: '商业咨询',
     config: {
       site: Site.home,
