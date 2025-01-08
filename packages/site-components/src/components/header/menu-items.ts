@@ -100,7 +100,7 @@ export const navItems: NavItem[] = [
   },
   {
     key: 'regional-meetup',
-    title: '地区活动',
+    title: 'TiDB 地区组织活动',
     config: {
       site: Site.home,
       url: '/regional-meetup',
