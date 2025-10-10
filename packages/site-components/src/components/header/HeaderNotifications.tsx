@@ -39,7 +39,7 @@ const HeaderNotifications = () => {
               )}
             />
           </Tabs.TabPane>
-          <Tabs.TabPane key="blog" tabKey="blog" tab={<Badge dot={blogCount > 0}><span>专栏</span></Badge>}>
+          <Tabs.TabPane key="blog" tabKey="blog" tab={<Badge dot={blogCount > 0}><span>博客</span></Badge>}>
             <BlogNotifications
               footer={(
                 <SiteLink site={Site.home} url="/notifications?from=blog" newWindow={false}>

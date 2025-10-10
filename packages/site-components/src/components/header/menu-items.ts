@@ -31,7 +31,7 @@ export const navItems: NavItem[] = [
   },
   {
     key: 'blog',
-    title: '专栏',
+    title: '博客',
     config: {
       site: Site.home,
       url: '/blog',

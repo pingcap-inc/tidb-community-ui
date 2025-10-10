@@ -74,7 +74,7 @@ export const sections: SectionData[] = [
       },
       {
         key: 'blogs',
-        title: '专栏',
+        title: '博客',
         config: {
           site: Site.home,
           url: '/blog',
