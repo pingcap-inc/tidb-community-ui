@@ -64,7 +64,7 @@ jobs:
         run: tar -zcf ui-scripts-${{ inputs.build-env }}.tar packages/ui-scripts/dist
 
       - name: Upload ui artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ui
           path: ui.tar
@@ -72,7 +72,7 @@ jobs:
         if: ${{ inputs.build-env == 'production' }}
 
       - name: Upload site-components artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: site-components
           path: site-components.tar
@@ -80,7 +80,7 @@ jobs:
         if: ${{ inputs.build-env == 'production' }}
 
       - name: Upload ui-scripts artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ui-scripts-${{ inputs.build-env }}
           path: ui-scripts-${{ inputs.build-env }}.tar
