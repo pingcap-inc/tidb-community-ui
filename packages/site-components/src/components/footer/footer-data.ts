@@ -68,7 +68,7 @@ export const sections: SectionData[] = [
         title: '文档',
         config: {
           site: Site.others,
-          url: 'https://docs.pingcap.com/zh',
+          url: 'https://pingkai.cn/docs/tidb/stable/',
           newWindow: true,
         },
       },

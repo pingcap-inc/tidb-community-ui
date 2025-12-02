@@ -3,6 +3,15 @@ import {NavItem} from '../../utils/nav-item'
 
 export const navItems: NavItem[] = [
   {
+    key: 'official-site',
+    title: '官网',
+    config: {
+      site: Site.others,
+      url: 'https://pingkai.cn/',
+      newWindow: false,
+    }
+  },
+  {
     key: 'business-consulting',
     title: '商业咨询',
     config: {
@@ -16,7 +25,7 @@ export const navItems: NavItem[] = [
     title: '文档',
     config: {
       site: Site.others,
-      url: 'https://docs.pingcap.com/zh',
+      url: 'https://pingkai.cn/docs/tidb/stable/',
       newWindow: true,
     },
   },
