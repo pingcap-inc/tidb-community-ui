@@ -1,0 +1,40 @@
+
+.asktug {
+  &-category-list {
+    display: flex;
+    flex-direction: row;
+    //box-shadow: inset 8px 0px 8px -8px #ccc, inset -8px 0px 8px -8px #ccc;
+    padding: 0 8px;
+    &-item {
+      width: 240px;
+      height: 96px;
+      //margin-right: 8px;
+      border-radius: 6px;
+      padding: 12px;
+      &-wrap-box {
+        margin-right: 12px;
+      }
+      &-wrap {
+        border-radius: 6px;
+        position: relative;
+        padding: 1px;
+      }
+      &-header {
+        &-name {
+          font-weight: 500;
+          font-size: 14px;
+          line-height: 20px;
+          color: #000000;
+        }
+      }
+      &-body {
+        margin-top: 8px;
+        &-description {
+          font-size: 12px;
+          line-height: 16px;
+          color: #7C7C7C;
+        }
+      }
+    }
+  }
+}

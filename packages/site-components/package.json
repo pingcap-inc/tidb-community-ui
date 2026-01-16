@@ -18,6 +18,8 @@
   "devDependencies": {
     "@ant-design/icons": "^4.7.0",
     "@pingcap-inc/tidb-community-ui": "*",
+    "@rollup/plugin-image": "^3.0.2",
+    "@rollup/plugin-json": "^4.1.0",
     "@svgr/rollup": "^6.2.0",
     "@types/react": "^17.0.2",
     "@types/react-transition-group": "^4.4.4",
@@ -36,7 +38,7 @@
     "rollup-plugin-copy": "^3.4.0",
     "rollup-plugin-delete": "^2.0.0",
     "rollup-plugin-postcss": "^4.0.2",
-    "rollup-plugin-ts": "^2.0.4",
+    "@rollup/plugin-typescript": "^11.0.0",
     "swr": "^1.1.2",
     "typescript": "~4.5.4"
   },
@@ -58,5 +60,9 @@
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
+  },
+  "dependencies": {
+    "dayjs": "^1.11.6",
+    "swiper": "^8.4.5"
   }
 }

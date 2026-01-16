@@ -3,6 +3,7 @@ import json from '@rollup/plugin-json'
 import { nodeResolve } from '@rollup/plugin-node-resolve'
 import replace from '@rollup/plugin-replace'
 import svgr from '@svgr/rollup'
+import image from '@rollup/plugin-image'
 import { antd } from 'buildtool/plugins/rollup/antd'
 import LessPluginNpmImport from 'less-plugin-npm-import'
 import postcssMinify from 'postcss-minify'
@@ -11,7 +12,7 @@ import { defineConfig } from 'rollup'
 import externalGlobals from 'rollup-plugin-external-globals'
 import postcss from 'rollup-plugin-postcss'
 import { terser } from 'rollup-plugin-terser'
-import ts from 'rollup-plugin-ts'
+import ts from 'rollup-plugin-typescript2'
 import { visualizer } from 'rollup-plugin-visualizer'
 
 const src = `index.${process.env.target}.tsx`
@@ -22,10 +23,11 @@ export default defineConfig({
   output: {
     sourcemap: process.env.NODE_ENV === 'development',
     file: `dist/ti-site-${process.env.target}.${process.env.NODE_ENV}.js`,
-    format: 'es'
+    format: 'iife'
   },
   plugins: [
     ts(),
+    image({exclude: ['**/*.svg', '../**/*.svg']}),
     nodeResolve({
       jsnext: true,
       preferBuiltins: true,
@@ -39,12 +41,23 @@ export default defineConfig({
       preventAssignment: true
     }),
     antd({
-      template: component => `
+      template: component => {
+        // The Col and Row components contains no styles/index.less file. Using grid/styles/index.less instead
+        if (['col', 'row'].includes(component)) {
+          return `
+            @use postcss-wrap-selector(selector = '.ti-site-${process.env.target}');
+            @import "~@pingcap-inc/tidb-community-ui/theme/index-commons.less";
+            @import "~antd/lib/grid/style";
+            @import "~@pingcap-inc/tidb-community-ui/theme/index-overrides.less";
+        `
+        }
+        return `
           @use postcss-wrap-selector(selector = '.ti-site-${process.env.target}');
           @import "~@pingcap-inc/tidb-community-ui/theme/index-commons.less";
           @import "~antd/lib/${component}/style";
           @import "~@pingcap-inc/tidb-community-ui/theme/index-overrides.less";
         `
+      }
     }),
     svgr({
       include: ['**/*.svg', '../**/*.svg']
@@ -68,7 +81,8 @@ export default defineConfig({
       react: 'React',
       'react-dom': 'ReactDOM',
       antd: 'antd',
-      'react-transition-group': 'ReactTransitionGroup'
+      'react-transition-group': 'ReactTransitionGroup',
+      // 'dom7': '$',
     }),
     visualizer(),
     terser({

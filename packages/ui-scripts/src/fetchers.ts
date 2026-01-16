@@ -4,6 +4,7 @@ import {stringify} from 'qs'
 let ACCOUNTS_BASE = '/_/sso'
 let BLOG_BASE = '/_/blog'
 let ASKTUG_BASE = ''
+const HOME_BASE = process.env.NODE_ENV === 'production' ? 'https://tidb.net' : 'https://community-preview.tidb.net'
 
 declare global {
   interface Window {
@@ -54,6 +55,10 @@ const accounts: Fetcher = (key: string) => {
   switch (key) {
     case 'me':
       return fetch(`${ACCOUNTS_BASE}${meUrl}`, { credentials: 'include' }).then(processResponse)
+    case 'accounts.points.me':
+      return fetch(`${ACCOUNTS_BASE}/api/points/me`, { credentials: 'include' }).then(processResponse)
+    case 'accounts.points.top':
+      return fetch(`${ACCOUNTS_BASE}/api/points/top`, { credentials: 'include' }).then(processResponse)
     default:
       throw new Error('not implemented')
   }
@@ -94,6 +99,15 @@ const asktug: Fetcher = (key: string, params: any) => {
     case 'asktug.getPrivateMessagesSent':
       // @ts-ignore
       return fetch(`${ASKTUG_BASE}/topics/private-messages-sent/${params.username}`, { headers: { accept: 'application/json' }, credentials: 'include' }).then(processResponse)
+    case 'asktug.site':
+      // @ts-ignore
+      return fetch(`${ASKTUG_BASE}/site.json`, { headers: { accept: 'application/json' }, credentials: 'include' }).then(processResponse)
+    case 'asktug.badges':
+      // @ts-ignore
+      return fetch(`${ASKTUG_BASE}/badges.json`, { headers: { accept: 'application/json' }, credentials: 'include' }).then(processResponse)
+    case 'asktug.user.summary':
+      // @ts-ignore
+      return fetch(`${ASKTUG_BASE}/u/${params.username}/summary`, { headers: { accept: 'application/json' }, credentials: 'include' }).then(processResponse)
     default:
       throw new Error('not implemented')
   }
@@ -110,6 +124,22 @@ const blog: Fetcher = (key: string, params: any) => {
       return fetch(`${BLOG_BASE}/api/notifications/summary`, { headers: { accept: 'application/json' }, credentials: 'include' }).then(processResponse)
     case 'blog.readNotification':
       return fetch(`${BLOG_BASE}/api/notifications/${params}/read`, { method: 'PATCH', credentials: 'include' })
+    case 'blog.getRecommend':
+      return fetch(`${BLOG_BASE}/api/posts/recommend`, {}).then(processResponse)
+    case 'blog.users.posts':
+      return fetch(`${BLOG_BASE}/api/users/username/${params.username}/posts`, {}).then(processResponse)
+    default:
+      throw new Error('not implemented')
+  }
+}
+
+const home: Fetcher = (key: string, params: any) => {
+  if (typeof params === 'string') {
+    params = tryJson(params)
+  }
+  switch (key) {
+    case 'home.events':
+      return fetch(`${HOME_BASE}/next-api/cms/tidbio-homepage-main-activities`, {}).then(processResponse)
     default:
       throw new Error('not implemented')
   }
@@ -125,5 +155,5 @@ const getAsktugCsrf = () => {
 }
 
 export default {
-  accounts, asktug, blog
+  accounts, asktug, blog, home
 }

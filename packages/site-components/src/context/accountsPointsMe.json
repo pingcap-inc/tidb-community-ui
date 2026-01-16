@@ -1,0 +1,15 @@
+{
+  "detail": "成功",
+  "data": {
+    "current_level": 4,
+    "current_points": 375,
+    "current_exps": 245,
+    "current_rank": 3029,
+    "is_today_checked": false,
+    "level_desc": {
+      "min_exps": 200,
+      "max_exps": 499,
+      "progress": 0.1505
+    }
+  }
+}

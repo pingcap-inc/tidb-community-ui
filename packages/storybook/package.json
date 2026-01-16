@@ -53,5 +53,8 @@
   "scripts": {
     "storybook": "start-storybook -p 6006",
     "build": "build-storybook --quiet"
+  },
+  "dependencies": {
+    "url-loader": "^4.1.1"
   }
 }
