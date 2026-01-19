@@ -3,7 +3,7 @@ import {stringify} from 'qs'
 
 let ACCOUNTS_BASE = '/accounts'
 let BLOG_BASE = '/blog'
-let ASKTUG_BASE = ''
+let ASKTUG_BASE = '/tidbcommunity/forum'
 
 declare global {
   interface Window {
