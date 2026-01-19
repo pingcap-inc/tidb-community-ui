@@ -25,7 +25,7 @@ const UserProfileDropdown = ({ me }: { me: MeData['data'] }) => {
       }>
       <div className="ti-site-user-profile__trigger">
         <Badge dot={showDot}>
-          <SiteLink url={`/u/${me.username}`} site={Site.home} newWindow>
+          <SiteLink url={`/tidbcommunity/u/${me.username}`} site={Site.home} newWindow>
             <Avatar src={me.avatar_url} size={28} />
           </SiteLink>
         </Badge>
