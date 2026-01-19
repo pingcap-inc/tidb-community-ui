@@ -24,7 +24,7 @@ const BlogNotification = ({ notification, markRead, wrap }: BlogNotificationProp
   let el: JSX.Element | undefined = undefined
   let url: string | undefined = undefined
   if (notification.relatedPost) {
-    url = `/blog/${notification.relatedPost.slug}`
+    url = `/tidbcommunity/blog/${notification.relatedPost.slug}`
   }
   switch (notification.type) {
     case NotificationType.COMMENT:

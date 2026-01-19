@@ -2,7 +2,7 @@ import {Fetcher} from 'swr'
 import {stringify} from 'qs'
 
 let ACCOUNTS_BASE = '/accounts'
-let BLOG_BASE = '/blog'
+let BLOG_BASE = '/tidbcommunity/blog'
 let ASKTUG_BASE = '/tidbcommunity/forum'
 
 declare global {
@@ -24,7 +24,7 @@ export const getPreviewUrlBase = (): string | undefined => {
 export const setFetcherUrlBase = (base: string) => {
   base = getPreviewUrlBase() ?? base
   ACCOUNTS_BASE = base + '/accounts'
-  BLOG_BASE = base + '/blog'
+  BLOG_BASE = base + '/tidbcommunity/blog'
   ASKTUG_BASE = base + '/tidbcommunity/forum'
 }
 
