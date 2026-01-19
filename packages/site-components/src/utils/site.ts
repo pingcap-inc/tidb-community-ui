@@ -20,23 +20,23 @@ interface SiteConfig {
 const siteConfig: Record<Site, SiteConfig> = {
   [Site.accounts]: {
     baseUrl: {
-      [Env.prod]: 'https://accounts.pingcap.cn',
-      [Env.preview]: 'https://accounts-preview.pingcap.cn',
-      [Env.local]: 'https://accounts-preview.pingcap.cn'
+      [Env.prod]: 'https://pingkai.cn/accounts',
+      [Env.preview]: 'https://community.pingkai.cn/accounts',
+      [Env.local]: 'https://community.pingkai.cn/accounts'
     },
   },
   [Site.home]: {
     baseUrl: {
-      [Env.prod]: 'https://tidb.net',
-      [Env.preview]: 'https://community-preview.tidb.net',
+      [Env.prod]: 'https://pingkai.cn/tidbcommunity',
+      [Env.preview]: 'https://community.pingkai.cn/tidbcommunity',
       [Env.local]: 'http://localhost:4000',
     },
   },
   [Site.asktug]: {
     baseUrl: {
-      [Env.prod]: 'https://asktug.com',
-      [Env.preview]: 'https://new.asktug.com',
-      [Env.local]: 'https://new.asktug.com',
+      [Env.prod]: 'https://pingkai.cn/tidbcommunity/forum',
+      [Env.preview]: 'https://community.pingkai.cn/tidbcommunity/forum',
+      [Env.local]: 'https://community.pingkai.cn/tidbcommunity/forum',
     },
   },
   [Site.others]: {
