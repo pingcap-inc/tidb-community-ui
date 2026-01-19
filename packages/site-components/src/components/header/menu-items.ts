@@ -43,7 +43,7 @@ export const navItems: NavItem[] = [
     title: '博客',
     config: {
       site: Site.home,
-      url: '/tidbcommunity/blog',
+      url: '/blog',
       newWindow: false,
     },
   },

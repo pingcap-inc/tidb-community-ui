@@ -1,9 +1,9 @@
 import {Fetcher} from 'swr'
 import {stringify} from 'qs'
 
-let ACCOUNTS_BASE = '/_/sso'
-let BLOG_BASE = '/_/blog'
-let ASKTUG_BASE = ''
+let ACCOUNTS_BASE = '/accounts'
+let BLOG_BASE = '/tidbcommunity/blog'
+let ASKTUG_BASE = '/tidbcommunity/forum'
 
 declare global {
   interface Window {
@@ -23,9 +23,9 @@ export const getPreviewUrlBase = (): string | undefined => {
 
 export const setFetcherUrlBase = (base: string) => {
   base = getPreviewUrlBase() ?? base
-  ACCOUNTS_BASE = base + '/_/sso'
-  BLOG_BASE = base + '/_/blog'
-  ASKTUG_BASE = base + '/_/_asktug'
+  ACCOUNTS_BASE = base + '/accounts'
+  BLOG_BASE = base + '/tidbcommunity/blog'
+  ASKTUG_BASE = base + '/tidbcommunity/forum'
 }
 
 const processResponse = (res: Response) => {
