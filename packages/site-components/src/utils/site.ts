@@ -54,16 +54,17 @@ interface GetUrlResult {
 }
 
 export function getUrl (site: Site, env: Env, config: RouteToConfig): GetUrlResult {
-  if (site === Site.asktug) {
-    return {
-      url: `/tidbcommunity/forum${config.url}`,
-      canUseRouter: !config.newWindow,
-    }
-  }
   if (site === config.site) {
-    return {
-      url: config.url,
-      canUseRouter: !config.newWindow,
+    if (site === Site.asktug) {
+      return {
+        url: `/tidbcommunity/forum${config.url}`,
+        canUseRouter: !config.newWindow,
+      }
+    } else {
+      return {
+        url: config.url,
+        canUseRouter: !config.newWindow,
+      }
     }
   } else {
     return {
