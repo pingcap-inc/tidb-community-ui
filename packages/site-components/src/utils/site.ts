@@ -55,7 +55,12 @@ interface GetUrlResult {
 
 export function getUrl (site: Site, env: Env, config: RouteToConfig): GetUrlResult {
   if (site === config.site) {
-    if (site === Site.asktug) {
+    if (site === Site.home) {
+      return {
+        url: config.url.startsWith('/tidbcommunity') ? config.url : `/tidbcommunity${config.url}`,
+        canUseRouter: !config.newWindow
+      }
+    } else if (site === Site.asktug) {
       return {
         url: `/tidbcommunity/forum${config.url}`,
         canUseRouter: !config.newWindow,
