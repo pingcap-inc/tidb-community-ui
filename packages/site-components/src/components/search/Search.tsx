@@ -3,8 +3,8 @@ import { SearchOutlined } from '@ant-design/icons';
 import useDebounce from '../../utils/hooks';
 import { Dropdown } from 'antd';
 
-const CANDIDATES_END_POINT = 'https://search.asktug.com/api/search/keyword-suggestions';
-const href = (q_: string) => `https://search.asktug.com/?q=${encodeURIComponent(q_)}`;
+const CANDIDATES_END_POINT = 'https://search.pingkai.cn/api/search/keyword-suggestions';
+const href = (q_: string) => `https://search.pingkai.cn/?q=${encodeURIComponent(q_)}`;
 const handle = (href_: string) => window.open(href_ ?? href, '_blank');
 
 const Search = ({ style }: { style?: React.CSSProperties }): JSX.Element => {
