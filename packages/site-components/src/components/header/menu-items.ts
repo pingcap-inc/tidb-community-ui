@@ -138,15 +138,6 @@ export const navItems: NavItem[] = [
           newWindow: true
         }
       },
-      {
-        key: 'books',
-        title: '电子书',
-        config: {
-          site: Site.home,
-          url: '/book',
-          newWindow: false
-        }
-      },
     ]
   },
   {
