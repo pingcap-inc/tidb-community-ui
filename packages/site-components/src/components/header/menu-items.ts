@@ -56,7 +56,7 @@ export const navItems: NavItem[] = [
         title: '视频课程',
         config: {
           site: Site.others,
-          url: 'https://learn.pingcap.cn/learner/course',
+          url: 'https://learn.pingkai.cn/learner/course',
           newWindow: true,
         },
       },
@@ -65,7 +65,7 @@ export const navItems: NavItem[] = [
         title: '考试认证',
         config: {
           site: Site.others,
-          url: 'https://learn.pingcap.cn/learner/certification-center',
+          url: 'https://learn.pingkai.cn/learner/certification-center',
           newWindow: true,
         },
       },
