@@ -16,7 +16,7 @@ export const navItems: NavItem[] = [
     title: '商业咨询',
     config: {
       site: Site.home,
-      url: '/support',
+      url: 'https://pingkai.cn/contact?src_loc=tidbcommunity',
       newWindow: true,
     }
   },
