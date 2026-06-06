@@ -154,8 +154,8 @@ export const sections: SectionData[] = [
         key: 'contact us',
         title: '联系我们',
         config: {
-          site: Site.home,
-          url: '/support',
+          site: Site.others,
+          url: 'https://pingkai.cn/contact?src_loc=tidbcommunity',
           newWindow: true,
         },
       },
